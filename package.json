@@ -18,7 +18,8 @@
     "test:w": "vitest",
     "test:ui": "vitest --ui",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_80d97f5cb23d436"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -44,6 +45,7 @@
     "@types/react": "^18.2.48",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
+    "chromatic": "^10.6.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
