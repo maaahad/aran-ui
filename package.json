@@ -1,5 +1,5 @@
 {
-  "name": "aran-ui",
+  "name": "@maaahad/aran-ui",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -9,6 +9,13 @@
   "files": [
     "/dist"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maaahad/aran-ui"
+  },
   "scripts": {
     "build": "tsc && vite build",
     "format": "prettier --write --parser typescript '**/*.{ts,tsx}'",
