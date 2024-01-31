@@ -5,3 +5,6 @@ dist
 storybook-static
 #any log
 *.log
+
+# exclude example/test app
+example
