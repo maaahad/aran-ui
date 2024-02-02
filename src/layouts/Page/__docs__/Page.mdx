@@ -1,0 +1,29 @@
+
+import { Canvas, Meta } from "@storybook/blocks";
+import Example from "./Example.tsx";
+import * as Page from "./Page.stories.tsx";
+
+<Meta of={Page} title="Page" />
+
+# Page
+
+Page container with different props
+
+#### Example
+
+<Canvas of={Page.Fixed} />
+
+## Usage
+
+```ts
+import {Page} from "aran-ui";
+
+const Example = () => {
+  return (
+      <Page />
+  );
+};
+
+export default Example;
+```
+
