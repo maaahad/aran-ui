@@ -10,8 +10,14 @@ export default meta;
 
 type Story = StoryObj<typeof Example>;
 
-export const Fixed: Story = {
+export const Fluid: Story = {
   args: {
     variant: "fluid",
+  },
+};
+
+export const Fixed: Story = {
+  args: {
+    variant: "990",
   },
 };

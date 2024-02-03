@@ -26,10 +26,13 @@
     "test:ui": "vitest --ui",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_80d97f5cb23d436"
+    "chromatic": "npx chromatic --project-token=chpt_80d97f5cb23d436",
+    "type-check": "tsc --noEmit",
+    "tsc": "npm run type-check",
+    "tsc:w": "npm run type-check --watch"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "*.{ts,tsx,js,jsx}": [
       "npm run format",
       "npm run lint",
       "npm run test"
