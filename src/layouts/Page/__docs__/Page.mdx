@@ -1,0 +1,29 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import Example from "./Example.tsx";
+import * as Page from "./Page.stories.tsx";
+
+<Meta of={Page} title="Page" />
+
+# Page
+
+Page container with different props
+
+#### Example
+
+<Canvas of={Page.Fluid} />
+
+## Usage
+
+```ts
+import {Page} from "aran-ui";
+
+const Example = () => {
+  return (
+      <Page variant="fluid" />
+  );
+};
+
+export default Example;
+````
+#### Arguments
+- variant - A string value to to specify the width of the page. `Fluid`, `990px` or `1280px`. Default is `990px`
