@@ -7,7 +7,7 @@ export type PageProps = {
 };
 
 // Padding value should come from config
-const StyledPage = styled.div<Pick<PageProps, "variant">>`
+const StyledPageUpdate = styled.div<Pick<PageProps, "variant">>`
   padding: 0px 16px;
   ${({ variant = "990" }) => {
     return css`
@@ -22,9 +22,9 @@ const Page: React.FC<PropsWithChildren<PageProps>> = ({
   className,
 }) => {
   return (
-    <StyledPage className={className} variant={variant}>
+    <StyledPageUpdate className={className} variant={variant}>
       {children}
-    </StyledPage>
+    </StyledPageUpdate>
   );
 };
 
