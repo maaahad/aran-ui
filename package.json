@@ -20,6 +20,7 @@
     "build": "tsc && vite build",
     "format": "prettier --write --parser typescript '**/*.{ts,tsx}'",
     "lint:fix": "eslint . --ext .ts,.tsx --ignore-path .gitignore --fix",
+    "format:check": "prettier --check '**/*.{ts,tsx,js,jsx,json,css,md,html}'",
     "lint": "eslint . --ext .ts,.tsx --ignore-path .gitignore",
     "test": "vitest run",
     "test:w": "vitest",
@@ -33,7 +34,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "npm run format",
+      "npm run format:check",
       "npm run lint",
       "npm run test"
     ]
