@@ -2,8 +2,7 @@ name: ci-pr
 run-name: Trigger by -> ${{github.actor}}
 on:
   pull_request:
-    paths:
-      - "*"
+    types: ["opened", "reopened", "synchronize"]
 jobs:
   lint:
     runs-on: ubuntu-latest
