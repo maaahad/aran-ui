@@ -6,7 +6,7 @@ import Button from "../Button";
 describe("Button component", () => {
   it("Button should render correctly", () => {
     render(<Button />);
-    const button = screen.getByRole("button");
+    const button = screen.getByRole("menu");
     expect(button).toBeInTheDocument();
   });
 });
