@@ -33,10 +33,10 @@
     "tsc:w": "npm run type-check --watch"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "*.{ts,tsx,js,jsx}": [
       "npm run format:check",
       "npm run lint",
-      "npm run test"
+      "vitest related --run --bail 1 --passWithNoTests"
     ]
   },
   "keywords": [],
