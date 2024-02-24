@@ -3,13 +3,13 @@ import "styled-components";
 
 // color type should come from colors tokens
 
-type VariadicColors = {
+type MainColor = {
   primary: string;
   secondary: string;
   error: string;
 };
 
-type InteractiveColors = {
+type InteractiveColor = {
   hover: string;
   focus: string;
   active: string;
@@ -20,18 +20,19 @@ declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
       ui: {
-        accent: VariadicColors;
+        accent: MainColor;
         text: {
-          body: VariadicColors;
-          button: VariadicColors;
+          body: MainColor;
+          button: MainColor;
         };
-        interactive: InteractiveColors;
+        interactive: InteractiveColor;
         icon: string;
         border: string;
         background: string;
         surface: string;
         backdrop: string;
       };
+      // other color options such as data-visulization and so on
     };
   }
 }
