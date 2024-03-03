@@ -46,7 +46,7 @@ export const getColorToken = (theme: Theme): DefaultTheme["color"] => {
   return {
     text: {
       body: {
-        primary: PALETTE[palette].P900,
+        primary: PALETTE[palette].P500,
         secondary: PALETTE[palette].P200,
         tertiary: PALETTE[palette].P600,
       },
