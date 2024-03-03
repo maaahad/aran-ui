@@ -14,17 +14,35 @@ export enum Gray {
   P950 = "#1f1e24",
 }
 
-export type ColorToken = Gray;
-export type Theme = "default" | "purple";
+export enum Green {
+  P50 = "#ecf4ee",
+  P100 = "#c3e6cd",
+  P200 = "#91d4a8",
+  P300 = "#52b87a",
+  P400 = "#2da160",
+  P500 = "#108548",
+  P600 = "#217645",
+  P700 = "#24663b",
+  P800 = "#0d532a",
+  P900 = "#0a4020",
+  P950 = "#072b15",
+}
+
+export type ColorToken = Gray | Green;
+export type Theme = "default" | "green";
 // Add other enum for other color options
 export const PALETTE = {
   GRAY: Gray,
+  GREEN: Green,
   // add other color palette
 };
 
 export const getColorToken = (theme: Theme): DefaultTheme["color"] => {
   // Should be based on theme param
-  const palette = "GRAY" as keyof typeof PALETTE;
+  const palette =
+    theme === "default"
+      ? ("GRAY" as keyof typeof PALETTE)
+      : ((theme as string).toUpperCase() as keyof typeof PALETTE);
   return {
     text: {
       body: {
