@@ -1,6 +1,4 @@
 import { DefaultTheme } from "styled-components";
-
-// This will list all possible color palettes
 export enum Gray {
   P10 = "#fbfafd",
   P50 = "#ececef",
@@ -16,23 +14,23 @@ export enum Gray {
   P950 = "#1f1e24",
 }
 
-const Palette = {
+export type ColorToken = Gray;
+export type Theme = "default" | "purple";
+// Add other enum for other color options
+export const PALETTE = {
   GRAY: Gray,
+  // add other color palette
 };
 
-export const getColorToken = (
-  theme: DefaultTheme["theme"],
-): DefaultTheme["color"] => {
-  const palette: keyof typeof Palette = ["dark", "light"].includes(theme)
-    ? "GRAY"
-    : "";
-
+export const getColorToken = (theme: Theme): DefaultTheme["color"] => {
+  // Should be based on theme param
+  const palette = "GRAY" as keyof typeof PALETTE;
   return {
     text: {
       body: {
-        primary: Palette[palette].P50,
-        secondary: Palette[palette].P100,
-        tertiary: Palette[palette].P900,
+        primary: PALETTE[palette].P900,
+        secondary: PALETTE[palette].P200,
+        tertiary: PALETTE[palette].P600,
       },
     },
   };

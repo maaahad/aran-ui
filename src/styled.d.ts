@@ -1,6 +1,6 @@
 // import original module decleartion
 import "styled-components";
-import { Gray } from "./tokens/color";
+import { Color } from "./tokens";
 
 type ColorMain = "primary" | "secondary" | "tertiary";
 
@@ -10,14 +10,13 @@ type InteractiveColor = {
   active: string;
 };
 
-type ColorVariant<K = ColorMain, V = Gray> = {
+type ColorVariant<K = ColorMain, V = Color.ColorToken> = {
   [key in Exclude<K>]: V;
 };
 
 // extending styled-components
 declare module "styled-components" {
   export interface DefaultTheme {
-    theme: "dark" | "light";
     color: {
       text: {
         body: ColorVariant;
@@ -32,21 +31,6 @@ declare module "styled-components" {
       //   };
       // };
     };
-    // colors: {
-    //   ui: {
-    //     accent: MainColor;
-    //     text: {
-    //       body: MainColor;
-    //       button: MainColor;
-    //     };
-    //     interactive: InteractiveColor;
-    //     icon: string;
-    //     border: string;
-    //     background: string;
-    //     surface: string;
-    //     backdrop: string;
-    //   };
-    //   // other color options such as data-visulization and so on
-    // };
+    // size
   }
 }

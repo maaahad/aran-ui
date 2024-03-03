@@ -1,8 +1,15 @@
 import React from "react";
-import { ThemeProvider, createGlobalStyle } from "styled-components";
+import {
+  DefaultTheme,
+  ThemeProvider,
+  createGlobalStyle,
+} from "styled-components";
+import { getColorToken, type Theme } from "../../tokens/color";
 
-const theme = {
-  color: "red",
+const getTheme = (theme: Theme): DefaultTheme => {
+  return {
+    color: getColorToken(theme),
+  };
 };
 
 const GlobalStyle = createGlobalStyle`
@@ -16,9 +23,11 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-const AranThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+const AranThemeProvider: React.FC<
+  React.PropsWithChildren<{ theme?: Theme }>
+> = ({ children, theme = "default" }) => {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={getTheme(theme as Theme)}>
       <GlobalStyle />
       {children}
     </ThemeProvider>
