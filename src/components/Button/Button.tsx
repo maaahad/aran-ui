@@ -11,7 +11,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <StyledButton size={size} onClick={onClick} type="button" {...props}>
-      {label}
+      <span>{label}</span>
     </StyledButton>
   );
 };
