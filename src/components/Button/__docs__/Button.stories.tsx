@@ -20,19 +20,13 @@ type Story = StoryObj<typeof Example>;
 
 export const Primary: Story = {
   args: {
-    text: "Button",
-    primary: true,
-    disabled: false,
-    size: "small",
+    label: "Primary Button",
     onClick: () => console.log("Button"),
   },
 };
 export const Secondary: Story = {
   args: {
-    text: "Button",
-    primary: false,
-    disabled: false,
-    size: "small",
+    label: "Secondary Button",
     onClick: () => console.log("Button"),
   },
 };

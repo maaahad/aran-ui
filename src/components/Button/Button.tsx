@@ -1,6 +1,8 @@
 // components/button/button.tsx
 import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
+import { ButtonProps } from "./types";
+import { StyledButton } from "./styled.ts";
 
 export type ButtonProps = {
   text?: string;
@@ -10,7 +12,7 @@ export type ButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-const StyledButton = styled.button<ButtonProps>`
+const StyledButtonOLD = styled.button<ButtonProps>`
   border: 0;
   line-height: 1;
   font-size: 15px;
@@ -29,24 +31,10 @@ const StyledButton = styled.button<ButtonProps>`
         : "14px 30px 16px"};
 `;
 
-const Button: React.FC<ButtonProps> = ({
-  size,
-  primary,
-  disabled,
-  text,
-  onClick,
-  ...props
-}) => {
+const Button: React.FC<ButtonProps> = ({ label, onClick, ...props }) => {
   return (
-    <StyledButton
-      type="button"
-      onClick={onClick}
-      primary={primary}
-      disabled={disabled}
-      size={size}
-      {...props}
-    >
-      {text}
+    <StyledButton type="button" {...props}>
+      {label}
     </StyledButton>
   );
 };
