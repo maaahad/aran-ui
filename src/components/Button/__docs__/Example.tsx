@@ -1,13 +1,8 @@
 import React, { FC } from "react";
-import Button, { ButtonProps } from "../Button";
+import Button from "../Button";
+import { ButtonProps } from "../types.ts";
 
-const Example: FC<ButtonProps> = ({
-  disabled = false,
-  onClick = () => {},
-  primary = true,
-  size = "small",
-  text = "Button",
-}) => {
+const Example: FC<ButtonProps> = ({ label, onClick = () => {} }) => {
   return (
     <div
       style={{
@@ -17,13 +12,7 @@ const Example: FC<ButtonProps> = ({
         height: "100%",
       }}
     >
-      <Button
-        size={size}
-        text={text}
-        disabled={disabled}
-        onClick={onClick}
-        primary={primary}
-      />
+      <Button onClick={onClick} label={label} />
     </div>
   );
 };
