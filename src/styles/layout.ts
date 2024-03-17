@@ -1,15 +1,35 @@
 import { css } from "styled-components";
 
+type Wrap = "wrap" | "nowrap" | "wrap-reverse";
+type ItemAlignment =
+  | "normal"
+  | "flex-start"
+  | "flex-end"
+  | "center"
+  | "stretch";
+
+type JustifyContent =
+  | "start"
+  | "end"
+  | "center"
+  | "space-between"
+  | "space-around"
+  | "space-evenly"
+  | "normal"
+  | "stretch"
+  | "flex-start"
+  | "flex-end";
+
 export const applyFlex = ({
   dir = "row",
-  align = "stretch",
-  justify = "stretch",
+  align = "normal",
+  justify = "normal",
   wrap = "nowrap",
 }: {
   dir?: "row" | "column";
-  align?: "flex-start" | "flex-end" | "center" | "stretch";
-  justify?: "flex-start" | "flex-end" | "center" | "stretch";
-  wrap?: "wrap" | "nowrap";
+  align?: ItemAlignment;
+  justify?: JustifyContent;
+  wrap?: Wrap;
 }) => {
   return css`
     display: flex;
