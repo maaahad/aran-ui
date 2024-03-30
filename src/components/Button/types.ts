@@ -5,7 +5,7 @@ import { MouseEventHandler } from "react";
 
 export type ButtonProps = {
   label?: string;
-  size?: "small" | "medium";
+  size?: "small" | "medium" | "large";
   variant?: "default" | "success" | "error"; // add other variants
   category?: "primary" | "secondary" | "tertiary";
   loading?: boolean;

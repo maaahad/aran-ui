@@ -12,6 +12,10 @@ const SIZE = {
     padding: ${Spacing.SpacingToken.SP8} ${Spacing.SpacingToken.SP12};
     height: 32px;
   `,
+  large: css`
+    padding: ${Spacing.SpacingToken.SP12} ${Spacing.SpacingToken.SP16};
+    height: 40px;
+  `,
 };
 
 export const StyledButton = styled.button<Required<Pick<ButtonProps, "size">>>`

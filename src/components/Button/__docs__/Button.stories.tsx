@@ -15,7 +15,6 @@ const meta: Meta<typeof Example> = {
   ],
 };
 
-export default meta;
 type Story = StoryObj<typeof Example>;
 
 export const Primary: Story = {
@@ -30,3 +29,25 @@ export const Secondary: Story = {
     onClick: () => console.log("Button"),
   },
 };
+
+export const Small: Story = {
+  args: {
+    label: "Primary Small",
+    size: "small",
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    label: "Primary medium",
+  },
+};
+
+export const Large: Story = {
+  args: {
+    label: "Primary Large",
+    size: "large",
+  },
+};
+
+export default meta;

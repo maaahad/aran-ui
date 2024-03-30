@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Button from "../Button";
 import { ButtonProps } from "../types.ts";
 
-const Example: FC<ButtonProps> = ({ label, onClick = () => {} }) => {
+const Example: FC<ButtonProps> = (props) => {
   return (
     <div
       style={{
@@ -12,7 +12,7 @@ const Example: FC<ButtonProps> = ({ label, onClick = () => {} }) => {
         height: "100%",
       }}
     >
-      <Button onClick={onClick} label={label} />
+      <Button {...props} />
     </div>
   );
 };
