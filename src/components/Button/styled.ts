@@ -19,7 +19,7 @@ const SIZE = {
 };
 
 export const StyledButton = styled.button<
-  Required<Pick<ButtonProps, "fullWidth" | "size">>
+  Required<Pick<ButtonProps, "category" | "fullWidth" | "size">>
 >`
   cursor: pointer;
   ${layout.applyFlex({ align: "center", justify: "center" })}

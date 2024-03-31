@@ -8,6 +8,7 @@ const Button: React.FC<ButtonProps> = ({
   label = "",
   fullWidth = false,
   onClick = () => {},
+  category = "primary",
   ...props
 }) => {
   return (
@@ -15,10 +16,13 @@ const Button: React.FC<ButtonProps> = ({
       size={size}
       fullWidth={fullWidth}
       onClick={onClick}
+      category={category}
       type="button"
       {...props}
     >
+      {/* icon */}
       <span>{label}</span>
+      {/* icon */}
     </StyledButton>
   );
 };
