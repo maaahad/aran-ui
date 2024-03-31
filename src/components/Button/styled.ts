@@ -18,8 +18,16 @@ const SIZE = {
   `,
 };
 
-export const StyledButton = styled.button<Required<Pick<ButtonProps, "size">>>`
+export const StyledButton = styled.button<
+  Required<Pick<ButtonProps, "fullWidth" | "size">>
+>`
   cursor: pointer;
   ${layout.applyFlex({ align: "center", justify: "center" })}
   ${(props) => SIZE[props.size]}
+  ${({ fullWidth }) =>
+    fullWidth &&
+    css`
+      width: 100%;
+      flex: 1;
+    `}
 `;

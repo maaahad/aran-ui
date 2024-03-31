@@ -50,4 +50,11 @@ export const Large: Story = {
   },
 };
 
+export const FullWidth: Story = {
+  args: {
+    label: "Primary medium button with fullwidth",
+    fullWidth: true,
+  },
+};
+
 export default meta;

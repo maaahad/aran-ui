@@ -14,5 +14,7 @@ export type ButtonProps = {
   block?: boolean;
   target?: "_self" | "_blank" | "_parent" | "_top";
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  // icon, class
+  // styles
+  fullWidth?: boolean;
+  // icon
 };
