@@ -6,7 +6,7 @@ import { StyledButton } from "./styled.ts";
 const Button: React.FC<ButtonProps> = ({
   size = "medium",
   label = "",
-  fullWidth = false,
+  block = false,
   onClick = () => {},
   category = "primary",
   ...props
@@ -14,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <StyledButton
       size={size}
-      fullWidth={fullWidth}
+      block={block}
       onClick={onClick}
       category={category}
       type="button"

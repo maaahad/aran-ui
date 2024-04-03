@@ -11,10 +11,9 @@ export type ButtonProps = {
   loading?: boolean;
   disabled?: boolean;
   selected?: boolean;
-  block?: boolean;
   target?: "_self" | "_blank" | "_parent" | "_top";
   onClick?: MouseEventHandler<HTMLButtonElement>;
   // styles
-  fullWidth?: boolean;
+  block?: boolean;
   // icon
 };

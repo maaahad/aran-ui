@@ -19,13 +19,13 @@ const SIZE = {
 };
 
 export const StyledButton = styled.button<
-  Required<Pick<ButtonProps, "category" | "fullWidth" | "size">>
+  Required<Pick<ButtonProps, "category" | "block" | "size">>
 >`
   cursor: pointer;
   ${layout.applyFlex({ align: "center", justify: "center" })}
   ${(props) => SIZE[props.size]}
-  ${({ fullWidth }) =>
-    fullWidth &&
+  ${({ block }) =>
+    block &&
     css`
       width: 100%;
       flex: 1;
