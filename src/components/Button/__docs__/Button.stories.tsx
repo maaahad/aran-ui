@@ -50,10 +50,10 @@ export const Large: Story = {
   },
 };
 
-export const FullWidth: Story = {
+export const Block: Story = {
   args: {
     label: "Primary medium button with fullwidth",
-    fullWidth: true,
+    block: true,
   },
 };
 
