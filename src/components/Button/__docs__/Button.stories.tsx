@@ -19,13 +19,24 @@ type Story = StoryObj<typeof Example>;
 
 export const Primary: Story = {
   args: {
+    category: "primary",
     label: "Primary Button",
     onClick: () => console.log("Button"),
   },
 };
+
 export const Secondary: Story = {
   args: {
+    category: "secondary",
     label: "Secondary Button",
+    onClick: () => console.log("Button"),
+  },
+};
+
+export const Tertiary: Story = {
+  args: {
+    category: "tertiary",
+    label: "Tertiary Button",
     onClick: () => console.log("Button"),
   },
 };

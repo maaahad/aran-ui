@@ -18,12 +18,31 @@ const SIZE = {
   `,
 };
 
+const CATEGORY = {
+  primary: css`
+    border: 1px solid green;
+  `,
+  secondary: css`
+    border: 1px solid red;
+  `,
+  tertiary: css`
+    border: none;
+  `,
+};
+
 export const StyledButton = styled.button<
   Required<Pick<ButtonProps, "category" | "block" | "size">>
 >`
   cursor: pointer;
   ${layout.applyFlex({ align: "center", justify: "center" })}
+  ${({ theme }) => css`
+    background-color: transparent;
+    &:hover {
+      background-color: ${theme.color.text.button.primary.default.hover};
+    }
+  `}
   ${(props) => SIZE[props.size]}
+  ${(props) => CATEGORY[props.category]}
   ${({ block }) =>
     block &&
     css`
