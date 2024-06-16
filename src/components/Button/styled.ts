@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { ButtonProps } from "./types.ts";
 import { Spacing } from "../../tokens/index.ts";
 import { layout } from "../../styles/index.ts";
@@ -37,9 +37,6 @@ export const StyledButton = styled.button<
   ${layout.applyFlex({ align: "center", justify: "center" })}
   ${({ theme }) => css`
     background-color: transparent;
-    &:hover {
-      background-color: ${theme.color.text.button.primary.default.hover};
-    }
   `}
   ${(props) => SIZE[props.size]}
   ${(props) => CATEGORY[props.category]}
@@ -49,4 +46,22 @@ export const StyledButton = styled.button<
       width: 100%;
       flex: 1;
     `}
+`;
+
+const rotate = keyframes`
+from {
+  transform: rotate(0deg);
+}
+
+to {
+  transform: rotate(360deg);
+}
+}
+`;
+
+export const LoadingIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ${rotate} 2s linear infinite;
 `;

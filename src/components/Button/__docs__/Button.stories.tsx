@@ -68,4 +68,11 @@ export const Block: Story = {
   },
 };
 
+export const Loading: Story = {
+  args: {
+    loading: true,
+    label: "loading...",
+  },
+};
+
 export default meta;
