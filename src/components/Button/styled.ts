@@ -30,8 +30,14 @@ const CATEGORY = {
   `,
 };
 
+const VARIANT = {
+  default: {},
+  success: {},
+  error: {},
+};
+
 export const StyledButton = styled.button<
-  Required<Pick<ButtonProps, "category" | "block" | "size">>
+  Required<Pick<ButtonProps, "category" | "block" | "size" | "variant">>
 >`
   cursor: pointer;
   ${layout.applyFlex({ align: "center", justify: "center", gap: 8 })}
@@ -40,6 +46,7 @@ export const StyledButton = styled.button<
   `}
   ${(props) => SIZE[props.size]}
   ${(props) => CATEGORY[props.category]}
+  ${(props) => VARIANT[props.variant]} 
   ${({ block }) =>
     block &&
     css`

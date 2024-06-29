@@ -13,7 +13,8 @@ const Button: React.FC<ButtonProps> = ({
   onClick = () => {},
   loading = false,
   category = "primary",
-  ...props
+  variant = "default",
+  ...passthroughProps
 }) => {
   return (
     <StyledButton
@@ -21,8 +22,9 @@ const Button: React.FC<ButtonProps> = ({
       block={block}
       onClick={onClick}
       category={category}
+      variant={variant}
       type="button"
-      {...props}
+      {...passthroughProps}
     >
       {loading && (
         <LoadingIconContainer>
