@@ -25,11 +25,13 @@ export const applyFlex = ({
   align = "normal",
   justify = "normal",
   wrap = "nowrap",
+  gap = 4,
 }: {
   dir?: "row" | "column";
   align?: ItemAlignment;
   justify?: JustifyContent;
   wrap?: Wrap;
+  gap?: number;
 }) => {
   return css`
     display: flex;
@@ -37,5 +39,6 @@ export const applyFlex = ({
     justify-content: ${justify};
     align-items: ${align};
     flex-wrap: ${wrap};
+    gap: ${gap + "px"};
   `;
 };

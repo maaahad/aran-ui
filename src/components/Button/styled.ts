@@ -34,7 +34,7 @@ export const StyledButton = styled.button<
   Required<Pick<ButtonProps, "category" | "block" | "size">>
 >`
   cursor: pointer;
-  ${layout.applyFlex({ align: "center", justify: "center" })}
+  ${layout.applyFlex({ align: "center", justify: "center", gap: 8 })}
   ${({ theme }) => css`
     background-color: transparent;
   `}
