@@ -27,12 +27,12 @@
 		"tsc:w": "npm run type-check --watch",
 		"lint": "biome lint ./src",
 		"lint:fix": "biome lint --write ./src",
-		"format": "biome check ./src",
-		"format:fix": "biome check --write ./src"
+		"format": "biome check --write ./src",
+		"format:check": "biome check ./src"
 	},
 	"lint-staged": {
 		"*.{ts,tsx,js,jsx}": [
-			"npm run format",
+			"npm run format:check",
 			"npm run lint",
 			"vitest related --run --bail 1 --passWithNoTests"
 		]
