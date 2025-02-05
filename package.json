@@ -16,10 +16,6 @@
 	},
 	"scripts": {
 		"build": "tsc && vite build",
-		"format": "prettier --write --parser typescript '**/*.{ts,tsx}'",
-		"lint:fix": "eslint . --ext .ts,.tsx --ignore-path .gitignore --fix",
-		"format:check": "prettier --check '**/*.{ts,tsx,js,jsx,json,css,md,html}'",
-		"lint": "eslint . --ext .ts,.tsx --ignore-path .gitignore",
 		"test": "vitest run",
 		"test:w": "vitest",
 		"test:ui": "vitest --ui",
@@ -28,7 +24,11 @@
 		"chromatic": "npx chromatic --project-token=chpt_80d97f5cb23d436",
 		"type-check": "tsc --noEmit",
 		"tsc": "npm run type-check",
-		"tsc:w": "npm run type-check --watch"
+		"tsc:w": "npm run type-check --watch",
+		"lint": "biome lint ./src",
+		"lint:fix": "biome lint --write ./src",
+		"format": "biome check ./src",
+		"format:fix": "biome check --write ./src"
 	},
 	"lint-staged": {
 		"*.{ts,tsx,js,jsx}": [
@@ -41,6 +41,7 @@
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
 		"@storybook/addon-essentials": "^7.6.10",
 		"@storybook/addon-interactions": "^7.6.10",
 		"@storybook/addon-links": "^7.6.10",
