@@ -32,7 +32,7 @@
 	},
 	"lint-staged": {
 		"*.{ts,tsx,js,jsx}": [
-			"npm run format:check",
+			"npm run format",
 			"npm run lint",
 			"vitest related --run --bail 1 --passWithNoTests"
 		]
