@@ -1,1 +1,1 @@
-export { default as AranThemeProvider } from "./AranThemeProvider";
+export * from "./AranThemeProvider";

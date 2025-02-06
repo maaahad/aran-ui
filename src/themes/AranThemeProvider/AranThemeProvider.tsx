@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-const AranThemeProvider: React.FC<
+export const AranThemeProvider: React.FC<
 	React.PropsWithChildren<{ theme?: Theme }>
 > = ({ children, theme = "default" }) => {
 	return (
@@ -33,5 +33,3 @@ const AranThemeProvider: React.FC<
 		</ThemeProvider>
 	);
 };
-
-export default AranThemeProvider;
