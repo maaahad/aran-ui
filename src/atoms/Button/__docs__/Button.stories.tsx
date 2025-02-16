@@ -8,7 +8,7 @@ const meta: Meta<typeof Example> = {
 	component: Example,
 	decorators: [
 		(Story) => (
-			<AranThemeProvider theme="green">
+			<AranThemeProvider theme="light">
 				<Story />
 			</AranThemeProvider>
 		),

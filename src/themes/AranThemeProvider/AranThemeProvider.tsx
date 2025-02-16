@@ -4,9 +4,9 @@ import {
 	ThemeProvider,
 	createGlobalStyle,
 } from "styled-components";
-import { type Theme, getColorToken } from "../../tokens/color";
+import { type ThemeMode, getColorToken } from "../../tokens/color";
 
-const getTheme = (theme: Theme): DefaultTheme => {
+const getTheme = (theme: ThemeMode): DefaultTheme => {
 	return {
 		color: getColorToken(theme),
 	};
@@ -24,10 +24,10 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 export const AranThemeProvider: React.FC<
-	React.PropsWithChildren<{ theme?: Theme }>
-> = ({ children, theme = "default" }) => {
+	React.PropsWithChildren<{ theme?: ThemeMode }>
+> = ({ children, theme = "light" }) => {
 	return (
-		<ThemeProvider theme={getTheme(theme as Theme)}>
+		<ThemeProvider theme={getTheme(theme as ThemeMode)}>
 			<GlobalStyle />
 			{children}
 		</ThemeProvider>
