@@ -1,36 +1,38 @@
 // import original module decleartion
 import "styled-components";
-import type { Color } from "./tokens";
-
-type ColorMain = "primary" | "secondary" | "tertiary";
-
-type InteractiveColor = {
-	hover: string;
-	focus: string;
-	active: string;
-};
-
-type ColorVariant<K = ColorMain, V = Color.ColorToken> = {
-	[key in Exclude<K>]: V;
-};
+import type { ThemeMode } from "./tokens/color";
 
 // extending styled-components
 declare module "styled-components" {
 	export interface DefaultTheme {
 		color: {
+			mode: ThemeMode;
 			text: {
-				body: ColorVariant;
-				// button: ColorVariant<ColorMain, InteractiveColor>;
+				primary: string;
+				secondary: string;
+				disabled: string;
 			};
-			// background: {
-			//   // TODO(maaaahd): add for other things like table, Page
-			//   button: {
-			//     primary: ColorVariant<InteractiveColor>;
-			//     secondary: ColorVariant<InteractiveColor>;
-			//     tertiary: ColorVariant<InteractiveColor>;
-			//   };
+			// TODO: uncomment gradually
+			// accent: {
+			// 	primary: string;
+			// 	secondary: string;
 			// };
+			// line: string;
+			// background: {
+			// 	primary: string;
+			// 	secondary: string;
+			// };
+			// icon: {
+			// 	primary: string;
+			// 	secondary: string;
+			// 	disabled: string;
+			// };
+			// overlay: {
+			// 	primary: string;
+			// 	secondary: string;
+			// };
+			// TODO: themeless
 		};
-		// size
+		// size, breakpoint, zIndex, ... ...
 	}
 }

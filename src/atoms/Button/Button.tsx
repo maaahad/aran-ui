@@ -19,8 +19,7 @@ const StyledButton = styled.button<ButtonProps>`
   font-weight: bold;
   border-radius: 10px;
   display: inline-block;
-  color: ${(props) => props.theme.color.text.body.primary};
-  background-color: ${(props) => (props.primary ? "#FF5655" : "#f4c4c4")};
+  color: ${(props) => props.theme.color.text.primary};
   padding: ${(props) =>
 		props.size === "small"
 			? "7px 25px 8px"
