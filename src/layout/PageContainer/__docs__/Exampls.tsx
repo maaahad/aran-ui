@@ -1,14 +1,14 @@
 import React, { type ComponentProps, type FC } from "react";
-import { PageLayout } from "../index";
+import { PageContainer } from "../index";
 
-type Props = ComponentProps<typeof PageLayout>;
+type Props = ComponentProps<typeof PageContainer>;
 
 const Example: FC<Props> = (props) => {
 	return (
-		<PageLayout {...props}>
+		<PageContainer {...props}>
 			{/* TODO: add some more children content */}
 			<div>Thsi is test</div>
-		</PageLayout>
+		</PageContainer>
 	);
 };
 
