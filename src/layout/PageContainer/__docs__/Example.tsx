@@ -12,9 +12,11 @@ const Example: FC<Props> = ({ children, ...otherProps }) => {
 		<PageContainer {...otherProps}>
 			<div
 				style={{
-					backgroundColor: "blue",
-					color: "green",
-					width: "10px",
+					backgroundColor: "#cbcbcb",
+					height: "100vh",
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
 				}}
 			>
 				{children}
