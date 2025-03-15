@@ -25,7 +25,7 @@ const StyledContainer = styled.div<Props>`
 `;
 
 export const PageContainer: FC<PropsWithChildren<Props>> = ({
-	width,
+	width = "standard",
 	children,
 }) => {
 	return <StyledContainer width={width}>{children}</StyledContainer>;
