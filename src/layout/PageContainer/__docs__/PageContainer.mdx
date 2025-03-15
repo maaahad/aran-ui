@@ -1,0 +1,21 @@
+import {Canvas, Meta, Controls} from '@storybook/blocks';
+import * as PageContainerStories from './PageContainer.stories';
+
+<Meta of={PageContainerStories} />
+
+# Definition
+
+A PageContainer is the base container for any page. This is to make sure that the app has consistent Page. 
+
+## Usage
+This is used as the root container of a Page.
+
+## Input 
+
+PageContainer has the following properties:  
+
+<Controls />
+
+<Canvas of={PageContainerStories.Fluid} />
+<Canvas of={PageContainerStories.Standard} />
+<Canvas of={PageContainerStories.Large} />
