@@ -1,4 +1,4 @@
 // NOTE:  util types
-export type ComponentProps<T> = T & {
+export type ComponentProps = {
 	className?: string;
 };

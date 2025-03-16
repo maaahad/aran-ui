@@ -1,16 +1,13 @@
 import type { FC, PropsWithChildren } from "react";
 import styled, { css } from "styled-components";
 import type { ComponentProps } from "../../utils/types";
+
 // TODO: (maaahad) Extend on demand
 // if none is provided, standard is considered,
 // if both are given, width is given priority
-type Props = ComponentProps<{
+type Props = ComponentProps & {
 	width?: "fluid" | "standard" | "large";
-}>;
-
-// type Props = {
-// 	width?: "fluid" | "standard" | "large";
-// };
+};
 
 const PROPS_TO_STYLE: {
 	[key in Required<Props>["width"]]: string;
