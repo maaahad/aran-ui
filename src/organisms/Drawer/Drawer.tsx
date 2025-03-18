@@ -1,7 +1,11 @@
 import type { FC, PropsWithChildren, ReactNode } from "react";
 import type { ComponentProps } from "../../utils/types";
+import { DrawerContainer } from "./styled";
 
 type Props = ComponentProps & {
+	// class names
+	bodyClassName?: string;
+
 	// props
 	open?: boolean;
 	stickyHeader?: boolean;
@@ -17,10 +21,15 @@ type Props = ComponentProps & {
 	footer?: ReactNode;
 };
 
-// TODO: implement the hide and seek at the end
-export const Drawer: FC<PropsWithChildren<Props>> = ({ children, onClose }) => {
+// TODO: (maaahad) forwardRef
+export const Drawer: FC<PropsWithChildren<Props>> = ({
+	children,
+	onClose,
+	open,
+	className,
+}) => {
 	return (
-		<div>
+		<DrawerContainer open={open} className={className}>
 			{/* header */}
 			<div>
 				<div>Header or title</div>
@@ -32,6 +41,6 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({ children, onClose }) => {
 			<div>{children}</div>
 			{/* footer */}
 			<div>Footer</div>
-		</div>
+		</DrawerContainer>
 	);
 };
