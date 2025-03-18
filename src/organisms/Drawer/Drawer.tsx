@@ -1,10 +1,14 @@
-import type { FC, PropsWithChildren, ReactNode } from "react";
+import { type FC, type PropsWithChildren, type ReactNode, useRef } from "react";
+import { useClickOutside } from "../../hooks/window/useClickOutside";
 import type { ComponentProps } from "../../utils/types";
 import { DrawerContainer } from "./styled";
 
 type Props = ComponentProps & {
 	// class names
 	bodyClassName?: string;
+
+	// anchor element
+	anchorEl?: HTMLElement | null;
 
 	// props
 	open?: boolean;
@@ -14,6 +18,7 @@ type Props = ComponentProps & {
 
 	// Callbacks
 	onClose?: () => void;
+	// TODO: (maaahad) onClickOutside
 
 	// Slots
 	title?: ReactNode;
@@ -25,11 +30,18 @@ type Props = ComponentProps & {
 export const Drawer: FC<PropsWithChildren<Props>> = ({
 	children,
 	onClose,
+	anchorEl,
 	open,
 	className,
 }) => {
+	const ref = useRef<HTMLDivElement>(null);
+	useClickOutside(ref, (event?: MouseEvent) => {
+		if (event && !anchorEl?.isEqualNode(event.target as HTMLElement))
+			onClose?.();
+	});
+
 	return (
-		<DrawerContainer open={open} className={className}>
+		<DrawerContainer open={open} className={className} ref={ref}>
 			{/* header */}
 			<div>
 				<div>Header or title</div>
