@@ -18,6 +18,7 @@ type Props = ComponentProps & {
 
 	// Callbacks
 	onClose?: () => void;
+	onClickOutside?: () => void;
 	// TODO: (maaahad) onClickOutside
 
 	// Slots
@@ -30,6 +31,7 @@ type Props = ComponentProps & {
 export const Drawer: FC<PropsWithChildren<Props>> = ({
 	children,
 	onClose,
+	onClickOutside,
 	anchorEl,
 	open,
 	className,
@@ -37,7 +39,7 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 	const ref = useRef<HTMLDivElement>(null);
 	useClickOutside(ref, (event?: MouseEvent) => {
 		if (event && !anchorEl?.isEqualNode(event.target as HTMLElement))
-			onClose?.();
+			onClickOutside?.();
 	});
 
 	return (

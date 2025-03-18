@@ -42,6 +42,7 @@ const Example: FC<Props> = ({ children, ...otherDrawerProps }) => {
 				anchorEl={ref.current}
 				open={open}
 				onClose={() => setOpen(false)}
+				onClickOutside={() => setOpen(false)}
 				{...otherDrawerProps}
 			>
 				{children}
