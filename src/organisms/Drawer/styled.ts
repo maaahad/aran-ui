@@ -12,6 +12,7 @@ export const DrawerContainer = styled.div<{
     bottom: 0; 
     left: ${open ? "0" : "-200px"}; 
     background-color: #cbcbcb; 
-    /* TODO: add animation when open */
+    /* TODO: transition should come from theme */
+    transition: all 200ms ease; 
   `}
 `;
