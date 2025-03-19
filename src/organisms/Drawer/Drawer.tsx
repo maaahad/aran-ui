@@ -1,4 +1,14 @@
-import { type FC, type PropsWithChildren, type ReactNode, useRef } from "react";
+import {
+	type FC,
+	type PropsWithChildren,
+	type ReactNode,
+	RefObject,
+	createRef,
+	useCallback,
+	useMemo,
+	useRef,
+	useState,
+} from "react";
 import { useClickOutside } from "../../hooks/window/useClickOutside";
 import type { ComponentProps } from "../../utils/types";
 import { DrawerContainer } from "./styled";
@@ -38,14 +48,21 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 	from = "left",
 	className,
 }) => {
-	const ref = useRef<HTMLDivElement>(null);
+	const ref = useRef<HTMLDivElement | null>(null);
+
 	useClickOutside(ref, (event?: MouseEvent) => {
 		if (event && !anchorEl?.isEqualNode(event.target as HTMLElement))
 			onClickOutside?.();
 	});
 
+	// TODO: we need to calculate top, bottom, left and bottom, based on `from` props
+	const top = useMemo(() => {
+		if (anchorEl) return anchorEl.getBoundingClientRect().bottom;
+		return 0;
+	}, [anchorEl]);
+
 	return (
-		<DrawerContainer open={open} className={className} ref={ref}>
+		<DrawerContainer open={open} className={className} ref={ref} top={top}>
 			{/* header */}
 			<div>
 				<div>Header or title</div>

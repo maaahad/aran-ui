@@ -25,7 +25,7 @@ const Example: FC<Props> = ({ children, ...otherDrawerProps }) => {
 			}}
 		>
 			<button
-				onClick={() => setOpen(true)}
+				onClick={() => setOpen((open) => !open)}
 				type="button"
 				style={{
 					height: "40px",
