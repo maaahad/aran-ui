@@ -15,6 +15,7 @@ type Props = ComponentProps & {
 	stickyHeader?: boolean;
 	stickyFooter?: boolean;
 	showCloseIcon?: boolean;
+	from?: "left" | "right" | "top" | "bottom";
 
 	// Callbacks
 	onClose?: () => void;
@@ -33,7 +34,8 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 	onClose,
 	onClickOutside,
 	anchorEl,
-	open,
+	open = false,
+	from = "left",
 	className,
 }) => {
 	const ref = useRef<HTMLDivElement>(null);
