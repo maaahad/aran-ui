@@ -1,38 +1,64 @@
 import styled, { css } from "styled-components";
 
+export type From = "left" | "right" | "top" | "bottom";
+type Position = {
+	[key in From]?: number;
+};
+
+// TODO: (maaahad) fix width and height
+// TODO: (maaahad) sync NEGATIVE_OFFSET height in case of top and bottom
+const positionToCSS = (from: From, position: Position) => {
+	switch (from) {
+		case "left": {
+			return css`
+        top: ${position.top}px;
+        left: ${position.left}px;
+        bottom: 0; 
+        width: 200px;
+    `;
+		}
+
+		case "right": {
+			return css`
+        top: ${position.top}px;
+        right: ${position.right}px;
+        bottom: 0;
+        width: 200px;
+    `;
+		}
+
+		case "top": {
+			return css`
+        top: ${position.top}px;
+        right: 0;
+        left: 0;
+        height: 200px;
+    `;
+		}
+
+		case "bottom": {
+			return css`
+        bottom: ${position.bottom}px;
+        right: 0;
+        left: 0;
+        height: 200px;
+    `;
+		}
+	}
+};
+
 export const DrawerContainer = styled.div<{
-	open?: boolean;
-	top: number;
-	from?: "left" | "right" | "top" | "bottom";
-	position: {
-		[key in "top" | "bottom" | "left" | "right"]?: number;
-	};
+	from: From;
+	position: Position;
+	zIndex: number;
 }>`
-  ${({ open = false, top, from = "left", position }) => css`
-    width: 200px; 
+  ${({ from, zIndex, position }) => css`
     background-color: white; 
     position: fixed; 
-    top: ${position?.top}px;
-    bottom: ${position?.bottom}px;
-    ${from}: ${position?.[from]}px; 
-    /* top: ${top}px; */
-    /* bottom: 0; */
-    /* left: ${open ? "0" : "-200px"}; */
     background-color: #cbcbcb; 
     /* TODO: transition should come from theme */
-    transition: all 200ms ease; 
+    transition: all 200ms ease;
+    z-index: ${zIndex};
+    ${positionToCSS(from, position)}
   `}
 `;
-
-//   ${
-// 	from === "left" &&
-// 	css`
-//   left: ${position?.left}px;
-//   `
-// }
-//   ${
-// 	from === "right" &&
-// 	css`
-//   right: ${position?.right}px;
-//   `
-// }
