@@ -35,7 +35,7 @@ type Props = ComponentProps & {
 	// Slots
 	title?: ReactNode;
 	header?: ReactNode;
-	footer?: ReactNode;
+	footer?: Rea;
 };
 
 // TODO: (maaahad) forwardRef
@@ -56,13 +56,48 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 	});
 
 	// TODO: we need to calculate top, bottom, left and bottom, based on `from` props
+	// TODO: this top should be removed
 	const top = useMemo(() => {
 		if (anchorEl) return anchorEl.getBoundingClientRect().bottom;
 		return 0;
 	}, [anchorEl]);
 
+	// TODO: generalize and clean up
+	const position = useMemo(() => {
+		const position: {
+			[key in "top" | "bottom" | "left" | "right"]?: number;
+		} =
+			// TODO: generalize it for other from value
+			from === "left"
+				? {
+						left: open ? 0 : -200,
+					}
+				: {
+						right: open ? 0 : -200,
+					};
+
+		if (anchorEl) {
+			const { bottom } = anchorEl.getBoundingClientRect();
+			if (["left", "right"].includes(from)) {
+				position.top = bottom;
+				position.bottom = 0;
+			}
+			// TODO: add support for other from values
+		}
+		return position;
+	}, [anchorEl, open, from]);
+
+	console.log(position, top);
+
 	return (
-		<DrawerContainer open={open} className={className} ref={ref} top={top}>
+		<DrawerContainer
+			open={open}
+			className={className}
+			ref={ref}
+			top={top}
+			from={from}
+			position={position}
+		>
 			{/* header */}
 			<div>
 				<div>Header or title</div>

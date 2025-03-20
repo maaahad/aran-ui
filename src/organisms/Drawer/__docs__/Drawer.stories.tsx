@@ -24,3 +24,11 @@ export const Default: Story = {
 		title: <div>This is the title of Drawer</div>,
 	},
 };
+
+export const FromRight: Story = {
+	args: {
+		showCloseIcon: true,
+		from: "right",
+		title: <div>Should visible from Right side of View Port"</div>,
+	},
+};
