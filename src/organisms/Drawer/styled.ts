@@ -5,7 +5,6 @@ type Position = {
 	[key in From]?: number;
 };
 
-// TODO: (maaahad) fix width and height
 // TODO: (maaahad) sync NEGATIVE_OFFSET height in case of top and bottom
 const positionToCSS = (from: From, position: Position) => {
 	switch (from) {
@@ -14,6 +13,7 @@ const positionToCSS = (from: From, position: Position) => {
         top: ${position.top}px;
         left: ${position.left}px;
         bottom: 0; 
+        /* TODO: from theme or config */
         width: 200px;
     `;
 		}
@@ -23,6 +23,7 @@ const positionToCSS = (from: From, position: Position) => {
         top: ${position.top}px;
         right: ${position.right}px;
         bottom: 0;
+        /* TODO: from theme or config */
         width: 200px;
     `;
 		}
@@ -32,7 +33,10 @@ const positionToCSS = (from: From, position: Position) => {
         top: ${position.top}px;
         right: 0;
         left: 0;
+        /* TODO: from theme or config */
         height: 200px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
     `;
 		}
 
@@ -41,7 +45,10 @@ const positionToCSS = (from: From, position: Position) => {
         bottom: ${position.bottom}px;
         right: 0;
         left: 0;
+        /* TODO: from theme or config */
         height: 200px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
     `;
 		}
 	}
