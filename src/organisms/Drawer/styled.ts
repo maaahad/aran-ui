@@ -24,6 +24,7 @@ const CONFIG: {
 	},
 };
 
+// TODO: remove this util, instead use the js inside styled component directly
 const positionToCSS = (from: From, position: Position) => {
 	switch (from) {
 		case "left": {
@@ -83,6 +84,8 @@ export const DrawerContainer = styled.div<{
 
 export const DrawerContent = styled.div<{ from: From }>`
   background-color: white; 
+  // TODO: padding should come from theme, should be synched with PageContainer
+  padding: 16px; 
   ${({ from }) => {
 		switch (from) {
 			case "left":

@@ -77,6 +77,7 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 		return position;
 	}, [anchorEl, open, from]);
 
+	// TODO: (maaahad) should we just use Container as Backdrop, otherwise we need some hack for border-radius to work
 	return (
 		<DrawerContainer
 			className={className}
