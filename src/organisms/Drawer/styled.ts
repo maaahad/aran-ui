@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components";
 
 export type From = "left" | "right" | "top" | "bottom";
-type Position = {
+export type Position = {
 	[key in From]?: number;
 };
 
 // TODO: (maaahad) sync NEGATIVE_OFFSET height in case of top and bottom
 const positionToCSS = (from: From, position: Position) => {
+	// TODO: (maaahad) fix width and height,
 	switch (from) {
 		case "left": {
 			return css`

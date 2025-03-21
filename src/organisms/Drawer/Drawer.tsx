@@ -7,7 +7,7 @@ import {
 } from "react";
 import { useClickOutside } from "../../hooks/window/useClickOutside";
 import type { ComponentProps } from "../../utils/types";
-import { DrawerContainer, type From } from "./styled";
+import { DrawerContainer, type From, type Position } from "./styled";
 
 type Props = ComponentProps & {
 	// class names
@@ -56,9 +56,7 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 
 	// TODO: (maaahad) sync NEGATIVE_OFFSET height in case of top and bottom
 	const position = useMemo(() => {
-		const position: {
-			[key in From]?: number;
-		} = {
+		const position: Position = {
 			[from]: open ? 0 : NEGATIVE_OFFSET,
 		};
 
