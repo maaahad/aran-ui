@@ -7,7 +7,7 @@ import {
 } from "react";
 import { useClickOutside } from "../../hooks/window/useClickOutside";
 import type { ComponentProps } from "../../utils/types";
-import { DrawerContainer, type From, type Position } from "./styled";
+import { CONFIG, DrawerContainer, type From, type Position } from "./styled";
 
 type Props = ComponentProps & {
 	// class names
@@ -34,8 +34,6 @@ type Props = ComponentProps & {
 	footer?: ReactNode;
 };
 
-const NEGATIVE_OFFSET = -200;
-
 // TODO: (maaahad) forwardRef
 export const Drawer: FC<PropsWithChildren<Props>> = ({
 	children,
@@ -54,10 +52,9 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 			onClickOutside?.();
 	});
 
-	// TODO: (maaahad) sync NEGATIVE_OFFSET height in case of top and bottom
 	const position = useMemo(() => {
 		const position: Position = {
-			[from]: open ? 0 : NEGATIVE_OFFSET,
+			[from]: open ? 0 : -CONFIG[from].size,
 		};
 
 		if (anchorEl) {

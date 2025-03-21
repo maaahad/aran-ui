@@ -5,17 +5,33 @@ export type Position = {
 	[key in From]?: number;
 };
 
-// TODO: (maaahad) sync NEGATIVE_OFFSET height in case of top and bottom
+export const CONFIG: {
+	[key in From]: {
+		size: number;
+	};
+} = {
+	left: {
+		size: 240,
+	},
+	right: {
+		size: 240,
+	},
+	top: {
+		size: 480,
+	},
+	bottom: {
+		size: 480,
+	},
+};
+
 const positionToCSS = (from: From, position: Position) => {
-	// TODO: (maaahad) fix width and height,
 	switch (from) {
 		case "left": {
 			return css`
         top: ${position.top}px;
         left: ${position.left}px;
         bottom: 0; 
-        /* TODO: from theme or config */
-        width: 200px;
+        width: ${CONFIG[from].size}px;
     `;
 		}
 
@@ -24,8 +40,7 @@ const positionToCSS = (from: From, position: Position) => {
         top: ${position.top}px;
         right: ${position.right}px;
         bottom: 0;
-        /* TODO: from theme or config */
-        width: 200px;
+        width: ${CONFIG[from].size}px;
     `;
 		}
 
@@ -34,8 +49,7 @@ const positionToCSS = (from: From, position: Position) => {
         top: ${position.top}px;
         right: 0;
         left: 0;
-        /* TODO: from theme or config */
-        height: 200px;
+        height: ${CONFIG[from].size}px;
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
     `;
@@ -46,8 +60,7 @@ const positionToCSS = (from: From, position: Position) => {
         bottom: ${position.bottom}px;
         right: 0;
         left: 0;
-        /* TODO: from theme or config */
-        height: 200px;
+        height: ${CONFIG[from].size}px;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
     `;
