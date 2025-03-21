@@ -73,7 +73,6 @@ export const DrawerContainer = styled.div<{
 }>`
   ${({ from, zIndex, position }) => css`
     display: flex; 
-    background-color: white; 
     position: fixed; 
     /* TODO: transition should come from theme */
     transition: all 200ms ease;
@@ -83,6 +82,7 @@ export const DrawerContainer = styled.div<{
 `;
 
 export const DrawerContent = styled.div<{ from: From }>`
+  background-color: white; 
   ${({ from }) => {
 		switch (from) {
 			case "left":
@@ -114,7 +114,7 @@ export const DrawerContent = styled.div<{ from: From }>`
 // TODO: (maaahad) this can be a standalone component, as it will be used by more than one component
 export const Backdrop = styled.div<{ from: From }>`
   // TODO: (maaahad) bg color should come from theme
-  background-color: rgba(0,0,0,.05); 
+  background-color: #19202499; 
   ${({ from }) => {
 		switch (from) {
 			case "left":
