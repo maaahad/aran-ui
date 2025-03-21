@@ -7,7 +7,13 @@ import {
 } from "react";
 import { useClickOutside } from "../../hooks/window/useClickOutside";
 import type { ComponentProps } from "../../utils/types";
-import { CONFIG, DrawerContainer, type From, type Position } from "./styled";
+import {
+	Backdrop,
+	DrawerContainer,
+	DrawerContent,
+	type From,
+	type Position,
+} from "./styled";
 
 type Props = ComponentProps & {
 	// class names
@@ -52,19 +58,20 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 			onClickOutside?.();
 	});
 
+	// TODO: (maaahad) should we allow CSS to identify this based on from and anchorEl's bottom, thus can avoid string formatting
 	const position = useMemo(() => {
 		const position: Position = {
-			[from]: open ? 0 : -CONFIG[from].size,
+			[from]: open ? "0px" : "-100%",
 		};
 
 		if (anchorEl) {
 			const { bottom } = anchorEl.getBoundingClientRect();
 			if (["left", "right"].includes(from)) {
-				position.top = bottom;
-				position.bottom = 0;
+				position.top = `${bottom}px`;
+				position.bottom = `${0}px`;
 			} else {
-				position.left = 0;
-				position.right = 0;
+				position.left = "0px";
+				position.right = "0px";
 			}
 		}
 		return position;
@@ -78,17 +85,20 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 			position={position}
 			zIndex={zIndex}
 		>
-			{/* header */}
-			<div>
-				<div>Header or title</div>
-				<button onClick={onClose} type="button">
-					X
-				</button>
-			</div>
-			{/* body */}
-			<div>{children}</div>
-			{/* footer */}
-			<div>Footer</div>
+			<DrawerContent from={from}>
+				{/* header */}
+				<div>
+					<div>Header or title</div>
+					<button onClick={onClose} type="button">
+						X
+					</button>
+				</div>
+				{/* body */}
+				<div>{children}</div>
+				{/* footer */}
+				<div>Footer</div>
+			</DrawerContent>
+			<Backdrop from={from} />
 		</DrawerContainer>
 	);
 };

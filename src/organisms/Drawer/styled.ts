@@ -2,25 +2,25 @@ import styled, { css } from "styled-components";
 
 export type From = "left" | "right" | "top" | "bottom";
 export type Position = {
-	[key in From]?: number;
+	[key in From]?: `${number}px` | `${number}%`;
 };
 
-export const CONFIG: {
+const CONFIG: {
 	[key in From]: {
-		size: number;
+		size: `${number}px`;
 	};
 } = {
 	left: {
-		size: 240,
+		size: "240px",
 	},
 	right: {
-		size: 240,
+		size: "240px",
 	},
 	top: {
-		size: 480,
+		size: "440px",
 	},
 	bottom: {
-		size: 480,
+		size: "440px",
 	},
 };
 
@@ -28,41 +28,39 @@ const positionToCSS = (from: From, position: Position) => {
 	switch (from) {
 		case "left": {
 			return css`
-        top: ${position.top}px;
-        left: ${position.left}px;
-        bottom: 0; 
-        width: ${CONFIG[from].size}px;
+        top: ${position.top};
+        left: ${position.left};
+        right: 0;
+        bottom: 0;
+        flex-direction: row;
     `;
 		}
 
 		case "right": {
 			return css`
-        top: ${position.top}px;
-        right: ${position.right}px;
+        top: ${position.top};
+        right: ${position.right};
+        left: 0; 
         bottom: 0;
-        width: ${CONFIG[from].size}px;
+        flex-direction: row-reverse;
     `;
 		}
 
 		case "top": {
 			return css`
-        top: ${position.top}px;
+        top: ${position.top};
         right: 0;
         left: 0;
-        height: ${CONFIG[from].size}px;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
+        flex-direction: column;
     `;
 		}
 
 		case "bottom": {
 			return css`
-        bottom: ${position.bottom}px;
+        bottom: ${position.bottom};
         right: 0;
         left: 0;
-        height: ${CONFIG[from].size}px;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
+        flex-direction: column-reverse;
     `;
 		}
 	}
@@ -74,12 +72,63 @@ export const DrawerContainer = styled.div<{
 	zIndex: number;
 }>`
   ${({ from, zIndex, position }) => css`
+    display: flex; 
     background-color: white; 
     position: fixed; 
-    background-color: #cbcbcb; 
     /* TODO: transition should come from theme */
     transition: all 200ms ease;
     z-index: ${zIndex};
     ${positionToCSS(from, position)}
   `}
+`;
+
+export const DrawerContent = styled.div<{ from: From }>`
+  ${({ from }) => {
+		switch (from) {
+			case "left":
+			case "right": {
+				return css`
+          width: ${CONFIG[from].size};
+      `;
+			}
+			case "top": {
+				return css`
+          height: ${CONFIG[from].size};
+          /* TODO: border radius not working??? */
+          border-bottom-left-radius: 8px;
+          border-bottom-right-radius: 8px;
+      `;
+			}
+			case "bottom": {
+				return css`
+          height: ${CONFIG[from].size};
+          /* TODO: border radius not working??? */
+          border-top-left-radius: 8px;
+          border-top-right-radius: 8px;
+      `;
+			}
+		}
+	}}
+`;
+
+// TODO: (maaahad) this can be a standalone component, as it will be used by more than one component
+export const Backdrop = styled.div<{ from: From }>`
+  // TODO: (maaahad) bg color should come from theme
+  background-color: rgba(0,0,0,.05); 
+  ${({ from }) => {
+		switch (from) {
+			case "left":
+			case "right": {
+				return css`
+          width: calc(100vw - ${CONFIG[from].size});
+      `;
+			}
+			case "top":
+			case "bottom": {
+				return css`
+          height: calc(100vh - ${CONFIG[from].size});
+      `;
+			}
+		}
+	}}
 `;
