@@ -127,3 +127,25 @@ export const EmptyContent = styled.div<{ from: From }>`
 		}
 	}}
 `;
+
+export const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  /* TODO: (maaahad) padding and border color should come from theme */
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgb(220, 220, 222); 
+`;
+
+export const Footer = styled.div`
+  /* TODO: (maaahad) padding and border color should come from theme */
+  padding-top: 16px;
+  border-bottom: 1px solid rgb(220, 220, 222); 
+`;
+
+export const Body = styled.div`
+  /* TODO: (maaahad) padding  should come from theme */
+  padding-top: 16px; 
+  padding-bottom: 16px; 
+`;

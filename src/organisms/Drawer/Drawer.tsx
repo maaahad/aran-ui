@@ -7,10 +7,13 @@ import {
 } from "react";
 import type { ComponentProps } from "../../utils/types";
 import {
+	Body,
 	DrawerContainer,
 	DrawerContent,
 	EmptyContent,
+	Footer,
 	type From,
+	Header,
 } from "./styled";
 
 type Props = ComponentProps & {
@@ -33,7 +36,6 @@ type Props = ComponentProps & {
 	onClickOutside?: () => void;
 
 	// Slots
-	title?: ReactNode;
 	header?: ReactNode;
 	footer?: ReactNode;
 };
@@ -48,6 +50,9 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 	from = "left",
 	zIndex = 0,
 	className,
+	footer,
+	showCloseIcon,
+	header,
 }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 
@@ -69,17 +74,19 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 			anchorElBottom={anchorElBottom}
 		>
 			<DrawerContent from={from}>
-				{/* header */}
-				<div>
-					<div>Header or title</div>
-					<button onClick={onClose} type="button">
-						X
-					</button>
-				</div>
-				{/* body */}
-				<div>{children}</div>
-				{/* footer */}
-				<div>Footer</div>
+				<Header>
+					{header && <div>{header}</div>}
+					{/* TODO: close icon would be rendered using IconButton */}
+					{showCloseIcon && onClose && (
+						<button type="button" onClick={onClose}>
+							X
+						</button>
+					)}
+				</Header>
+
+				<Body>{children}</Body>
+
+				{footer && <Footer>{footer}</Footer>}
 			</DrawerContent>
 			<EmptyContent from={from} onClick={onClickOutside} />
 		</DrawerContainer>
