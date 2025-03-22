@@ -18,7 +18,7 @@ type Props = ComponentProps & {
 	bodyClassName?: string;
 
 	// anchor element
-	anchorEl: HTMLElement | null;
+	anchorEl?: HTMLElement | null;
 
 	// props
 	open?: boolean;
