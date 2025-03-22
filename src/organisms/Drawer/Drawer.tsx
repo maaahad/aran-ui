@@ -8,11 +8,10 @@ import {
 import { useClickOutside } from "../../hooks/window/useClickOutside";
 import type { ComponentProps } from "../../utils/types";
 import {
-	Backdrop,
 	DrawerContainer,
 	DrawerContent,
+	EmptyContent,
 	type From,
-	type Position,
 } from "./styled";
 
 type Props = ComponentProps & {
@@ -58,33 +57,22 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 			onClickOutside?.();
 	});
 
-	// TODO: (maaahad) should we allow CSS to identify this based on from and anchorEl's bottom, thus can avoid string formatting
-	const position = useMemo(() => {
-		const position: Position = {
-			[from]: open ? "0px" : "-100%",
-		};
-
+	const anchorElBottom = useMemo(() => {
 		if (anchorEl) {
 			const { bottom } = anchorEl.getBoundingClientRect();
-			if (["left", "right"].includes(from)) {
-				position.top = `${bottom}px`;
-				position.bottom = `${0}px`;
-			} else {
-				position.left = "0px";
-				position.right = "0px";
-			}
+			return bottom;
 		}
-		return position;
-	}, [anchorEl, open, from]);
+		return 0;
+	}, [anchorEl]);
 
-	// TODO: (maaahad) should we just use Container as Backdrop, otherwise we need some hack for border-radius to work
 	return (
 		<DrawerContainer
 			className={className}
 			ref={ref}
 			from={from}
-			position={position}
 			zIndex={zIndex}
+			open={open}
+			anchorElBottom={anchorElBottom}
 		>
 			<DrawerContent from={from}>
 				{/* header */}
@@ -99,7 +87,7 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 				{/* footer */}
 				<div>Footer</div>
 			</DrawerContent>
-			<Backdrop from={from} />
+			<EmptyContent from={from} />
 		</DrawerContainer>
 	);
 };
