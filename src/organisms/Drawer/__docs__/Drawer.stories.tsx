@@ -21,7 +21,8 @@ type Story = StoryObj<typeof Example>;
 export const Default: Story = {
 	args: {
 		showCloseIcon: true,
-		title: <div>This is the title of Drawer</div>,
+		header: <div>This is the header of Drawer</div>,
+		footer: <div>This is the Footer of Drawer</div>,
 	},
 };
 
@@ -29,6 +30,6 @@ export const FromRight: Story = {
 	args: {
 		showCloseIcon: true,
 		from: "right",
-		title: <div>Should visible from Right side of View Port"</div>,
+		header: <div>Should visible from Right side of View Port"</div>,
 	},
 };

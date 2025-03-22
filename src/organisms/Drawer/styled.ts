@@ -86,6 +86,8 @@ export const DrawerContainer = styled.div<{
 `;
 
 export const DrawerContent = styled.div<{ from: From }>`
+  display: flex; 
+  flex-direction: column; 
   background-color: white; 
   // TODO: padding should come from theme, should be synched with PageContainer
   padding: 16px; 
@@ -139,9 +141,10 @@ export const Header = styled.div`
 `;
 
 export const Footer = styled.div`
+  margin-top: auto; 
   /* TODO: (maaahad) padding and border color should come from theme */
   padding-top: 16px;
-  border-bottom: 1px solid rgb(220, 220, 222); 
+  border-top: 1px solid rgb(220, 220, 222); 
 `;
 
 export const Body = styled.div`
