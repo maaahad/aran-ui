@@ -5,7 +5,6 @@ import {
 	useMemo,
 	useRef,
 } from "react";
-import { useClickOutside } from "../../hooks/window/useClickOutside";
 import type { ComponentProps } from "../../utils/types";
 import {
 	DrawerContainer,
@@ -52,11 +51,6 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 }) => {
 	const ref = useRef<HTMLDivElement | null>(null);
 
-	useClickOutside(ref, (event?: MouseEvent) => {
-		if (event && !anchorEl?.isEqualNode(event.target as HTMLElement))
-			onClickOutside?.();
-	});
-
 	const anchorElBottom = useMemo(() => {
 		if (anchorEl) {
 			const { bottom } = anchorEl.getBoundingClientRect();
@@ -87,7 +81,7 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 				{/* footer */}
 				<div>Footer</div>
 			</DrawerContent>
-			<EmptyContent from={from} />
+			<EmptyContent from={from} onClick={onClickOutside} />
 		</DrawerContainer>
 	);
 };
