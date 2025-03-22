@@ -21,12 +21,30 @@ type Story = StoryObj<typeof Example>;
 export const Default: Story = {
 	args: {
 		showCloseIcon: true,
-		header: <div>This is the header of Drawer</div>,
+		header: (
+			<div>
+				<div>This is the header of Drawer</div>
+				<div>This is the header of Drawer</div>
+			</div>
+		),
 		footer: <div>This is the Footer of Drawer</div>,
+		children: (
+			<div
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					gap: "8px",
+				}}
+			>
+				<button type="button">Option 1</button>
+				<button type="button">Option 2</button>
+				<button type="button">Option 3</button>
+			</div>
+		),
 	},
 };
 
-export const FromRight: Story = {
+export const WithoutFooter: Story = {
 	args: {
 		showCloseIcon: true,
 		from: "right",

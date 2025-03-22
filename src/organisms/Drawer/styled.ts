@@ -135,7 +135,8 @@ export const Header = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  /* TODO: (maaahad) padding and border color should come from theme */
+  /* TODO: (maaahad) gap, padding and border color should come from theme */
+  gap: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid rgb(220, 220, 222); 
 `;
