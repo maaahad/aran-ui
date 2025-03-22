@@ -64,6 +64,8 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 		return 0;
 	}, [anchorEl]);
 
+	const shouldRenderHeader = header || (showCloseIcon && onClose);
+
 	return (
 		<DrawerContainer
 			className={className}
@@ -74,15 +76,17 @@ export const Drawer: FC<PropsWithChildren<Props>> = ({
 			anchorElBottom={anchorElBottom}
 		>
 			<DrawerContent from={from}>
-				<Header>
-					{header && <div>{header}</div>}
-					{/* TODO: close icon would be rendered using IconButton */}
-					{showCloseIcon && onClose && (
-						<button type="button" onClick={onClose}>
-							X
-						</button>
-					)}
-				</Header>
+				{shouldRenderHeader && (
+					<Header>
+						{header && <div>{header}</div>}
+						{/* TODO: close icon would be rendered using IconButton */}
+						{showCloseIcon && onClose && (
+							<button type="button" onClick={onClose}>
+								X
+							</button>
+						)}
+					</Header>
+				)}
 
 				<Body>{children}</Body>
 
