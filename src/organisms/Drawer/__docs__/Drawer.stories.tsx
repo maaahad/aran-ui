@@ -51,3 +51,19 @@ export const WithoutFooter: Story = {
 		header: <div>Should visible from Right side of View Port"</div>,
 	},
 };
+
+export const Top: Story = {
+	args: {
+		showCloseIcon: true,
+		from: "top",
+		header: <div>Should visible from Right side of View Port"</div>,
+	},
+};
+
+export const Bottom: Story = {
+	args: {
+		showCloseIcon: true,
+		from: "bottom",
+		header: <div>Should visible from Right side of View Port"</div>,
+	},
+};

@@ -33,7 +33,7 @@ const applyContainerStyle = (
 			return css`
         top: ${anchorElBottom}px;
         left: ${open ? 0 : "-100%"}; 
-        right: 0;
+        right: ${open ? 0 : "100%"}; 
         bottom: 0;
         flex-direction: row;
     `;
@@ -43,7 +43,7 @@ const applyContainerStyle = (
 			return css`
         top: ${anchorElBottom}px;
         right: ${open ? 0 : "-100%"}; 
-        left: 0; 
+        left: ${open ? 0 : "100%"}; 
         bottom: 0;
         flex-direction: row-reverse;
     `;
@@ -135,7 +135,7 @@ export const Header = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  /* TODO: (maaahad) gap, padding and border color should come from theme */
+  /* TODO: (maaahad)epadding and border color should come from theme */
   gap: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid rgb(220, 220, 222); 
