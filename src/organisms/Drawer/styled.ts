@@ -86,11 +86,14 @@ export const DrawerContainer = styled.div<{
 `;
 
 export const DrawerContent = styled.div<{ from: From }>`
-  display: flex; 
-  flex-direction: column; 
-  background-color: white; 
   // TODO: padding should come from theme, should be synched with PageContainer
   padding: 16px; 
+
+  display: flex; 
+  flex-direction: column; 
+  ${({ theme }) => css`
+    background-color: ${theme.color.background.primary}; 
+  `}
   ${({ from }) => {
 		switch (from) {
 			case "left":
@@ -110,8 +113,12 @@ export const DrawerContent = styled.div<{ from: From }>`
 `;
 
 export const EmptyContent = styled.div<{ from: From }>`
-  // TODO: (maaahad) bg color should come from theme
-  background-color: #19202499; 
+  // TODO: primary overlay color does not seem to be transparent
+  // background-color: #19202499; 
+  ${({ theme }) => css`
+    background-color: ${theme.color.overlay.primary}; 
+  `}
+
   ${({ from }) => {
 		switch (from) {
 			case "left":
@@ -135,17 +142,21 @@ export const Header = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  /* TODO: (maaahad)epadding and border color should come from theme */
+  /* TODO: (maaahad)padding and */
   gap: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid rgb(220, 220, 222); 
+  ${({ theme }) => css`
+    border-bottom: 1px solid ${theme.color.line}; 
+  `}
 `;
 
 export const Footer = styled.div`
   margin-top: auto; 
   /* TODO: (maaahad) padding and border color should come from theme */
   padding-top: 16px;
-  border-top: 1px solid rgb(220, 220, 222); 
+  ${({ theme }) => css`
+    border-top: 1px solid ${theme.color.line}; 
+  `}
 `;
 
 export const Body = styled.div`
