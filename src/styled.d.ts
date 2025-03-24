@@ -12,25 +12,25 @@ declare module "styled-components" {
 				secondary: string;
 				disabled: string;
 			};
-			// TODO: uncomment gradually
-			// accent: {
-			// 	primary: string;
-			// 	secondary: string;
-			// };
-			// line: string;
-			// background: {
-			// 	primary: string;
-			// 	secondary: string;
-			// };
-			// icon: {
-			// 	primary: string;
-			// 	secondary: string;
-			// 	disabled: string;
-			// };
-			// overlay: {
-			// 	primary: string;
-			// 	secondary: string;
-			// };
+			accent: {
+				primary: string;
+				secondary: string;
+			};
+			line: string;
+			background: {
+				primary: string;
+				secondary: string;
+			};
+			icon: {
+				primary: string;
+				secondary: string;
+				disabled: string;
+			};
+			overlay: {
+				primary: string;
+				secondary: string;
+				tertiary: string;
+			};
 			// TODO: themeless
 		};
 		// size, breakpoint, zIndex, ... ...
