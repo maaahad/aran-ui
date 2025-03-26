@@ -1,4 +1,4 @@
-import type { FC, PropsWithChildren, PropsWithRef, ReactNode } from "react";
+import type { PropsWithChildren, ReactNode } from "react";
 import React from "react";
 import type { ComponentProps } from "../../utils/types";
 import { Body, CardContainer, Slot } from "./styled";
