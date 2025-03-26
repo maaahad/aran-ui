@@ -33,7 +33,7 @@ export const Card = React.forwardRef<
 		ref,
 	) => {
 		return (
-			<CardContainer className={className} ref={ref as unknown} mt={mt}>
+			<CardContainer className={className} ref={ref as any} mt={mt}>
 				{header && (
 					<Slot slot="header" className={headerClassName}>
 						{header}
