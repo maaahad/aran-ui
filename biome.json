@@ -3,6 +3,9 @@
 		"rules": {
 			"suspicious": {
 				"noExplicitAny": "warn"
+			},
+			"style": {
+				"noNonNullAssertion": "warn"
 			}
 		}
 	}
