@@ -1,6 +1,6 @@
 import type { FC, PropsWithChildren, ReactNode } from "react";
 import type { ComponentProps } from "../../utils/types";
-import { Body, CardContainer, Footer, Header } from "./styled";
+import { Body, CardContainer, Slot } from "./styled";
 
 type Props = ComponentProps & {
 	// className
@@ -23,9 +23,17 @@ export const Card: FC<PropsWithChildren<Props>> = ({
 }) => {
 	return (
 		<CardContainer className={className}>
-			{header && <Header className={headerClassName}>{header}</Header>}
+			{header && (
+				<Slot slot="header" className={headerClassName}>
+					{header}
+				</Slot>
+			)}
 			<Body className={bodyClasName}>{children}</Body>
-			{footer && <Footer className={footerClassName}>{footer}</Footer>}
+			{footer && (
+				<Slot slot="footer" className={footerClassName}>
+					{footer}
+				</Slot>
+			)}
 		</CardContainer>
 	);
 };

@@ -29,3 +29,15 @@ export const Default: Story = {
 export const OnlyContent: Story = {
 	args: {},
 };
+
+export const WithHeaderOnly: Story = {
+	args: {
+		header: <div>This is header</div>,
+	},
+};
+
+export const WithFooterOnly: Story = {
+	args: {
+		footer: <div>This is footer</div>,
+	},
+};

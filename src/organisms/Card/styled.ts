@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 export const CardContainer = styled.div`
   ${({ theme }) => css`
+    overflow: hidden; 
     display: flex; 
     flex-direction: column; 
     border: 1px solid ${theme.color.line}; 
@@ -18,18 +19,21 @@ export const Body = styled.div`
   `}
 `;
 
-export const Header = styled.div`
-  ${({ theme }) => css`
+export const Slot = styled.div<{ slot: "header" | "footer" }>`
+  ${({ theme, slot }) => css`
     /* TODO: (maaahad) padding should be responsive */
     padding: 12px 16px; 
-    border-bottom: ${theme.color.line}; 
-  `}
-`;
-
-export const Footer = styled.div`
-  ${({ theme }) => css`
-    /* TODO: (maaahad) padding should be responsive */
-    padding: 12px 16px; 
-    border-top: ${theme.color.line}; 
+    ${
+			slot === "header" &&
+			css`
+        border-bottom: 1px solid ${theme.color.line}; 
+      `
+		}
+    ${
+			slot === "footer" &&
+			css`
+        border-top: 1px solid ${theme.color.line}; 
+      `
+		}
   `}
 `;
