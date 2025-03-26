@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
-import type { ComponentPositionProps } from "../../utils/types";
 import { positionPropToCSS } from "../../utils/style";
+import type { ComponentPositionProps } from "../../utils/types";
 
 export const CardContainer = styled.div<Pick<ComponentPositionProps, "mt">>`
   ${({ theme, mt }) => css`
