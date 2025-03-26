@@ -26,11 +26,14 @@ export const Card = React.forwardRef<
 			header,
 			children,
 			footer,
+			mt,
+			// NOTE: pd is control in Slot and Body container
+			// pd,
 		},
 		ref,
 	) => {
 		return (
-			<CardContainer className={className} ref={ref as any}>
+			<CardContainer className={className} ref={ref as any} mt={mt}>
 				{header && (
 					<Slot slot="header" className={headerClassName}>
 						{header}

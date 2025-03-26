@@ -41,3 +41,10 @@ export const WithFooterOnly: Story = {
 		footer: <div>This is footer</div>,
 	},
 };
+
+export const WithMarginTop: Story = {
+	args: {
+		mt: 32,
+		footer: <div>This is footer</div>,
+	},
+};

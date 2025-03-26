@@ -1,12 +1,16 @@
 import styled, { css } from "styled-components";
+import type { ComponentPositionProps } from "../../utils/types";
+import { positionPropToCSS } from "../../utils/style";
 
-export const CardContainer = styled.div`
-  ${({ theme }) => css`
+export const CardContainer = styled.div<Pick<ComponentPositionProps, "mt">>`
+  ${({ theme, mt }) => css`
     overflow: hidden; 
     display: flex; 
     flex-direction: column; 
     border: 1px solid ${theme.color.line}; 
-    /* FIXME: (maaahad) border radius, padding should come from theme */
+    margin-top: ${positionPropToCSS(mt)}; 
+
+    /* FIXME: (maaahad) border radius should come from theme */
     border-radius: 8px;
   `}
 `;
