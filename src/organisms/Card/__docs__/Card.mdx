@@ -1,0 +1,24 @@
+import {Canvas, Meta, Controls} from '@storybook/blocks'; 
+import * as CardStories from './Card.stories';
+
+<Meta of={CardStories} />
+
+# Definition
+
+A `Card` contain content and actions about a single subject.
+
+## Usage
+
+This is used to convey info and actions related to a single object. 
+
+## Inputs
+
+A `Card` has the folloint properties: 
+
+<Controls />
+
+<Canvas of={CardStories.Default} />
+<Canvas of={CardStories.OnlyContent} />
+<Canvas of={CardStories.WithMarginTop} />
+
+
