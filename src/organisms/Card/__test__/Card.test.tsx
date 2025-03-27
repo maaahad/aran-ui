@@ -1,10 +1,10 @@
+import { render } from "@testing-library/react";
 // TODO: add some integration/unit test and merge the pr
 import React from "react";
-import type { FC, ComponentProps } from "react";
-import { render } from "@testing-library/react";
-import { describe, test, expect } from "vitest";
-import { Card } from "../Card";
+import type { ComponentProps, FC } from "react";
+import { describe, expect, test } from "vitest";
 import { AranThemeProvider } from "../../../themes";
+import { Card } from "../Card";
 
 const TestWrapper: FC<ComponentProps<typeof Card>> = (props) => {
 	return (
