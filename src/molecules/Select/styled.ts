@@ -1,4 +1,23 @@
 import styled, { css } from "styled-components";
+import type { ComponentWidth } from "../../utils/types";
+import { positionPropToCSS } from "../../utils/style";
+
+export const SelectContainer = styled.div<Required<ComponentWidth>>`
+  display: flex; 
+  flex-direction: column; 
+  ${({ width }) => css`
+    /* TODO: gap should come from theme */
+    gap: 8px; 
+    width: ${positionPropToCSS(width)}; 
+  `}
+`;
+
+// TODO: font related props value should come from theme
+export const FormLabel = styled.div`
+  font-size : 14px; 
+  font-weight: 600; 
+  line-height: 16px; 
+`;
 
 // TODO: implement Button with icon option at the same some
 // TODO: css for diffrent size, width

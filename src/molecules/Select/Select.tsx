@@ -7,7 +7,7 @@ import React, {
 	useRef,
 	useState,
 } from "react";
-import { Button } from "./styled";
+import { SelectContainer, Button, FormLabel } from "./styled";
 
 import type {
 	ComponentProps,
@@ -62,8 +62,10 @@ export const Select: FC<Props> = ({
 	);
 
 	return (
-		<div>
-			{label && <div>{label}</div>}
+		<SelectContainer width={width}>
+			{/* TODO: (maaahad) a standalone component called FormLabel */}
+			{label && <FormLabel>{label}</FormLabel>}
+
 			{/* TODO: button should be replaced with icon button */}
 			<Button
 				// ref={anchorRef} // TODO: should we use callback ref instead
@@ -95,6 +97,6 @@ export const Select: FC<Props> = ({
 					<div>option 2</div>
 				</div>
 			)}
-		</div>
+		</SelectContainer>
 	);
 };
