@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
-import type { ComponentWidth } from "../../utils/types";
 import { positionPropToCSS } from "../../utils/style";
+import type { ComponentWidth } from "../../utils/types";
 
 export const SelectContainer = styled.div<Required<ComponentWidth>>`
   display: flex; 
@@ -37,5 +37,27 @@ export const Button = styled.button`
     justify-content: space-between; 
     gap: 8px; 
     outline: none; 
+  `}
+`;
+
+export const DropdownContainer = styled.div<{
+	top: number;
+	left: number;
+	width: number;
+}>`
+  ${({ theme, top, left, width }) => css`
+    position: fixed; 
+    top: ${top}px; 
+    left: ${left}px; 
+    width: ${positionPropToCSS(width)}; 
+    /* TODO: (maaahad) max-height should come from config */
+    max-height: 250px; 
+    overflow: auto; 
+    border: 1px solid ${theme.color.line}; 
+
+    /* TODO: (maaahad) border radius should come from theme */
+    border-radius: 8px;
+    /* TODO: (maaahad) padding should come from theme, + more padding should ve added to dropdown optin aling with it's background color */
+    padding: 8px; 
   `}
 `;

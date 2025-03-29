@@ -1,21 +1,24 @@
-import React, {
+import {
 	type FC,
 	type RefCallback,
 	useCallback,
-	useEffect,
-	useMemo,
 	useRef,
 	useState,
 } from "react";
-import { SelectContainer, Button, FormLabel } from "./styled";
+import {
+	Button,
+	DropdownContainer,
+	FormLabel,
+	SelectContainer,
+} from "./styled";
 
+import { useClickOutside } from "../../hooks/window/useClickOutside";
 import type {
 	ComponentProps,
 	ComponentSize,
 	ComponentState,
 	ComponentWidth,
 } from "../../utils/types";
-import { useClickOutside } from "../../hooks/window/useClickOutside";
 
 // TODO: (maaahad) implement ComponentWidth
 // VVI : (maaahad)
@@ -42,20 +45,24 @@ export const Select: FC<Props> = ({
 	width = "auto",
 }) => {
 	const [openDropdown, setOpenDropdown] = useState<boolean>(false);
-	const [dropDownPosition, setDropdownPosition] = useState<{
+	const [dropdownStyle, setDropdownStyle] = useState<{
 		top: number;
 		left: number;
-	}>({ top: 0, left: 0 });
+		width: number | "auto";
+	}>({ top: 0, left: 0, width: "auto" });
+
 	const dropDownRef = useRef<HTMLDivElement>(null);
 
+	// TODO: this might not necessary, instead can be achieve by callback ref
 	useClickOutside(dropDownRef, () => setOpenDropdown(false));
 
 	const callbackRef: RefCallback<HTMLButtonElement> = useCallback(
 		(node: HTMLButtonElement) => {
 			const rect = node.getBoundingClientRect();
-			setDropdownPosition({
+			setDropdownStyle({
 				top: rect.bottom + 8, // 8 used as gap between anchor el and dropdown
 				left: rect.x,
+				width: rect.right - rect.x,
 			});
 		},
 		[],
@@ -79,23 +86,27 @@ export const Select: FC<Props> = ({
 				<span>Default value</span>
 				<span>Caret Icon</span>
 			</Button>
+
 			{/* TODO: options list will use button as anchorEl */}
 			{openDropdown && (
-				<div
-					ref={dropDownRef}
-					style={{
-						height: "200px",
-						position: "fixed",
-						top: `${dropDownPosition.top}px`,
-						left: `${dropDownPosition.left}px`,
-						width,
-						backgroundColor: "#cbcbcb",
-						// width: "200px",
-					}}
-				>
-					<div>option 1</div>
-					<div>option 2</div>
-				</div>
+				<DropdownContainer ref={dropDownRef} {...dropdownStyle}>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+					<div>option </div>
+				</DropdownContainer>
 			)}
 		</SelectContainer>
 	);
