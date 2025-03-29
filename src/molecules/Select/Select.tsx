@@ -1,4 +1,4 @@
-import {
+import React, {
 	type FC,
 	type RefCallback,
 	useCallback,
@@ -15,6 +15,7 @@ import type {
 	ComponentState,
 	ComponentWidth,
 } from "../../utils/types";
+import { useClickOutside } from "../../hooks/window/useClickOutside";
 
 // TODO: (maaahad) implement ComponentWidth
 // VVI : (maaahad)
@@ -45,7 +46,9 @@ export const Select: FC<Props> = ({
 		top: number;
 		left: number;
 	}>({ top: 0, left: 0 });
-	const anchorRef = useRef<HTMLButtonElement | null>(null);
+	const dropDownRef = useRef<HTMLDivElement>(null);
+
+	useClickOutside(dropDownRef, () => setOpenDropdown(false));
 
 	const callbackRef: RefCallback<HTMLButtonElement> = useCallback(
 		(node: HTMLButtonElement) => {
@@ -58,8 +61,6 @@ export const Select: FC<Props> = ({
 		[],
 	);
 
-	console.log(dropDownPosition);
-
 	return (
 		<div>
 			{label && <div>{label}</div>}
@@ -68,7 +69,10 @@ export const Select: FC<Props> = ({
 				// ref={anchorRef} // TODO: should we use callback ref instead
 				ref={callbackRef}
 				type="button"
-				onClick={() => setOpenDropdown(!openDropdown)}
+				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+					event.stopPropagation();
+					setOpenDropdown(!openDropdown);
+				}}
 			>
 				<span>Default value</span>
 				<span>Caret Icon</span>
@@ -76,6 +80,7 @@ export const Select: FC<Props> = ({
 			{/* TODO: options list will use button as anchorEl */}
 			{openDropdown && (
 				<div
+					ref={dropDownRef}
 					style={{
 						height: "200px",
 						position: "fixed",
