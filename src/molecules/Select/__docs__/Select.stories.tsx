@@ -1,5 +1,5 @@
-import React from "react";
 import type { Meta, StoryObj } from "@storybook/react/*";
+import React from "react";
 import { AranThemeProvider } from "../../../themes";
 import Example from "./Example";
 
@@ -20,5 +20,8 @@ export default meta;
 type Story = StoryObj<typeof Example>;
 
 export const Default: Story = {
-	args: {},
+	args: {
+		label: "Select option",
+		width: 100,
+	},
 };

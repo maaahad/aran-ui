@@ -1,5 +1,5 @@
 export const positionPropToCSS = (
-	value?: number | `${number}%`,
+	value?: number | `${number}%` | "auto",
 ): number | string => {
 	if (!value) return 0;
 

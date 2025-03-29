@@ -1,10 +1,95 @@
-import type { FC } from "react";
+import {
+	type FC,
+	type RefCallback,
+	useCallback,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+} from "react";
+import { Button } from "./styled";
 
-export const Select: FC = () => {
+import type {
+	ComponentProps,
+	ComponentSize,
+	ComponentState,
+	ComponentWidth,
+} from "../../utils/types";
+
+// TODO: (maaahad) implement ComponentWidth
+// VVI : (maaahad)
+// TODO: (maaahad) generic implement of ComponentSize/Width/State so that component using this props, will get the style automatically
+type Props = ComponentProps &
+	ComponentWidth &
+	ComponentSize &
+	ComponentState & {
+		disabled?: boolean;
+		label?: string;
+		// todo:
+		// options
+
+		// slots
+		// events
+	};
+
+export const Select: FC<Props> = ({
+	className,
+	disabled = false,
+	state = "valid",
+	label,
+	size = "md",
+	width = "auto",
+}) => {
+	const [openDropdown, setOpenDropdown] = useState<boolean>(false);
+	const [dropDownPosition, setDropdownPosition] = useState<{
+		top: number;
+		left: number;
+	}>({ top: 0, left: 0 });
+	const anchorRef = useRef<HTMLButtonElement | null>(null);
+
+	const callbackRef: RefCallback<HTMLButtonElement> = useCallback(
+		(node: HTMLButtonElement) => {
+			const rect = node.getBoundingClientRect();
+			setDropdownPosition({
+				top: rect.bottom + 8, // 8 used as gap between anchor el and dropdown
+				left: rect.x,
+			});
+		},
+		[],
+	);
+
+	console.log(dropDownPosition);
+
 	return (
 		<div>
-			<div>Input field</div>
-			<div>Options</div>
+			{label && <div>{label}</div>}
+			{/* TODO: button should be replaced with icon button */}
+			<Button
+				// ref={anchorRef} // TODO: should we use callback ref instead
+				ref={callbackRef}
+				type="button"
+				onClick={() => setOpenDropdown(!openDropdown)}
+			>
+				<span>Default value</span>
+				<span>Caret Icon</span>
+			</Button>
+			{/* TODO: options list will use button as anchorEl */}
+			{openDropdown && (
+				<div
+					style={{
+						height: "200px",
+						position: "fixed",
+						top: `${dropDownPosition.top}px`,
+						left: `${dropDownPosition.left}px`,
+						width,
+						backgroundColor: "#cbcbcb",
+						// width: "200px",
+					}}
+				>
+					<div>option 1</div>
+					<div>option 2</div>
+				</div>
+			)}
 		</div>
 	);
 };
