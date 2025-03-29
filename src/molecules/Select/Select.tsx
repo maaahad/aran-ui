@@ -48,12 +48,12 @@ export const Select: FC<Props> = ({
 	const [dropdownStyle, setDropdownStyle] = useState<{
 		top: number;
 		left: number;
-		width: number | "auto";
-	}>({ top: 0, left: 0, width: "auto" });
+		width: number;
+	}>({ top: 0, left: 0, width: 200 });
 
 	const dropDownRef = useRef<HTMLDivElement>(null);
 
-	// TODO: this might not necessary, instead can be achieve by callback ref
+	// TODO: (maaahad) this might not necessary, instead can be achieve by callback ref
 	useClickOutside(dropDownRef, () => setOpenDropdown(false));
 
 	const callbackRef: RefCallback<HTMLButtonElement> = useCallback(
