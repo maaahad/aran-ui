@@ -1,3 +1,5 @@
+import { ResponsiveProp } from "./types";
+
 export const positionPropToCSS = (
 	value?: number | `${number}%` | "auto" | "full",
 ): number | string => {
@@ -8,4 +10,13 @@ export const positionPropToCSS = (
 	if (typeof value === "number") return `${value}px`;
 
 	return value;
+};
+
+// TODO: (maaaha) implement it later
+export const applyResponsiveCSS = (
+	props: {
+		[Property in ResponsiveProp]: "string" | `${number}%` | "auto" | "full";
+	},
+): string => {
+	return JSON.stringify({});
 };
