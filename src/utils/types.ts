@@ -1,6 +1,18 @@
 // NOTE:  util types
 // TODO: (maaahad) add other responsive Prop as incrementally
-export type ResponsiveProp = "mt" | "pd";
+import type { Breakpoints } from "../tokens";
+
+// responsive props
+type ResponsiveProp<T> =
+	| T
+	| {
+			[Property in (typeof Breakpoints)["keys"][number]]?: T;
+	  };
+
+export type ResponsiveProps = {
+	mt?: ResponsiveProp<number | `${number}%` | "auto">;
+	pd?: ResponsiveProp<number | `${number}%`>;
+};
 
 export type ComponentPosition = {
 	[Property in "mt" | "pd"]?: number | `${number}%` | "auto";
