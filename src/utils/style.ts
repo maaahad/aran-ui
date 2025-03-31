@@ -50,7 +50,6 @@ export const applyResponsiveCSS = (props: ResponsiveProps): CSSRuleObject => {
 
 		return acc;
 	}, {} as CSSRuleObject);
-	console.log(cssRuleObject);
 
 	return cssRuleObject;
 };
