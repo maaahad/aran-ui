@@ -23,9 +23,12 @@ const ComponentPropToCSSProp: {
 	width: "width",
 };
 
-export const applyResponsiveCSS = (props: ResponsiveProps): string => {
+export const applyResponsiveCSS = (
+	props: ResponsiveProps,
+): Record<string, number | string | Record<string, number | string>> => {
 	const cssRules = Object.entries(props).reduce(
 		(acc, [key, value]) => {
+			// TODO: if key is not in the list of responsive prop, return
 			if (!value) return acc;
 
 			const cssProp =
@@ -55,5 +58,5 @@ export const applyResponsiveCSS = (props: ResponsiveProps): string => {
 		{} as Record<string, string | number | Record<string, string | number>>,
 	);
 
-	return JSON.stringify(cssRules, null, 2);
+	return cssRules;
 };

@@ -23,29 +23,27 @@ describe("style utils", () => {
 		};
 
 		const expected = {
-			"@media (0 <= width < 600)": {
+			"@media (0px <= width < 600px)": {
 				"margin-top": "200px",
 				padding: "200px",
 			},
-			"@media (600 <= width < 900)": {
+			"@media (600px <= width < 900px)": {
 				"margin-top": "100%",
 				padding: "100%",
 			},
-			"@media (900 <= width < 1200)": {
+			"@media (900px <= width < 1200px)": {
 				"margin-top": "auto",
 			},
-			"@media (1200 <= width < 1536)": {
+			"@media (1200px <= width < 1536px)": {
 				"margin-top": "auto",
 				width: "300px",
 			},
-			"@media (width >= 1536)": {
+			"@media (width >= 1536px)": {
 				"margin-top": "500px",
 				width: "400px",
 			},
 		};
 
-		expect(applyResponsiveCSS(responsiveProps)).toBe(
-			JSON.stringify(expected, undefined, 2),
-		);
+		expect(applyResponsiveCSS(responsiveProps)).toStrictEqual(expected);
 	});
 });

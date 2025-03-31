@@ -15,9 +15,9 @@ export type ResponsiveProps = {
 	width?: ResponsiveProp<number | `${number}%` | "auto">;
 };
 
-export type ComponentPosition = {
-	[Property in "mt" | "pd"]?: number | `${number}%` | "auto";
-};
+// export type ComponentPosition = {
+// 	[Property in "mt" | "pd"]?: number | `${number}%` | "auto";
+// };
 
 export type ComponentState = {
 	state?: "valid" | "invalid";
@@ -31,7 +31,7 @@ export type ComponentWidth = {
 	width?: number | `${number}%` | "auto" | "full";
 };
 
-export type ComponentProps = ComponentPosition & {
+export type ComponentProps = ResponsiveProps & {
 	className?: string;
 };
 

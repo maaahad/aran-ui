@@ -11,9 +11,9 @@ export const Breakpoints = {
 
 // TODO: should there be a util to generate mediaConditions based on keys and values???
 export const MediaConditions = {
-	xs: "@media (0 <= width < 600)",
-	sm: "@media (600 <= width < 900)",
-	md: "@media (900 <= width < 1200)",
-	lg: "@media (1200 <= width < 1536)",
-	xl: "@media (width >= 1536)",
+	xs: "@media (0px <= width < 600px)",
+	sm: "@media (600px <= width < 900px)",
+	md: "@media (900px <= width < 1200px)",
+	lg: "@media (1200px <= width < 1536px)",
+	xl: "@media (width >= 1536px)",
 } as const;
