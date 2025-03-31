@@ -4,11 +4,14 @@ import {
 	ThemeProvider,
 	createGlobalStyle,
 } from "styled-components";
+import { Breakpoints } from "../../tokens";
 import { type ThemeMode, getColorToken } from "../../tokens/color";
 
+// TODO: (maaahad) Move this to separate file
 const getTheme = (theme: ThemeMode): DefaultTheme => {
 	return {
 		color: getColorToken(theme),
+		breakpoints: Breakpoints,
 	};
 };
 
