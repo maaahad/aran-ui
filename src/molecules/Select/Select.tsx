@@ -17,14 +17,9 @@ import type {
 	ComponentProps,
 	ComponentSize,
 	ComponentState,
-	ComponentWidth,
 } from "../../utils/types";
 
-// TODO: (maaahad) implement ComponentWidth
-// VVI : (maaahad)
-// TODO: (maaahad) generic implement of ComponentSize/Width/State so that component using this props, will get the style automatically
 type Props = ComponentProps &
-	ComponentWidth &
 	ComponentSize &
 	ComponentState & {
 		disabled?: boolean;

@@ -1,8 +1,8 @@
-// NOTE:  util types
-// TODO: (maaahad) add other responsive Prop as incrementally
 import type { Breakpoints } from "../tokens";
 
-// responsive props
+/**
+ * =========== Responsive Props ==========
+ */
 type ResponsiveProp<T> =
 	| T
 	| {
@@ -12,23 +12,18 @@ type ResponsiveProp<T> =
 export type ResponsiveProps = {
 	mt?: ResponsiveProp<number | `${number}%` | "auto">;
 	pd?: ResponsiveProp<number | `${number}%`>;
-	width?: ResponsiveProp<number | `${number}%` | "auto">;
+	width?: ResponsiveProp<number | `${number}%` | "auto" | "full">;
 };
 
-// export type ComponentPosition = {
-// 	[Property in "mt" | "pd"]?: number | `${number}%` | "auto";
-// };
-
+/**
+ * =========== Other Component Props ==========
+ */
 export type ComponentState = {
 	state?: "valid" | "invalid";
 };
 
 export type ComponentSize = {
-	size?: "sm" | "md" | "lg" | "xl";
-};
-
-export type ComponentWidth = {
-	width?: number | `${number}%` | "auto" | "full";
+	size?: "xs" | "sm" | "md" | "lg" | "xl";
 };
 
 export type ComponentProps = ResponsiveProps & {
