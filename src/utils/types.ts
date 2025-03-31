@@ -12,6 +12,7 @@ type ResponsiveProp<T> =
 export type ResponsiveProps = {
 	mt?: ResponsiveProp<number | `${number}%` | "auto">;
 	pd?: ResponsiveProp<number | `${number}%`>;
+	width?: ResponsiveProp<number | `${number}%` | "auto">;
 };
 
 export type ComponentPosition = {

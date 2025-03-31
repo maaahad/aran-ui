@@ -16,6 +16,10 @@ describe("style utils", () => {
 				xs: 200,
 				sm: "100%",
 			},
+			width: {
+				lg: 300,
+				xl: 400,
+			},
 		};
 
 		const expected = {
@@ -32,9 +36,11 @@ describe("style utils", () => {
 			},
 			"@media (1200 <= width < 1536)": {
 				"margin-top": "auto",
+				width: "300px",
 			},
 			"@media (width >= 1536)": {
 				"margin-top": "500px",
+				width: "400px",
 			},
 		};
 

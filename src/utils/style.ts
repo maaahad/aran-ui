@@ -20,6 +20,7 @@ const ComponentPropToCSSProp: {
 } = {
 	mt: "margin-top",
 	pd: "padding",
+	width: "width",
 };
 
 export const applyResponsiveCSS = (props: ResponsiveProps): string => {
