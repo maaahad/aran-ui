@@ -32,12 +32,12 @@ type Props = ComponentProps &
 	};
 
 export const Select: FC<Props> = ({
-	className,
-	disabled = false,
-	state = "valid",
+	// className,
+	// disabled = false,
+	// state = "valid",
 	label,
-	size = "md",
-	width = "auto",
+	// size = "md",
+	...styleProps
 }) => {
 	const [openDropdown, setOpenDropdown] = useState<boolean>(false);
 	const [dropdownStyle, setDropdownStyle] = useState<{
@@ -64,7 +64,7 @@ export const Select: FC<Props> = ({
 	);
 
 	return (
-		<SelectContainer width={width}>
+		<SelectContainer {...styleProps}>
 			{/* TODO: (maaahad) a standalone component called FormLabel */}
 			{label && <FormLabel>{label}</FormLabel>}
 
