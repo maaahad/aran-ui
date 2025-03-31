@@ -1,19 +1,7 @@
 import type React from "react";
-import {
-	type DefaultTheme,
-	ThemeProvider,
-	createGlobalStyle,
-} from "styled-components";
-import { Breakpoints } from "../../tokens";
-import { type ThemeMode, getColorToken } from "../../tokens/color";
-
-// TODO: (maaahad) Move this to separate file
-const getTheme = (theme: ThemeMode): DefaultTheme => {
-	return {
-		color: getColorToken(theme),
-		breakpoints: Breakpoints,
-	};
-};
+import { ThemeProvider, createGlobalStyle } from "styled-components";
+import type { ThemeMode } from "../../tokens/color";
+import { getTheme } from "../util";
 
 const GlobalStyle = createGlobalStyle`
     body {
