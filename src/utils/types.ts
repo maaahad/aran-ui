@@ -1,7 +1,7 @@
 import type { Breakpoints } from "../tokens";
 
 /**
- * =========== Responsive Props ==========
+ * =========== Component Props ==========
  */
 type ResponsiveProp<T> =
 	| T
@@ -15,9 +15,6 @@ export type ResponsiveProps = {
 	width?: ResponsiveProp<number | `${number}%` | "auto" | "full">;
 };
 
-/**
- * =========== Other Component Props ==========
- */
 export type ComponentState = {
 	state?: "valid" | "invalid";
 };
@@ -40,11 +37,3 @@ export type Tuple<T, N extends number> = N extends N
 		? T[]
 		: _TupleOf<T, N, []>
 	: never;
-
-/**
- * =========== CSS ==========
- */
-export type CSSRuleObject = Record<
-	string,
-	number | string | Record<string, number | string>
->;

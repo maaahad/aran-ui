@@ -1,5 +1,10 @@
 import { MediaQueries } from "../tokens";
-import type { CSSRuleObject, ResponsiveProps } from "./types";
+import type { ResponsiveProps } from "./types";
+
+type CSSRuleObject = Record<
+	string,
+	number | string | Record<string, number | string>
+>;
 
 export const getCSSPropValue = (
 	value?: number | `${number}%` | "auto" | "full",
