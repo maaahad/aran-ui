@@ -45,3 +45,11 @@ export type Tuple<T, N extends number> = N extends N
 		? T[]
 		: _TupleOf<T, N, []>
 	: never;
+
+/**
+ * =========== CSS ==========
+ */
+export type CSSRuleObject = Record<
+	string,
+	number | string | Record<string, number | string>
+>;

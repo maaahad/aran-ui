@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { applyResponsiveCSS, positionPropToCSS } from "../../utils/style";
+import { applyResponsiveCSS } from "../../utils/style";
 import type { ResponsiveProps } from "../../utils/types";
 
 export const CardContainer = styled.div<Omit<ResponsiveProps, "pd">>`

@@ -1,15 +1,13 @@
 import styled, { css } from "styled-components";
-import { positionPropToCSS } from "../../utils/style";
-import type { ComponentWidth } from "../../utils/types";
+import { applyResponsiveCSS } from "../../utils/style";
+import type { ResponsiveProps } from "../../utils/types";
 
-export const SelectContainer = styled.div<Required<ComponentWidth>>`
+export const SelectContainer = styled.div<ResponsiveProps>`
+${applyResponsiveCSS}
   display: flex; 
   flex-direction: column; 
-  ${({ width }) => css`
-    /* TODO: gap should come from theme */
-    gap: 8px; 
-    width: ${positionPropToCSS(width)}; 
-  `}
+  /* TODO: gap should come from theme */
+  gap: 8px; 
 `;
 
 // TODO: font related props value should come from theme
@@ -40,16 +38,18 @@ export const Button = styled.button`
   `}
 `;
 
-export const DropdownContainer = styled.div<{
-	top: number;
-	left: number;
-	width: number;
-}>`
-  ${({ theme, top, left, width }) => css`
+export const DropdownContainer = styled.div<
+	Pick<ResponsiveProps, "width"> & {
+		top: number;
+		left: number;
+		width: number;
+	}
+>`
+${applyResponsiveCSS}
+  ${({ theme, top, left }) => css`
     position: fixed; 
     top: ${top}px; 
     left: ${left}px; 
-    width: ${positionPropToCSS(width)}; 
     /* TODO: (maaahad) max-height should come from config */
     max-height: 250px; 
     overflow: auto; 

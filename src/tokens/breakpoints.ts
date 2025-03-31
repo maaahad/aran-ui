@@ -10,7 +10,7 @@ export const Breakpoints = {
 } as const;
 
 // TODO: should there be a util to generate mediaConditions based on keys and values???
-export const MediaConditions = {
+export const MediaQueries = {
 	xs: "@media (0px <= width < 600px)",
 	sm: "@media (600px <= width < 900px)",
 	md: "@media (900px <= width < 1200px)",

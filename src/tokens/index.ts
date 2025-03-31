@@ -1,2 +1,2 @@
-export { Breakpoints, MediaConditions } from "./breakpoints";
+export { Breakpoints, MediaQueries } from "./breakpoints";
 export * as Color from "./color";
