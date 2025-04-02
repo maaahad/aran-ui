@@ -23,7 +23,7 @@ export type ComponentSize = {
 	size?: "xs" | "sm" | "md" | "lg" | "xl";
 };
 
-export type ComponentProps = ResponsiveProps & {
+export type ComponentProps = {
 	className?: string;
 };
 

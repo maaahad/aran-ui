@@ -17,9 +17,11 @@ import type {
 	ComponentProps,
 	ComponentSize,
 	ComponentState,
+	ResponsiveProps,
 } from "../../utils/types";
 
 type Props = ComponentProps &
+	ResponsiveProps &
 	ComponentSize &
 	ComponentState & {
 		disabled?: boolean;

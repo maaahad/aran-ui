@@ -1,17 +1,18 @@
 import type { PropsWithChildren, ReactNode } from "react";
 import React from "react";
-import type { ComponentProps } from "../../utils/types";
+import type { ComponentProps, ResponsiveProps } from "../../utils/types";
 import { Body, CardContainer, Slot } from "./styled";
 
-type Props = ComponentProps & {
-	// className
-	headerClassName?: string;
-	bodyClasName?: string;
-	footerClassName?: string;
-	// slots
-	header?: ReactNode;
-	footer?: ReactNode;
-};
+type Props = ComponentProps &
+	ResponsiveProps & {
+		// className
+		headerClassName?: string;
+		bodyClasName?: string;
+		footerClassName?: string;
+		// slots
+		header?: ReactNode;
+		footer?: ReactNode;
+	};
 
 export const Card = React.forwardRef<
 	HTMLElement | React.RefCallback<HTMLElement>,
