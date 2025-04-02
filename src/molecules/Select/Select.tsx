@@ -1,5 +1,6 @@
 import {
 	type FC,
+	ReactNode,
 	type RefCallback,
 	useCallback,
 	useRef,
@@ -21,6 +22,13 @@ import type {
 	ResponsiveProps,
 } from "../../utils/types";
 
+type SelectOption = {
+	label?: string;
+	value: string;
+	leftSlot?: ReactNode; // NOTE: a icon for example.
+	rightSlot?: ReactNode; // NOTE: key / id of the option for example.
+};
+
 type Props = ComponentProps &
 	ResponsiveProps &
 	ComponentSize &
@@ -34,6 +42,22 @@ type Props = ComponentProps &
 		// slots
 		// events
 	};
+
+export const Option: FC<SelectOption> = ({
+	label,
+	value,
+	leftSlot,
+	rightSlot,
+}) => {
+	return (
+		<div>
+			{/* TODO: do we need extra div for slot? */}
+			{leftSlot && <div>{leftSlot}</div>}
+			<div>{label ?? value}</div>
+			{rightSlot && <div>{rightSlot}</div>}
+		</div>
+	);
+};
 
 export const Select: FC<Props> = ({
 	// className,
