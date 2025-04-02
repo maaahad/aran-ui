@@ -3,11 +3,12 @@ import { applyResponsiveCSS } from "../../utils/style";
 import type { ResponsiveProps } from "../../utils/types";
 
 export const SelectContainer = styled.div<ResponsiveProps>`
-${applyResponsiveCSS}
-  display: flex; 
-  flex-direction: column; 
-  /* TODO: gap should come from theme */
-  gap: 8px; 
+  ${applyResponsiveCSS}
+  ${() => css`
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px; 
+  `}
 `;
 
 // TODO: font related props value should come from theme, and we Can have a Separate FormLabel component

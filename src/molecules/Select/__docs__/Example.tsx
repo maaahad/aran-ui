@@ -5,15 +5,7 @@ import { Select } from "../Select";
 type Props = ComponentProps<typeof Select>;
 
 const Example: FC<Props> = (props) => {
-	return (
-		<div
-			style={{
-				marginTop: "50px",
-			}}
-		>
-			<Select {...props} />
-		</div>
-	);
+	return <Select {...props} />;
 };
 
 export default Example;

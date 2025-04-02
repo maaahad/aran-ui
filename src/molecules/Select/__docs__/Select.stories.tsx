@@ -21,9 +21,14 @@ type Story = StoryObj<typeof Example>;
 
 export const Default: Story = {
 	args: {
-		formLabel: "Select option",
+		formLabel: "Select option with responsive margin top",
 		placeholder: "Select",
 		width: "full",
 		pd: 24,
+		mt: {
+			xs: 8,
+			sm: 16,
+			xl: 24,
+		},
 	},
 };
