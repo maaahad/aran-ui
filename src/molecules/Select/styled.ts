@@ -10,17 +10,33 @@ ${applyResponsiveCSS}
   gap: 8px; 
 `;
 
-// TODO: font related props value should come from theme
+// TODO: font related props value should come from theme, and we Can have a Separate FormLabel component
 export const FormLabel = styled.div`
   font-size : 14px; 
   font-weight: 600; 
   line-height: 16px; 
 `;
 
+// TODO: Add Ring later
+export const Ring = styled.div`
+/* TODO: (maaahad) style of Ring should come from theme */
+  ${({ theme }) => css`
+    width: 100%; 
+    padding: 2px; 
+    border: 1px solid transparent; 
+    border-radius: 8px; 
+    &:focus-within {
+      border-color: red; 
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16),0px 0px 4px rgba(0, 0, 0, 0.16):
+    }
+  `}
+`;
+
 // TODO: implement Button with icon option at the same some
 // TODO: css for diffrent size, width
 export const Button = styled.button`
   ${({ theme }) => css`
+    width: 100%; 
     background-color: transparent;
     cursor: pointer;
     /* TODO: default height (md) */
@@ -57,7 +73,7 @@ ${applyResponsiveCSS}
 
     /* TODO: (maaahad) border radius should come from theme */
     border-radius: 8px;
-    /* TODO: (maaahad) padding should come from theme, + more padding should ve added to dropdown optin aling with it's background color */
-    padding: 8px; 
+    /* TODO: padding should be come from theme */
+    padding: 12px 12px;
   `}
 `;

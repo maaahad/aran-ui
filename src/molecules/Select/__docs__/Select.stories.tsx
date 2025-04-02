@@ -21,7 +21,9 @@ type Story = StoryObj<typeof Example>;
 
 export const Default: Story = {
 	args: {
-		label: "Select option",
+		formLabel: "Select option",
+		placeholder: "Select",
 		width: "full",
+		pd: 24,
 	},
 };

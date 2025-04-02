@@ -9,7 +9,6 @@ const Example: FC<Props> = (props) => {
 		<div
 			style={{
 				marginTop: "50px",
-				width: "400px",
 			}}
 		>
 			<Select {...props} />

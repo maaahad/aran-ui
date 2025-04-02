@@ -9,6 +9,7 @@ import {
 	Button,
 	DropdownContainer,
 	FormLabel,
+	Ring,
 	SelectContainer,
 } from "./styled";
 
@@ -25,7 +26,8 @@ type Props = ComponentProps &
 	ComponentSize &
 	ComponentState & {
 		disabled?: boolean;
-		label?: string;
+		formLabel?: string;
+		placeholder?: string;
 		// todo:
 		// options
 
@@ -37,7 +39,8 @@ export const Select: FC<Props> = ({
 	// className,
 	// disabled = false,
 	// state = "valid",
-	label,
+	formLabel,
+	placeholder,
 	// size = "md",
 	...styleProps
 }) => {
@@ -53,6 +56,7 @@ export const Select: FC<Props> = ({
 	// TODO: (maaahad) this might not necessary, instead can be achieve by callback ref
 	useClickOutside(dropDownRef, () => setOpenDropdown(false));
 
+	// TODO: (maaahad) we need to use ref instead to adjust dropdown on window resize, or may be not use fixed position
 	const callbackRef: RefCallback<HTMLButtonElement> = useCallback(
 		(node: HTMLButtonElement) => {
 			const rect = node.getBoundingClientRect();
@@ -68,7 +72,7 @@ export const Select: FC<Props> = ({
 	return (
 		<SelectContainer {...styleProps}>
 			{/* TODO: (maaahad) a standalone component called FormLabel */}
-			{label && <FormLabel>{label}</FormLabel>}
+			{formLabel && <FormLabel>{formLabel}</FormLabel>}
 
 			{/* TODO: button should be replaced with icon button */}
 			<Button
@@ -79,8 +83,10 @@ export const Select: FC<Props> = ({
 					event.stopPropagation();
 					setOpenDropdown(!openDropdown);
 				}}
+				role="combobox" // TODO: remove this warning
 			>
-				<span>Default value</span>
+				<span>{placeholder ?? "Select"}</span>
+				{/* TODO: this would be replace by CaretIcon */}
 				<span>Caret Icon</span>
 			</Button>
 
