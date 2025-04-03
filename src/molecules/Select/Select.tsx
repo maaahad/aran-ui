@@ -1,6 +1,6 @@
 import {
 	type FC,
-	ReactNode,
+	type ReactNode,
 	type RefCallback,
 	useCallback,
 	useRef,
@@ -22,7 +22,7 @@ import type {
 	ResponsiveProps,
 } from "../../utils/types";
 
-type SelectOption = {
+export type SelectOption = {
 	label?: string;
 	value: string;
 	leftSlot?: ReactNode; // NOTE: a icon for example.
@@ -36,26 +36,27 @@ type Props = ComponentProps &
 		disabled?: boolean;
 		formLabel?: string;
 		placeholder?: string;
-		// todo:
-		// options
+
+		options: SelectOption[];
+		selected?: SelectOption;
+		onChange: (option: SelectOption) => void;
 
 		// slots
 		// events
 	};
 
-export const Option: FC<SelectOption> = ({
-	label,
-	value,
-	leftSlot,
-	rightSlot,
+export const Option: FC<{ option: SelectOption; onChange: () => void }> = ({
+	option,
+	onChange,
 }) => {
+	const { label, value, leftSlot, rightSlot } = option;
 	return (
-		<div>
+		<button onClick={onChange} type="button">
 			{/* TODO: do we need extra div for slot? */}
 			{leftSlot && <div>{leftSlot}</div>}
 			<div>{label ?? value}</div>
 			{rightSlot && <div>{rightSlot}</div>}
-		</div>
+		</button>
 	);
 };
 
@@ -66,6 +67,9 @@ export const Select: FC<Props> = ({
 	formLabel,
 	placeholder,
 	// size = "md",
+	options,
+	selected,
+	onChange,
 	...styleProps
 }) => {
 	const [openDropdown, setOpenDropdown] = useState<boolean>(false);
@@ -109,30 +113,21 @@ export const Select: FC<Props> = ({
 				}}
 				role="combobox" // TODO: remove this warning
 			>
-				<span>{placeholder ?? "Select"}</span>
+				<span>{selected?.label ?? placeholder ?? "Select"}</span>
 				{/* TODO: this would be replace by CaretIcon */}
 				<span>Caret Icon</span>
 			</Button>
 
 			{/* TODO: options list will use button as anchorEl */}
-			{openDropdown && (
+			{openDropdown && options.length > 0 && (
 				<DropdownContainer ref={dropDownRef} {...dropdownStyle}>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
-					<div>option </div>
+					{options.map((option) => (
+						<Option
+							key={option.value}
+							option={option}
+							onChange={() => onChange(option)}
+						/>
+					))}
 				</DropdownContainer>
 			)}
 		</SelectContainer>

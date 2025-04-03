@@ -76,5 +76,10 @@ ${applyResponsiveCSS}
     border-radius: 8px;
     /* TODO: padding should be come from theme */
     padding: 12px 12px;
+
+    display: flex; 
+    flex-direction: column; 
+    /* TODO: (maaahad) gap should come from theme */
+    gap: 8px; 
   `}
 `;
