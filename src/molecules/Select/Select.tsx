@@ -10,6 +10,8 @@ import {
 	Button,
 	DropdownContainer,
 	FormLabel,
+	OptionContainer,
+	OptionSlot,
 	Ring,
 	SelectContainer,
 } from "./styled";
@@ -39,24 +41,32 @@ type Props = ComponentProps &
 
 		options: SelectOption[];
 		selected?: SelectOption;
-		onChange: (option: SelectOption) => void;
+		onChange: (option?: SelectOption) => void;
 
 		// slots
 		// events
 	};
 
-export const Option: FC<{ option: SelectOption; onChange: () => void }> = ({
-	option,
-	onChange,
-}) => {
+type OptionProps = {
+	onChange: () => void;
+	option: SelectOption;
+	isSelected?: boolean;
+};
+export const Option: FC<OptionProps> = ({ option, onChange, isSelected }) => {
 	const { label, value, leftSlot, rightSlot } = option;
+
 	return (
-		<button onClick={onChange} type="button">
-			{/* TODO: do we need extra div for slot? */}
-			{leftSlot && <div>{leftSlot}</div>}
-			<div>{label ?? value}</div>
-			{rightSlot && <div>{rightSlot}</div>}
-		</button>
+		<OptionContainer onClick={onChange}>
+			<OptionSlot>
+				{leftSlot && <div>{leftSlot}</div>}
+				<div>{label ?? value}</div>
+			</OptionSlot>
+			<OptionSlot>
+				{/* TODO: (maaahad) replace with Tick icon */}
+				{isSelected && <span>✓</span>}
+				{rightSlot && <div>{rightSlot}</div>}
+			</OptionSlot>
+		</OptionContainer>
 	);
 };
 
@@ -85,6 +95,7 @@ export const Select: FC<Props> = ({
 	useClickOutside(dropDownRef, () => setOpenDropdown(false));
 
 	// TODO: (maaahad) we need to use ref instead to adjust dropdown on window resize, or may be not use fixed position
+	// TODO: (maaahad) need to position the dropdown based on available space around the anchor el
 	const callbackRef: RefCallback<HTMLButtonElement> = useCallback(
 		(node: HTMLButtonElement) => {
 			const rect = node.getBoundingClientRect();
@@ -113,19 +124,20 @@ export const Select: FC<Props> = ({
 				}}
 				role="combobox" // TODO: remove this warning
 			>
+				{/* TODO: placeholder should have secondary color and need a styled span for this */}
 				<span>{selected?.label ?? placeholder ?? "Select"}</span>
 				{/* TODO: this would be replace by CaretIcon */}
 				<span>Caret Icon</span>
 			</Button>
 
-			{/* TODO: options list will use button as anchorEl */}
-			{openDropdown && options.length > 0 && (
+			{openDropdown && (
 				<DropdownContainer ref={dropDownRef} {...dropdownStyle}>
 					{options.map((option) => (
 						<Option
 							key={option.value}
 							option={option}
 							onChange={() => onChange(option)}
+							isSelected={option.value === selected?.value}
 						/>
 					))}
 				</DropdownContainer>

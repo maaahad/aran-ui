@@ -83,3 +83,28 @@ ${applyResponsiveCSS}
     gap: 8px; 
   `}
 `;
+
+export const OptionContainer = styled.div`
+  ${({ theme }) => css`
+    cursor: pointer; 
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: space-between; 
+    /* TODO: gap, border-radius and padding should come from theme */
+    gap: 8px;
+    padding:  8px;
+    border-radius: 4px; 
+    &:hover {
+      background-color: ${theme.color.background.secondary}; 
+    }
+    transition: all .2s ease-in; 
+  `}
+`;
+
+export const OptionSlot = styled.div`
+  display: flex;
+  flex-direction: row;
+  /* TODO: (maaahad) gap should come from theme */
+  gap: 8px; 
+`;
