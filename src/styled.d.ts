@@ -33,6 +33,12 @@ declare module "styled-components" {
 			};
 			// TODO: themeless
 		};
-		// size, breakpoint, zIndex, ... ...
+		breakpoints: {
+			keys: string[]; // TODO: (maaahad) replace with TupleType
+			values: {
+				[Property in "xs" | "sm" | "md" | "lg" | "xl"]: number;
+			};
+		};
+		// shadows, borderRadius, transition, font, size, zIndex, ... ...
 	}
 }

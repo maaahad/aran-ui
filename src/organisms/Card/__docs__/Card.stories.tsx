@@ -48,3 +48,11 @@ export const WithMarginTop: Story = {
 		footer: <div>This is footer</div>,
 	},
 };
+
+export const WithResponsiveMargin: Story = {
+	args: {
+		mt: { xs: 100, sm: "auto", md: 200, lg: 400, xl: "100%" },
+		header:
+			'Card with responsive mt: { xs: 100, sm: "auto", md: 200, lg: 400, xl: "100%" }',
+	},
+};

@@ -1,8 +1,6 @@
 // TODO: (maaahad) add color based on shadcn
 // Ref: https://ui.shadcn.com/colors
 
-import type { DefaultTheme } from "styled-components";
-
 // NOTE: colors names are adopted from the Dragon Ball Z approach
 // Ref: https://moon.io/themes
 export type ThemeMode = "light" | "dark";
@@ -109,35 +107,4 @@ export const COLOR_PALETTE: ColorPalette = {
 		nappa_60: "#b09f9d",
 		nappa_10: "#f4f1f1",
 	},
-};
-
-export const getColorToken = (mode: ThemeMode): DefaultTheme["color"] => {
-	const mainPalette = COLOR_PALETTE.main[mode];
-	return {
-		mode: mode,
-		text: {
-			primary: mainPalette.bulma,
-			secondary: mainPalette.trunks,
-			disabled: mainPalette.gohan,
-		},
-		accent: {
-			primary: mainPalette.piccolo,
-			secondary: mainPalette.hit,
-		},
-		line: mainPalette.beerus,
-		background: {
-			primary: mainPalette.goku,
-			secondary: mainPalette.gohan,
-		},
-		icon: {
-			primary: mainPalette.bulma,
-			secondary: mainPalette.trunks,
-			disabled: mainPalette.gohan,
-		},
-		overlay: {
-			primary: mainPalette.heles,
-			secondary: mainPalette.zeno,
-			tertiary: mainPalette.jiren,
-		},
-	};
 };
