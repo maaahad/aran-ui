@@ -102,7 +102,7 @@ export const OptionContainer = styled.div`
   `}
 `;
 
-export const OptionSlot = styled.div`
+export const Slot = styled.div`
   display: flex;
   flex-direction: row;
   /* TODO: (maaahad) gap should come from theme */

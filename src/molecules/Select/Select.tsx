@@ -11,9 +11,9 @@ import {
 	DropdownContainer,
 	FormLabel,
 	OptionContainer,
-	OptionSlot,
 	Ring,
 	SelectContainer,
+	Slot,
 } from "./styled";
 
 import { useClickOutside } from "../../hooks/window/useClickOutside";
@@ -57,15 +57,15 @@ export const Option: FC<OptionProps> = ({ option, onChange, isSelected }) => {
 
 	return (
 		<OptionContainer onClick={onChange}>
-			<OptionSlot>
+			<Slot>
 				{leftSlot && <div>{leftSlot}</div>}
 				<div>{label ?? value}</div>
-			</OptionSlot>
-			<OptionSlot>
+			</Slot>
+			<Slot>
 				{/* TODO: (maaahad) replace with Tick icon */}
 				{isSelected && <span>✓</span>}
 				{rightSlot && <div>{rightSlot}</div>}
-			</OptionSlot>
+			</Slot>
 		</OptionContainer>
 	);
 };
@@ -108,6 +108,14 @@ export const Select: FC<Props> = ({
 		[],
 	);
 
+	const handleChange = useCallback(
+		(option?: SelectOption) => {
+			onChange(option);
+			setOpenDropdown(false);
+		},
+		[onChange],
+	);
+
 	return (
 		<SelectContainer {...styleProps}>
 			{/* TODO: (maaahad) a standalone component called FormLabel */}
@@ -127,7 +135,11 @@ export const Select: FC<Props> = ({
 				{/* TODO: placeholder should have secondary color and need a styled span for this */}
 				<span>{selected?.label ?? placeholder ?? "Select"}</span>
 				{/* TODO: this would be replace by CaretIcon */}
-				<span>Caret Icon</span>
+				<Slot>
+					{/* TODO: (maaahad) should replace with Cross and Caret icon */}
+					{selected && <div onClick={() => handleChange()}>X</div>}
+					<span>Caret Icon</span>
+				</Slot>
 			</Button>
 
 			{openDropdown && (
@@ -136,7 +148,7 @@ export const Select: FC<Props> = ({
 						<Option
 							key={option.value}
 							option={option}
-							onChange={() => onChange(option)}
+							onChange={() => handleChange(option)}
 							isSelected={option.value === selected?.value}
 						/>
 					))}
