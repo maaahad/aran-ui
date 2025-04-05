@@ -71,7 +71,6 @@ export const Option: FC<OptionProps> = ({ option, onChange, isSelected }) => {
 };
 
 export const Select: FC<Props> = ({
-	// className,
 	// disabled = false,
 	// state = "valid",
 	formLabel,
