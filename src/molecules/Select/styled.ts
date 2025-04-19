@@ -13,24 +13,9 @@ export const SelectContainer = styled.div<ResponsiveProps>`
 
 // TODO: font related props value should come from theme, and we Can have a Separate FormLabel component
 export const FormLabel = styled.div`
-  font-size : 14px; 
+font-size : 14px; 
   font-weight: 600; 
-  line-height: 16px; 
-`;
-
-// TODO: Add Ring later
-export const Ring = styled.div`
-/* TODO: (maaahad) style of Ring should come from theme */
-  ${({ theme }) => css`
-    width: 100%; 
-    padding: 2px; 
-    border: 1px solid transparent; 
-    border-radius: 8px; 
-    &:focus-within {
-      border-color: red; 
-      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16),0px 0px 4px rgba(0, 0, 0, 0.16):
-    }
-  `}
+line-height: 16px; 
 `;
 
 // TODO: implement Button with icon option at the same some
@@ -51,7 +36,11 @@ export const Button = styled.button`
     align-items: center; 
     justify-content: space-between; 
     gap: 8px; 
-    outline: none; 
+    outline: 2px solid transparent; 
+    outline-offset: 2px; 
+    &:focus{
+      box-shadow: ${theme.elevation.md}; 
+    }
   `}
 `;
 

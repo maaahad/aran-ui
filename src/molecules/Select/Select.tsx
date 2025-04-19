@@ -11,7 +11,6 @@ import {
 	DropdownContainer,
 	FormLabel,
 	OptionContainer,
-	Ring,
 	SelectContainer,
 	Slot,
 } from "./styled";
@@ -115,6 +114,8 @@ export const Select: FC<Props> = ({
 		[onChange],
 	);
 
+	//TODO: we may not use SelectContainer if formLabel not provided
+	// OR: may be defined a separate FormLabel component and the client would be responsible to use FormLabel if required
 	return (
 		<SelectContainer {...styleProps}>
 			{/* TODO: (maaahad) a standalone component called FormLabel */}

@@ -39,6 +39,9 @@ declare module "styled-components" {
 				[Property in "xs" | "sm" | "md" | "lg" | "xl"]: number;
 			};
 		};
-		// shadows, borderRadius, transition, font, size, zIndex, ... ...
+		//  borderRadius, transition, font, size, zIndex, ... ...
+		elevation: {
+			[Property in "sm" | "md" | "lg"]: string;
+		};
 	}
 }
