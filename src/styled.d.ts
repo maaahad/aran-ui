@@ -31,6 +31,10 @@ declare module "styled-components" {
 				secondary: string;
 				tertiary: string;
 			};
+			ring: {
+				outer: string;
+				inner: string;
+			};
 			// TODO: themeless
 		};
 		breakpoints: {

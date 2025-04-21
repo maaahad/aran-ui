@@ -18,8 +18,9 @@ font-size : 14px;
 line-height: 16px; 
 `;
 
-// TODO: implement Button with icon option at the same some
+// TODO: implement Button with icon option
 // TODO: css for diffrent size, width
+// Ref : box-shadow: 0 0 0 1px #fff,  0 0 0 3px #1f75cb ;
 export const Button = styled.button`
   ${({ theme }) => css`
     width: 100%; 
@@ -37,9 +38,8 @@ export const Button = styled.button`
     justify-content: space-between; 
     gap: 8px; 
     outline: 2px solid transparent; 
-    outline-offset: 2px; 
     &:focus{
-      box-shadow: ${theme.elevation.md}; 
+      box-shadow: 0 0 0 1px ${theme.color.ring.inner}, 0 0 0 2px ${theme.color.ring.outer}; 
     }
   `}
 `;
