@@ -97,3 +97,11 @@ export const Slot = styled.div`
   /* TODO: (maaahad) gap should come from theme */
   gap: 8px; 
 `;
+
+export const Span = styled.span<{ isPlaceholder: boolean }>`
+${({ isPlaceholder, theme }) =>
+	isPlaceholder &&
+	css`
+color: ${theme.color.text.secondary};
+`}
+`;

@@ -13,6 +13,7 @@ import {
 	OptionContainer,
 	SelectContainer,
 	Slot,
+	Span,
 } from "./styled";
 
 import { useClickOutside } from "../../hooks/window/useClickOutside";
@@ -130,10 +131,11 @@ export const Select: FC<Props> = ({
 					event.stopPropagation();
 					setOpenDropdown(!openDropdown);
 				}}
-				role="combobox" // TODO: remove this warning
 			>
 				{/* TODO: placeholder should have secondary color and need a styled span for this */}
-				<span>{selected?.label ?? placeholder ?? "Select"}</span>
+				<Span isPlaceholder={!selected?.label}>
+					{selected?.label ?? placeholder ?? "Select"}
+				</Span>
 				{/* TODO: this would be replace by CaretIcon */}
 				<Slot>
 					{/* TODO: (maaahad) should replace with Cross and Caret icon */}
