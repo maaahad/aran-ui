@@ -39,7 +39,7 @@ export const Button = styled.button`
     gap: 8px; 
     outline: 2px solid transparent; 
     &:focus{
-      box-shadow: 0 0 0 1px ${theme.color.ring.inner}, 0 0 0 2px ${theme.color.ring.outer}; 
+      box-shadow: 0 0 0 1px ${theme.color.themeless.primary}, 0 0 0 2px ${theme.color.accent.secondary}; 
     }
   `}
 `;

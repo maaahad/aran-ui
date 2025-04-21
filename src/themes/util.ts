@@ -31,9 +31,9 @@ const getColorToken = (mode: ThemeMode): DefaultTheme["color"] => {
 			secondary: mainPalette.zeno,
 			tertiary: mainPalette.jiren,
 		},
-		ring: {
-			inner: mainPalette.goten,
-			outer: mainPalette.hit, // TODO: (maaahad) using hit( | piccolo) as experiment
+		themeless: {
+			primary: mainPalette.goten,
+			secondary: mainPalette.popo,
 		},
 	};
 };

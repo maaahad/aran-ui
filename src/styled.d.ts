@@ -31,11 +31,10 @@ declare module "styled-components" {
 				secondary: string;
 				tertiary: string;
 			};
-			ring: {
-				outer: string;
-				inner: string;
+			themeless: {
+				primary: string;
+				secondary: string;
 			};
-			// TODO: themeless
 		};
 		breakpoints: {
 			keys: string[]; // TODO: (maaahad) replace with TupleType
