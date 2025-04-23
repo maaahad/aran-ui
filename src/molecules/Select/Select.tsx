@@ -15,6 +15,7 @@ import {
 	Slot,
 	Span,
 } from "./styled";
+import { CloseLineIcon } from "../../atoms";
 
 import { useClickOutside } from "../../hooks/window/useClickOutside";
 import type {
@@ -90,7 +91,6 @@ export const Select: FC<Props> = ({
 
 	const dropDownRef = useRef<HTMLDivElement>(null);
 
-	// TODO: (maaahad) this might not necessary, instead can be achieve by callback ref
 	useClickOutside(dropDownRef, () => setOpenDropdown(false));
 
 	// TODO: (maaahad) we need to use ref instead to adjust dropdown on window resize, or may be not use fixed position
@@ -117,6 +117,7 @@ export const Select: FC<Props> = ({
 
 	//TODO: we may not use SelectContainer if formLabel not provided
 	// OR: may be defined a separate FormLabel component and the client would be responsible to use FormLabel if required
+
 	return (
 		<SelectContainer {...styleProps}>
 			{/* TODO: (maaahad) a standalone component called FormLabel */}
@@ -124,7 +125,6 @@ export const Select: FC<Props> = ({
 
 			{/* TODO: button should be replaced with icon button */}
 			<Button
-				// ref={anchorRef} // TODO: should we use callback ref instead
 				ref={callbackRef}
 				type="button"
 				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
@@ -138,8 +138,13 @@ export const Select: FC<Props> = ({
 				</Span>
 				{/* TODO: this would be replace by CaretIcon */}
 				<Slot>
-					{/* TODO: (maaahad) should replace with Cross and Caret icon */}
-					{selected && <div onClick={() => handleChange()}>X</div>}
+					{/* TODO: (maaahad) should replace with IconButton with CloseIcon */}
+					{selected && (
+						<button type="button" onClick={() => handleChange()}>
+							<CloseLineIcon size="md" />
+						</button>
+					)}
+					{/*TODO: (maaahad) replace with CaretIcon */}
 					<span>Caret Icon</span>
 				</Slot>
 			</Button>
