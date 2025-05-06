@@ -2,10 +2,13 @@
 	"linter": {
 		"rules": {
 			"suspicious": {
-				"noExplicitAny": "warn"
+				"noExplicitAny": "off"
 			},
 			"style": {
-				"noNonNullAssertion": "warn"
+				"noNonNullAssertion": "off"
+			},
+			"a11y": {
+				"noSvgWithoutTitle": "off"
 			}
 		}
 	}

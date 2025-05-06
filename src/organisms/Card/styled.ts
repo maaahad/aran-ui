@@ -1,14 +1,14 @@
 import styled, { css } from "styled-components";
-import { positionPropToCSS } from "../../utils/style";
-import type { ComponentPositionProps } from "../../utils/types";
+import { applyResponsiveCSS } from "../../utils/style";
+import type { ResponsiveProps } from "../../utils/types";
 
-export const CardContainer = styled.div<Pick<ComponentPositionProps, "mt">>`
-  ${({ theme, mt }) => css`
+export const CardContainer = styled.div<Omit<ResponsiveProps, "pd">>`
+  ${applyResponsiveCSS}
+  ${({ theme }) => css`
     overflow: hidden; 
     display: flex; 
     flex-direction: column; 
     border: 1px solid ${theme.color.line}; 
-    margin-top: ${positionPropToCSS(mt)}; 
 
     /* FIXME: (maaahad) border radius should come from theme */
     border-radius: 8px;

@@ -1,16 +1,7 @@
 import type React from "react";
-import {
-	type DefaultTheme,
-	ThemeProvider,
-	createGlobalStyle,
-} from "styled-components";
-import { type ThemeMode, getColorToken } from "../../tokens/color";
-
-const getTheme = (theme: ThemeMode): DefaultTheme => {
-	return {
-		color: getColorToken(theme),
-	};
-};
+import { ThemeProvider, createGlobalStyle } from "styled-components";
+import type { ThemeMode } from "../../tokens/color";
+import { getTheme } from "../util";
 
 const GlobalStyle = createGlobalStyle`
     body {

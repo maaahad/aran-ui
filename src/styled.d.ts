@@ -31,8 +31,20 @@ declare module "styled-components" {
 				secondary: string;
 				tertiary: string;
 			};
-			// TODO: themeless
+			themeless: {
+				primary: string;
+				secondary: string;
+			};
 		};
-		// size, breakpoint, zIndex, ... ...
+		breakpoints: {
+			keys: string[]; // TODO: (maaahad) replace with TupleType
+			values: {
+				[Property in "xs" | "sm" | "md" | "lg" | "xl"]: number;
+			};
+		};
+		//  borderRadius, transition, font, size, zIndex, ... ...
+		elevation: {
+			[Property in "sm" | "md" | "lg"]: string;
+		};
 	}
 }
