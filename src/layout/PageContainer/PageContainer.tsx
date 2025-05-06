@@ -22,6 +22,8 @@ const StyledContainer = styled.div<Props>`
   ${({ width = "standard" }) => css`
     padding: 0 16px; 
     width: ${PROPS_TO_STYLE[width]};
+    margin-left: auto;
+    margin-right: auto; 
   `}
 `;
 
