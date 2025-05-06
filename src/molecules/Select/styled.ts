@@ -101,8 +101,8 @@ export const Slot = styled.div`
 
 export const Span = styled.span<{ isPlaceholder: boolean }>`
 ${({ isPlaceholder, theme }) =>
-		isPlaceholder &&
-		css`
+	isPlaceholder &&
+	css`
 color: ${theme.color.text.secondary};
 `}
 `;

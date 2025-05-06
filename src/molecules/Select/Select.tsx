@@ -6,6 +6,7 @@ import {
 	useRef,
 	useState,
 } from "react";
+import { CloseLineIcon } from "../../atoms";
 import {
 	Button,
 	DropdownContainer,
@@ -15,7 +16,6 @@ import {
 	Slot,
 	Span,
 } from "./styled";
-import { CloseLineIcon } from "../../atoms";
 
 import { useClickOutside } from "../../hooks/window/useClickOutside";
 import type {

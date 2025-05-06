@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import type { IconProps } from "./types";
 import { ICON_CONFIG } from "./config";
+import type { IconProps } from "./types";
 
 // NOTE: ref: https://gitlab-org.gitlab.io/gitlab-svgs/
 
@@ -17,6 +17,7 @@ export const CloseLineIcon: FC<IconProps> = ({
 			className={className}
 			fill="none"
 		>
+			<title>Close Icon</title>
 			<path
 				fillRule="evenodd"
 				clipRule="evenodd"
