@@ -1,5 +1,5 @@
 import { MediaQueries } from "../tokens";
-import type { ResponsiveProps } from "./types";
+import type { ComponentResponsiveProps } from "./types";
 
 type CSSRuleObject = Record<
 	string,
@@ -20,14 +20,16 @@ export const getCSSPropValue = (
 
 // TODO: should we move responsive related stuff in separate file
 const ComponentPropToCSSProp: {
-	[Property in keyof ResponsiveProps]: string;
+	[Property in keyof ComponentResponsiveProps]: string;
 } = {
 	mt: "margin-top",
 	pd: "padding",
 	width: "width",
 };
 
-export const applyResponsiveCSS = (props: ResponsiveProps): CSSRuleObject => {
+export const applyResponsiveCSS = (
+	props: ComponentResponsiveProps,
+): CSSRuleObject => {
 	const cssRuleObject = Object.entries(props).reduce((acc, [key, value]) => {
 		// TODO: if key is not in the list of responsive prop, return
 		if (!value || !(key in ComponentPropToCSSProp)) return acc;

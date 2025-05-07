@@ -22,7 +22,7 @@ import type {
 	ComponentProps,
 	ComponentSize,
 	ComponentState,
-	ResponsiveProps,
+	ComponentResponsiveProps,
 } from "../../utils/types";
 
 export type SelectOption = {
@@ -33,7 +33,7 @@ export type SelectOption = {
 };
 
 type Props = ComponentProps &
-	ResponsiveProps &
+	ComponentResponsiveProps &
 	ComponentSize &
 	ComponentState & {
 		disabled?: boolean;

@@ -3,13 +3,13 @@ import type { Breakpoints } from "../tokens";
 /**
  * =========== Component Props ==========
  */
-type ResponsiveProp<T> =
+export type ResponsiveProp<T> =
 	| T
 	| {
-			[Property in (typeof Breakpoints)["keys"][number]]?: T;
-	  };
+		[Property in (typeof Breakpoints)["keys"][number]]?: T;
+	};
 
-export type ResponsiveProps = {
+export type ComponentResponsiveProps = {
 	mt?: ResponsiveProp<number | `${number}%` | "auto">;
 	pd?: ResponsiveProp<number | `${number}%`>;
 	width?: ResponsiveProp<number | `${number}%` | "auto" | "full">;
@@ -34,6 +34,6 @@ type _TupleOf<T, N extends number, R extends unknown[]> = R["length"] extends N
 
 export type Tuple<T, N extends number> = N extends N
 	? number extends N
-		? T[]
-		: _TupleOf<T, N, []>
+	? T[]
+	: _TupleOf<T, N, []>
 	: never;

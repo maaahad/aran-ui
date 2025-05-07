@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import { applyResponsiveCSS } from "../../utils/style";
-import type { ResponsiveProps } from "../../utils/types";
+import type { ComponentResponsiveProps } from "../../utils/types";
 
-export const CardContainer = styled.div<Omit<ResponsiveProps, "pd">>`
+export const CardContainer = styled.div<Omit<ComponentResponsiveProps, "pd">>`
   ${applyResponsiveCSS}
   ${({ theme }) => css`
     overflow: hidden; 
@@ -27,15 +27,13 @@ export const Slot = styled.div<{ slot: "header" | "footer" }>`
   ${({ theme, slot }) => css`
     /* TODO: (maaahad) padding should be responsive */
     padding: 12px 16px; 
-    ${
-			slot === "header" &&
-			css`
+    ${slot === "header" &&
+		css`
         border-bottom: 1px solid ${theme.color.line}; 
       `
 		}
-    ${
-			slot === "footer" &&
-			css`
+    ${slot === "footer" &&
+		css`
         border-top: 1px solid ${theme.color.line}; 
       `
 		}

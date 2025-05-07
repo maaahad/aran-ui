@@ -2,13 +2,13 @@ import type { FC, ReactNode } from "react";
 import type {
 	ComponentSize,
 	ComponentProps,
-	ResponsiveProps,
+	ComponentResponsiveProps,
 } from "../../utils/types";
 import { CloseLineIcon } from "../../atoms";
 
 type Props = ComponentProps &
 	ComponentSize &
-	ResponsiveProps & {
+	ComponentResponsiveProps & {
 		searchIcon?: ReactNode; // default to SearchIcon
 		placeholder?: string;
 	};
