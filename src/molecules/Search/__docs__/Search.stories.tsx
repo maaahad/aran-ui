@@ -35,5 +35,7 @@ export const WithSearchOptions: Story = {
 				{ icon: <div>FIcon</div>, label: "Facebook", value: "facebook" },
 			],
 		},
+		width: "full",
+		mt: 32,
 	},
 };

@@ -6,10 +6,11 @@ import type {
 	ComponentSize,
 } from "../../utils/types";
 import type { SelectOption } from "../Select/Select";
+import { SearchContainer } from "./styled";
 
 type Props = ComponentProps &
 	ComponentSize &
-	ComponentResponsiveProps & {
+	Omit<ComponentResponsiveProps, "pd"> & {
 		searchSelect?: {
 			onChangeSearchOption: (value: string) => void;
 			options: (SelectOption & {
@@ -24,16 +25,22 @@ type Props = ComponentProps &
 
 //TODO: (maaahad) on second iteration, try with Compound Component pattern
 //TODO: (maaahad) add result dropdown
-export const Search: FC<Props> = ({ placeholder = "Search", searchSelect }) => {
+export const Search: FC<Props> = ({
+	placeholder = "Search",
+	searchSelect,
+	searchResult,
+	mt = 0,
+	width = "auto",
+}) => {
 	//TODO: (maaahad) searchOptions should be implemented via Select component
 
 	return (
-		<div>
+		<SearchContainer mt={mt} width={width}>
 			{searchSelect && <div>Select Search Options</div>}
 			{!searchSelect && <div>Search Icon</div>}
 			<input placeholder={placeholder} />
 			<CloseLineIcon />
 			{searchSelect && <div>Search Icon</div>}
-		</div>
+		</SearchContainer>
 	);
 };
