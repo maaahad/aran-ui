@@ -27,13 +27,15 @@ export const Slot = styled.div<{ slot: "header" | "footer" }>`
   ${({ theme, slot }) => css`
     /* TODO: (maaahad) padding should be responsive */
     padding: 12px 16px; 
-    ${slot === "header" &&
-		css`
+    ${
+			slot === "header" &&
+			css`
         border-bottom: 1px solid ${theme.color.line}; 
       `
 		}
-    ${slot === "footer" &&
-		css`
+    ${
+			slot === "footer" &&
+			css`
         border-top: 1px solid ${theme.color.line}; 
       `
 		}

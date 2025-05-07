@@ -20,9 +20,9 @@ import {
 import { useClickOutside } from "../../hooks/window/useClickOutside";
 import type {
 	ComponentProps,
+	ComponentResponsiveProps,
 	ComponentSize,
 	ComponentState,
-	ComponentResponsiveProps,
 } from "../../utils/types";
 
 export type SelectOption = {
