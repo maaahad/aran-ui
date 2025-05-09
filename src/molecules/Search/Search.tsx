@@ -6,7 +6,7 @@ import type {
 	ComponentSize,
 } from "../../utils/types";
 import type { SelectOption } from "../Select/Select";
-import { SearchContainer } from "./styled";
+import { SearchContainer, StyledInput } from "./styled";
 
 type Props = ComponentProps &
 	ComponentSize &
@@ -30,16 +30,19 @@ export const Search: FC<Props> = ({
 	searchSelect,
 	searchResult,
 	mt = 0,
-	width = "auto",
+	width = "full",
 }) => {
 	//TODO: (maaahad) searchOptions should be implemented via Select component
 
 	return (
 		<SearchContainer mt={mt} width={width}>
 			{searchSelect && <div>Select Search Options</div>}
-			{!searchSelect && <div>Search Icon</div>}
-			<input placeholder={placeholder} />
-			<CloseLineIcon />
+
+			<div className="inputContainer">
+				{!searchSelect && <CloseLineIcon className="searchIcon" />}
+				<StyledInput />
+				<CloseLineIcon className="closeIcon" />
+			</div>
 			{searchSelect && <div>Search Icon</div>}
 		</SearchContainer>
 	);
