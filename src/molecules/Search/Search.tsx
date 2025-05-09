@@ -12,7 +12,7 @@ import { SearchContainer, StyledInput } from "./styled";
 type Props = ComponentProps &
 	ComponentSize &
 	Omit<ComponentResponsiveProps, "pd"> & {
-		value?: string;
+		value: string;
 		onChange: (value: string) => void;
 		searchSelect?: {
 			onChangeSearchOption: (value: string) => void;
