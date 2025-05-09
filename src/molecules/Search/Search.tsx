@@ -1,3 +1,4 @@
+import cs from "classnames";
 import type { FC, ReactNode } from "react";
 import { CloseLineIcon } from "../../atoms";
 import type {
@@ -33,17 +34,22 @@ export const Search: FC<Props> = ({
 	width = "full",
 }) => {
 	//TODO: (maaahad) searchOptions should be implemented via Select component
+	//TODO: (maaahad) use right icon for Search, testing with CloseIcon for now
 
 	return (
 		<SearchContainer mt={mt} width={width}>
-			{searchSelect && <div>Select Search Options</div>}
+			{searchSelect && <div>Select Search</div>}
 
 			<div className="inputContainer">
 				{!searchSelect && <CloseLineIcon className="searchIcon" />}
-				<StyledInput />
+				<StyledInput
+					className={cs({
+						withSearchSelect: !!searchSelect,
+					})}
+				/>
 				<CloseLineIcon className="closeIcon" />
 			</div>
-			{searchSelect && <div>Search Icon</div>}
+			{searchSelect && <CloseLineIcon />}
 		</SearchContainer>
 	);
 };
