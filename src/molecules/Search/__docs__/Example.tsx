@@ -6,6 +6,7 @@ type Props = ComponentProps<typeof Search>;
 
 const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 	const [searchOn, setSearchOn] = useState(searchSelect?.options[0].value);
+	const [searchQuery, setSearchQuery] = useState<string>("");
 
 	return (
 		<Search
@@ -15,6 +16,8 @@ const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 					? { ...searchSelect, onChangeSearchOption: setSearchOn }
 					: undefined
 			}
+			value={searchQuery}
+			onChange={setSearchQuery}
 		/>
 	);
 };

@@ -12,6 +12,8 @@ import { SearchContainer, StyledInput } from "./styled";
 type Props = ComponentProps &
 	ComponentSize &
 	Omit<ComponentResponsiveProps, "pd"> & {
+		value?: string;
+		onChange: (value: string) => void;
 		searchSelect?: {
 			onChangeSearchOption: (value: string) => void;
 			options: (SelectOption & {
@@ -32,28 +34,39 @@ export const Search: FC<Props> = ({
 	searchResult,
 	mt = 0,
 	width = "full",
+	value = "",
+	onChange,
 }) => {
-	//TODO: (maaahad) searchOptions should be implemented via Select component
-	//TODO: (maaahad) use right icon for Search, testing with CloseIcon for now
+	// TODO: (maaahad) searchOptions should be implemented via Select component
+	// TODO: (maaahad) use right icon for Search, testing with CloseIcon for now
+	// TODO: (maaahad) Clear Icon should be replace with IconButton
 
 	return (
-		<SearchContainer mt={mt} width={width}>
-			{searchSelect && <div className="searchSelectContainer">SelectS</div>}
+		<>
+			<SearchContainer mt={mt} width={width}>
+				{searchSelect && <div className="searchSelectContainer">SelectS</div>}
 
-			<div className="inputContainer">
-				{!searchSelect && <CloseLineIcon className="searchIcon" />}
-				<StyledInput
-					className={cs({
-						withSearchSelect: !!searchSelect,
-					})}
-				/>
-				<CloseLineIcon className="closeIcon" />
-			</div>
-			{searchSelect && (
-				<div className="searchInputContainer">
-					<CloseLineIcon />
+				<div className="inputContainer">
+					{!searchSelect && <CloseLineIcon className="searchIcon" />}
+					<StyledInput
+						className={cs({
+							withSearchSelect: !!searchSelect,
+						})}
+						placeholder={placeholder}
+						value={value}
+						onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+							onChange(event.target.value);
+						}}
+					/>
+					{!!value && <CloseLineIcon className="closeIcon" />}
 				</div>
-			)}
-		</SearchContainer>
+				{searchSelect && (
+					<div className="searchInputContainer">
+						<CloseLineIcon />
+					</div>
+				)}
+			</SearchContainer>
+			{searchResult && <div>Search Result:TODO</div>}
+		</>
 	);
 };
