@@ -15,12 +15,12 @@ flex-direction: row;
 align-items: center; 
 
 .inputContainer {
+	height: 100%; 
 flex: 1; 
 position: relative; 
 display: flex; 
 flex-direction: row; 
 align-items: center; 
-border: 1px solid ${theme.color.line};
 }
 
 .inputContainer > .searchIcon {
@@ -34,7 +34,7 @@ right: 8px;
 }
 
 .searchSelectContainer {
-	height: 100%; 
+	height: 100%;  
 	width: 48px; 
 	display: flex; 
 	align-items: center; 
@@ -46,7 +46,7 @@ right: 8px;
 }
 
 .searchInputContainer {
-	height: 100%;
+	height: 100%; 
 	width: 32px;
 	display: flex; 
 	align-items: center; 
@@ -64,9 +64,12 @@ right: 8px;
 // TODO: (maaahad) do proper calculation of padding !!!!
 export const StyledInput = styled.input`
 ${({ theme }) => css`
+height: 100%; 
 border: none; 
 padding: 8px 32px 8px 32px; 
 flex: 1; 
+outline: none; 
+border: 1px solid ${theme.color.line};
 
 &.withSearchSelect {
 	padding-left: 16px; 
