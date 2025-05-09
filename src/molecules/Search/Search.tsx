@@ -38,7 +38,7 @@ export const Search: FC<Props> = ({
 
 	return (
 		<SearchContainer mt={mt} width={width}>
-			{searchSelect && <div>Select Search</div>}
+			{searchSelect && <div className="searchSelectContainer">SelectS</div>}
 
 			<div className="inputContainer">
 				{!searchSelect && <CloseLineIcon className="searchIcon" />}
@@ -49,7 +49,11 @@ export const Search: FC<Props> = ({
 				/>
 				<CloseLineIcon className="closeIcon" />
 			</div>
-			{searchSelect && <CloseLineIcon />}
+			{searchSelect && (
+				<div className="searchInputContainer">
+					<CloseLineIcon />
+				</div>
+			)}
 		</SearchContainer>
 	);
 };
