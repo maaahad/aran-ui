@@ -3,13 +3,13 @@ import type { Breakpoints } from "../tokens";
 /**
  * =========== Component Props ==========
  */
-type ResponsiveProp<T> =
+export type ResponsiveProp<T> =
 	| T
 	| {
 			[Property in (typeof Breakpoints)["keys"][number]]?: T;
 	  };
 
-export type ResponsiveProps = {
+export type ComponentResponsiveProps = {
 	mt?: ResponsiveProp<number | `${number}%` | "auto">;
 	pd?: ResponsiveProp<number | `${number}%`>;
 	width?: ResponsiveProp<number | `${number}%` | "auto" | "full">;

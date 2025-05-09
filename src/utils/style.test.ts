@@ -1,10 +1,10 @@
 import { describe, expect, test } from "vitest";
 import { applyResponsiveCSS } from "./style";
-import type { ResponsiveProps } from "./types";
+import type { ComponentResponsiveProps } from "./types";
 
 describe("style utils", () => {
 	test("should apply responsive css", () => {
-		const responsiveProps: ResponsiveProps = {
+		const responsiveProps: ComponentResponsiveProps = {
 			mt: {
 				xs: 200,
 				sm: "100%",
