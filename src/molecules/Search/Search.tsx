@@ -1,6 +1,7 @@
 import cs from "classnames";
-import type { FC, ReactNode } from "react";
-import { CloseLineIcon } from "../../atoms";
+import React from "react";
+import  type {  FC,  ReactNode } from "react";
+import { CloseLineIcon, SearchIcon } from "../../atoms";
 import type {
 	ComponentProps,
 	ComponentResponsiveProps,
@@ -38,8 +39,8 @@ export const Search: FC<Props> = ({
 	onChange,
 }) => {
 	// TODO: (maaahad) searchOptions should be implemented via Select component
-	// TODO: (maaahad) use right icon for Search, testing with CloseIcon for now
-	// TODO: (maaahad) Clear Icon should be replace with IconButton
+	//
+	// TODO: (maaahad) All icon should be Replace with IconButton
 
 	return (
 		<>
@@ -47,7 +48,7 @@ export const Search: FC<Props> = ({
 				{searchSelect && <div className="searchSelectContainer">SelectS</div>}
 
 				<div className="inputContainer">
-					{!searchSelect && <CloseLineIcon className="searchIcon" />}
+					{!searchSelect && <SearchIcon className="searchIcon" />}
 					<StyledInput
 						className={cs({
 							withSearchSelect: !!searchSelect,
@@ -61,8 +62,8 @@ export const Search: FC<Props> = ({
 					{!!value && <CloseLineIcon className="closeIcon" />}
 				</div>
 				{searchSelect && (
-					<div className="searchInputContainer">
-						<CloseLineIcon />
+					<div className="searchIconContainer">
+						<SearchIcon />
 					</div>
 				)}
 			</SearchContainer>
