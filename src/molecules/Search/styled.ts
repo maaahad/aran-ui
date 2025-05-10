@@ -40,9 +40,15 @@ right: 8px;
 	align-items: center; 
 	justify-content: center; 
 	border: 1px solid ${theme.color.line};
-	border-right: none; 
+	border-right: 1px solid transparent; 
 	border-top-left-radius: ${theme.borderRadius.sm}; 
 	border-bottom-left-radius: ${theme.borderRadius.sm}; 
+}
+
+.searchSelectContainer:focus{
+	border-right: 1px solid ${theme.color.line};
+	outline: 2px solid transparent; 
+	box-shadow: 0 0 0 1px ${theme.color.themeless.primary}, 0 0 0 2px ${theme.color.accent.secondary}; 
 }
 
 .searchIconContainer {
@@ -56,6 +62,13 @@ right: 8px;
 	border-left: none; 
 	border-top-right-radius: ${theme.borderRadius.sm};
 	border-bottom-right-radius: ${theme.borderRadius.sm};
+
+}
+
+.searchIconContainer:focus{
+	outline: 2px solid transparent; 
+	box-shadow: 0 0 0 1px ${theme.color.themeless.primary}, 0 0 0 2px ${theme.color.accent.secondary}; 
+	border-left: 1px solid ${theme.color.line};
 }
 
 .searchIconContainer:hover {
@@ -83,8 +96,8 @@ ${
 `
 }
 
-outline: 2px solid transparent; 
 &:focus{
+	outline: 2px solid transparent; 
 	box-shadow: 0 0 0 1px ${theme.color.themeless.primary}, 0 0 0 2px ${theme.color.accent.secondary}; 
 }
 

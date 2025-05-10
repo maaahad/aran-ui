@@ -45,7 +45,7 @@ export const Search: FC<Props> = ({
 	return (
 		<>
 			<SearchContainer mt={mt} width={width}>
-				{searchSelect && <div className="searchSelectContainer">SelectS</div>}
+				{searchSelect && <button className="searchSelectContainer">SelectS</button>}
 
 				<div className="inputContainer">
 					{!searchSelect && <SearchIcon className="searchIcon" />}
@@ -63,9 +63,9 @@ export const Search: FC<Props> = ({
 					{!!value && <CloseLineIcon className="closeIcon" />}
 				</div>
 				{searchSelect && (
-					<div className="searchIconContainer">
+					<button className="searchIconContainer">
 						<SearchIcon />
-					</div>
+					</button>
 				)}
 			</SearchContainer>
 			{searchResult && <div>Search Result:TODO</div>}
