@@ -1,6 +1,6 @@
 import cs from "classnames";
-import React from "react";
-import  type {  FC,  ReactNode } from "react";
+import type React from "react";
+import type { FC, ReactNode } from "react";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
 import type {
 	ComponentProps,
@@ -58,6 +58,7 @@ export const Search: FC<Props> = ({
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
 							onChange(event.target.value);
 						}}
+						withSearchSelect={!!searchSelect}
 					/>
 					{!!value && <CloseLineIcon className="closeIcon" />}
 				</div>

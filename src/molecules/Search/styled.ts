@@ -41,8 +41,8 @@ right: 8px;
 	justify-content: center; 
 	border: 1px solid ${theme.color.line};
 	border-right: none; 
-	border-top-left-radius: 4px; 
-	border-bottom-left-radius: 4px; 
+	border-top-left-radius: ${theme.borderRadius.sm}; 
+	border-bottom-left-radius: ${theme.borderRadius.sm}; 
 }
 
 .searchIconContainer {
@@ -54,8 +54,8 @@ right: 8px;
 	justify-content: center; 
 	border: 1px solid ${theme.color.line};
 	border-left: none; 
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
+	border-top-right-radius: ${theme.borderRadius.sm};
+	border-bottom-right-radius: ${theme.borderRadius.sm};
 }
 
 .searchIconContainer:hover {
@@ -67,14 +67,26 @@ right: 8px;
 //TODO: (maaahad) padding 8px around input,
 // FIXME: (maaahad) should come from config
 // TODO: (maaahad) do proper calculation of padding !!!!
-export const StyledInput = styled.input`
-${({ theme }) => css`
+export const StyledInput = styled.input<{ withSearchSelect: boolean }>`
+${({ theme, withSearchSelect }) => css`
 height: 100%; 
 border: none; 
 padding: 8px 32px 8px 32px; 
 flex: 1; 
 outline: none; 
 border: 1px solid ${theme.color.line};
+
+${
+	!withSearchSelect &&
+	css`
+	border-radius: ${theme.borderRadius.sm}; 
+`
+}
+
+outline: 2px solid transparent; 
+&:focus{
+	box-shadow: 0 0 0 1px ${theme.color.themeless.primary}, 0 0 0 2px ${theme.color.accent.secondary}; 
+}
 
 &.withSearchSelect {
 	padding-left: 16px; 
