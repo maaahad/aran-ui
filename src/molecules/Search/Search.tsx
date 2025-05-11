@@ -53,7 +53,7 @@ export const Search: FC<Props> = ({
 		middleware: [
 			// TODO: (maaahad) play with this later
 			size({
-				apply({ rects, availableHeight, elements }) {
+				apply({ rects, elements }) {
 					Object.assign(elements.floating.style, {
 						width: `${rects.reference.width}px`,
 						// height: `${availableHeight}px`,
