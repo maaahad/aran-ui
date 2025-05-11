@@ -46,20 +46,21 @@ export const Search: FC<Props> = ({
 	onChange,
 	className,
 }) => {
-	const open = !!searchResult?.length;
+	const withSearchResult = !!searchResult?.length;
 	const { refs, floatingStyles, context } = useFloating<HTMLInputElement>({
 		whileElementsMounted: autoUpdate,
-		open,
+		open: withSearchResult,
 		middleware: [
 			// TODO: (maaahad) play with this later
 			size({
 				apply({ rects, availableHeight, elements }) {
 					Object.assign(elements.floating.style, {
 						width: `${rects.reference.width}px`,
-						height: `${availableHeight}px`,
+						// height: `${availableHeight}px`,
+						height: "fit-content",
 					});
 				},
-				padding: 10,
+				// padding: 90,
 			}),
 		],
 	});
@@ -75,9 +76,12 @@ export const Search: FC<Props> = ({
 				mt={mt}
 				width={width}
 				className={className}
+				withSearchResult={withSearchResult}
 			>
 				{searchSelect && (
-					<button className="searchSelectContainer">SelectS</button>
+					<button type="button" className="searchSelectContainer">
+						SelectS
+					</button>
 				)}
 
 				<div className="inputContainer">
@@ -92,16 +96,17 @@ export const Search: FC<Props> = ({
 							onChange(event.target.value);
 						}}
 						withSearchSelect={!!searchSelect}
+						withSearchResult={withSearchResult}
 					/>
 					{!!value && <CloseLineIcon className="closeIcon" />}
 				</div>
 				{searchSelect && (
-					<button className="searchIconContainer">
+					<button type="button" className="searchIconContainer">
 						<SearchIcon />
 					</button>
 				)}
 			</SearchContainer>
-			{open && (
+			{withSearchResult && (
 				<FloatingPortal>
 					<FloatingFocusManager
 						context={context}

@@ -5,10 +5,12 @@ import type { ComponentResponsiveProps } from "../../utils/types";
 //FIXME: (maaahad) all abslute value should come from config. for ex. padding, width, height etc
 // FIXME: (maaahad) add border radius in theme and used instead of hardcoded value
 // NOTE: (maaahad) height comes from config based on size prop
-export const SearchContainer = styled.div<Omit<ComponentResponsiveProps, "pd">>`
+export const SearchContainer = styled.div<
+	Omit<ComponentResponsiveProps, "pd"> & { withSearchResult: boolean }
+>`
 ${applyResponsiveCSS}; 
 
-${({ theme }) => css`
+${({ theme, withSearchResult }) => css`
 height: 32px;
 display: flex; 
 flex-direction: row; 
@@ -16,21 +18,21 @@ align-items: center;
 
 .inputContainer {
 	height: 100%; 
-flex: 1; 
-position: relative; 
-display: flex; 
-flex-direction: row; 
-align-items: center; 
+	flex: 1; 
+	position: relative; 
+	display: flex; 
+	flex-direction: row; 
+	align-items: center; 
 }
 
 .inputContainer > .searchIcon {
-position: absolute; 
-left: 8px; 
+	position: absolute; 
+	left: 8px; 
 }
 
 .inputContainer > .closeIcon {
-position: absolute; 
-right: 8px; 
+	position: absolute; 
+	right: 8px; 
 }
 
 .searchSelectContainer {
@@ -42,13 +44,17 @@ right: 8px;
 	border: 1px solid ${theme.color.line};
 	border-right: 1px solid transparent; 
 	border-top-left-radius: ${theme.borderRadius.sm}; 
+	${
+		!withSearchResult &&
+		css`
 	border-bottom-left-radius: ${theme.borderRadius.sm}; 
+	`
+	}
 }
 
 .searchSelectContainer:focus{
 	border-right: 1px solid ${theme.color.line};
-	outline: 2px solid transparent; 
-	box-shadow: 0 0 0 1px ${theme.color.themeless.primary}, 0 0 0 2px ${theme.color.accent.secondary}; 
+	border-color: ${theme.color.accent.secondary}; 
 }
 
 .searchIconContainer {
@@ -59,16 +65,20 @@ right: 8px;
 	align-items: center; 
 	justify-content: center; 
 	border: 1px solid ${theme.color.line};
-	border-left: none; 
+	border-left: 1px solid transparent; 
 	border-top-right-radius: ${theme.borderRadius.sm};
-	border-bottom-right-radius: ${theme.borderRadius.sm};
+	${
+		!withSearchResult &&
+		css`
+	border-bottom-right-radius: ${theme.borderRadius.sm}; 
+	`
+	}
 
 }
 
 .searchIconContainer:focus{
-	outline: 2px solid transparent; 
-	box-shadow: 0 0 0 1px ${theme.color.themeless.primary}, 0 0 0 2px ${theme.color.accent.secondary}; 
 	border-left: 1px solid ${theme.color.line};
+	border-color: ${theme.color.accent.secondary}; 
 }
 
 .searchIconContainer:hover {
@@ -80,8 +90,11 @@ right: 8px;
 //TODO: (maaahad) padding 8px around input,
 // FIXME: (maaahad) should come from config
 // TODO: (maaahad) do proper calculation of padding !!!!
-export const StyledInput = styled.input<{ withSearchSelect: boolean }>`
-${({ theme, withSearchSelect }) => css`
+export const StyledInput = styled.input<{
+	withSearchSelect: boolean;
+	withSearchResult: boolean;
+}>`
+${({ theme, withSearchSelect, withSearchResult }) => css`
 height: 100%; 
 border: none; 
 padding: 8px 32px 8px 32px; 
@@ -92,13 +105,20 @@ border: 1px solid ${theme.color.line};
 ${
 	!withSearchSelect &&
 	css`
-	border-radius: ${theme.borderRadius.sm}; 
+border-radius: ${theme.borderRadius.sm}; 
+`
+}
+
+${
+	withSearchResult &&
+	css`
+border-bottom-left-radius: 0; 
+border-bottom-right-radius: 0; 
 `
 }
 
 &:focus{
-	outline: 2px solid transparent; 
-	box-shadow: 0 0 0 1px ${theme.color.themeless.primary}, 0 0 0 2px ${theme.color.accent.secondary}; 
+	border-color: ${theme.color.accent.secondary}; 
 }
 
 &.withSearchSelect {
@@ -110,6 +130,9 @@ ${
 export const SearchResult = styled.div`
 ${({ theme }) => css`
 border: 1px solid ${theme.color.line}; 
-border-radius: ${theme.borderRadius.sm}; 
+border-top: none; 
+border-bottom-right-radius: ${theme.borderRadius.sm}; 
+border-bottom-left-radius: ${theme.borderRadius.sm}; 
+padding: 8px;
 `}
 `;
