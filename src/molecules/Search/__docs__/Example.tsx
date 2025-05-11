@@ -1,29 +1,52 @@
 import React, { useCallback, useState } from "react";
 import type { ComponentProps, FC } from "react";
 import { Search } from "../Search";
+import { SearchIcon } from "../../../atoms";
 
 type Props = ComponentProps<typeof Search>;
 
-const SampleData: Props["searchResult"] = [
-	{ value: "ahad" },
-	{ value: "muhammed" },
-	{ value: "israt" },
-	{ value: "jahan" },
-	{ value: "arwa" },
-	{ value: "anabia" },
+const Data = [
+	{
+		title: "Ahad",
+		id: "ahad",
+	},
+	{
+		title: "Israt",
+		id: "israt",
+	},
+	{
+		title: "Anabia",
+		id: "anabia",
+	},
+	{
+		title: "Arwa",
+		id: "arwa",
+	},
 ];
 
 const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 	const [searchOn, setSearchOn] = useState(searchSelect?.options[0].value);
 	const [searchQuery, setSearchQuery] = useState<string>("");
 
-	const [searchResult, setSearchResult] = useState<Props["searchResult"]>();
+	const [searchResults, setSearchResults] = useState<Props["searchResults"]>();
 
 	const handleSearchQueryChange = useCallback((query: string) => {
 		setSearchQuery(query);
-		if (!query) setSearchResult(undefined);
+		if (!query) setSearchResults(undefined);
 		else
-			setSearchResult(SampleData.filter((data) => data.value.includes(query)));
+			setSearchResults(
+				Data.filter((d) =>
+					d.title.toLowerCase().includes(query.toLowerCase()),
+				).map((d) => ({
+					leftSlot: <SearchIcon />,
+					label: d.title,
+					id: d.id,
+					rightSlot: <div>{d.id}</div>,
+					onClick: () => {
+						console.log(`${d.id} is clicked`);
+					},
+				})),
+			);
 	}, []);
 
 	return (
@@ -36,7 +59,7 @@ const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 			}
 			value={searchQuery}
 			onChange={handleSearchQueryChange}
-			searchResult={searchResult}
+			searchResults={searchResults}
 		/>
 	);
 };

@@ -15,7 +15,20 @@ import type {
 	ComponentSize,
 } from "../../utils/types";
 import type { SelectOption } from "../Select/Select";
-import { SearchContainer, SearchResult, StyledInput } from "./styled";
+import {
+	SearchContainer,
+	SearchResultsContainer,
+	StyledInput,
+	SearchResultItem,
+} from "./styled";
+
+type SearchResult = {
+	id: string;
+	leftSlot: ReactNode;
+	label: string;
+	rightSlot?: ReactNode;
+	onClick?: () => void;
+};
 
 type Props = ComponentProps &
 	ComponentSize &
@@ -29,9 +42,7 @@ type Props = ComponentProps &
 			})[];
 		};
 		placeholder?: string;
-		searchResult?: {
-			value: string;
-		}[];
+		searchResults?: SearchResult[];
 	};
 
 //TODO: (maaahad) on second iteration, try with Compound Component pattern
@@ -39,14 +50,14 @@ type Props = ComponentProps &
 export const Search: FC<Props> = ({
 	placeholder = "Search",
 	searchSelect,
-	searchResult,
+	searchResults,
 	mt = 0,
 	width = "full",
 	value = "",
 	onChange,
 	className,
 }) => {
-	const withSearchResult = !!searchResult?.length;
+	const withSearchResult = !!searchResults?.length;
 	const { refs, floatingStyles, context } = useFloating<HTMLInputElement>({
 		whileElementsMounted: autoUpdate,
 		open: withSearchResult,
@@ -68,6 +79,7 @@ export const Search: FC<Props> = ({
 	// TODO: (maaahad) searchOptions should be implemented via Select component
 	//
 	// TODO: (maaahad) All icon should be Replace with IconButton
+	// TODO: (maaahad) SearchItem should be implemented like a Card with icon
 
 	return (
 		<>
@@ -113,9 +125,29 @@ export const Search: FC<Props> = ({
 						initialFocus={-1}
 						visuallyHiddenDismiss
 					>
-						<SearchResult ref={refs.setFloating} style={floatingStyles}>
-							Search Result
-						</SearchResult>
+						<SearchResultsContainer
+							ref={refs.setFloating}
+							style={floatingStyles}
+						>
+							{searchResults.map((result) => {
+								return (
+									<SearchResultItem
+										key={result.id}
+										className="searchResultItem"
+										onClick={() => result.onClick?.()}
+										clickable={!!result.onClick}
+									>
+										<div className="left">
+											{result.leftSlot}
+											<div>{result.label}</div>
+										</div>
+										{result.rightSlot && (
+											<div className="right">{result.rightSlot}</div>
+										)}
+									</SearchResultItem>
+								);
+							})}
+						</SearchResultsContainer>
 					</FloatingFocusManager>
 				</FloatingPortal>
 			)}
