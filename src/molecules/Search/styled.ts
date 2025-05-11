@@ -106,3 +106,10 @@ ${
 }
 `}
 `;
+
+export const SearchResult = styled.div`
+${({ theme }) => css`
+border: 1px solid ${theme.color.line}; 
+border-radius: ${theme.borderRadius.sm}; 
+`}
+`;

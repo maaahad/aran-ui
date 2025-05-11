@@ -1,4 +1,13 @@
+import {
+	FloatingFocusManager,
+	FloatingPortal,
+	autoUpdate,
+	flip,
+	size,
+	useFloating,
+} from "@floating-ui/react";
 import cs from "classnames";
+import { useEffect, useState } from "react";
 import type React from "react";
 import type { FC, ReactNode } from "react";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
@@ -8,7 +17,7 @@ import type {
 	ComponentSize,
 } from "../../utils/types";
 import type { SelectOption } from "../Select/Select";
-import { SearchContainer, StyledInput } from "./styled";
+import { SearchContainer, SearchResult, StyledInput } from "./styled";
 
 type Props = ComponentProps &
 	ComponentSize &
@@ -23,8 +32,8 @@ type Props = ComponentProps &
 		};
 		placeholder?: string;
 		searchResult?: {
-			todo: string;
-		};
+			value: string;
+		}[];
 	};
 
 //TODO: (maaahad) on second iteration, try with Compound Component pattern
@@ -37,15 +46,47 @@ export const Search: FC<Props> = ({
 	width = "full",
 	value = "",
 	onChange,
+	className,
 }) => {
+	const [open, setOpen] = useState<boolean>(false);
+	const { refs, floatingStyles, context } = useFloating<HTMLInputElement>({
+		whileElementsMounted: autoUpdate,
+		open: !!searchResult?.length,
+		onOpenChange: setOpen,
+		middleware: [
+			// TODO: (maaahad) play with this later
+			size({
+				apply({ rects, availableHeight, elements }) {
+					Object.assign(elements.floating.style, {
+						width: `${rects.reference.width}px`,
+						height: `${availableHeight}px`,
+					});
+				},
+				padding: 10,
+			}),
+		],
+	});
+
+	useEffect(() => {
+		setOpen(!!searchResult?.length);
+	}, [searchResult?.length]);
+
+
 	// TODO: (maaahad) searchOptions should be implemented via Select component
 	//
 	// TODO: (maaahad) All icon should be Replace with IconButton
 
 	return (
 		<>
-			<SearchContainer mt={mt} width={width}>
-				{searchSelect && <button className="searchSelectContainer">SelectS</button>}
+			<SearchContainer
+				ref={refs.setReference}
+				mt={mt}
+				width={width}
+				className={className}
+			>
+				{searchSelect && (
+					<button className="searchSelectContainer">SelectS</button>
+				)}
 
 				<div className="inputContainer">
 					{!searchSelect && <SearchIcon className="searchIcon" />}
@@ -68,7 +109,19 @@ export const Search: FC<Props> = ({
 					</button>
 				)}
 			</SearchContainer>
-			{searchResult && <div>Search Result:TODO</div>}
+			{open && (
+				<FloatingPortal>
+					<FloatingFocusManager
+						context={context}
+						initialFocus={-1}
+						visuallyHiddenDismiss
+					>
+						<SearchResult ref={refs.setFloating} style={floatingStyles}>
+							Search Result
+						</SearchResult>
+					</FloatingFocusManager>
+				</FloatingPortal>
+			)}
 		</>
 	);
 };
