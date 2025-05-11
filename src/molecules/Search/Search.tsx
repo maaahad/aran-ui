@@ -6,6 +6,7 @@ import {
 	useFloating,
 } from "@floating-ui/react";
 import cs from "classnames";
+import { useEffect, useState } from "react";
 import type React from "react";
 import type { FC, ReactNode } from "react";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
@@ -17,9 +18,9 @@ import type {
 import type { SelectOption } from "../Select/Select";
 import {
 	SearchContainer,
+	SearchResultItem,
 	SearchResultsContainer,
 	StyledInput,
-	SearchResultItem,
 } from "./styled";
 
 type SearchResult = {
@@ -57,10 +58,14 @@ export const Search: FC<Props> = ({
 	onChange,
 	className,
 }) => {
-	const withSearchResult = !!searchResults?.length;
+	// TODO: (maaahad) set withSearchResult to true once input field got focus again
+	const [withSearchResult, setWithSearchResult] = useState<boolean>(
+		!!searchResults?.length,
+	);
 	const { refs, floatingStyles, context } = useFloating<HTMLInputElement>({
 		whileElementsMounted: autoUpdate,
 		open: withSearchResult,
+		onOpenChange: setWithSearchResult,
 		middleware: [
 			// TODO: (maaahad) play with this later
 			size({
@@ -75,6 +80,11 @@ export const Search: FC<Props> = ({
 			}),
 		],
 	});
+
+	// TODO: (maaahad) is it possible to get rid of useEffect
+	useEffect(() => {
+		setWithSearchResult(!!searchResults?.length);
+	}, [searchResults?.length]);
 
 	// TODO: (maaahad) searchOptions should be implemented via Select component
 	//
@@ -129,12 +139,15 @@ export const Search: FC<Props> = ({
 							ref={refs.setFloating}
 							style={floatingStyles}
 						>
-							{searchResults.map((result) => {
+							{searchResults?.map((result) => {
 								return (
 									<SearchResultItem
 										key={result.id}
 										className="searchResultItem"
-										onClick={() => result.onClick?.()}
+										onClick={() => {
+											setWithSearchResult(false);
+											result.onClick?.();
+										}}
 										clickable={!!result.onClick}
 									>
 										<div className="left">

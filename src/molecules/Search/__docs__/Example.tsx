@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import type { ComponentProps, FC } from "react";
-import { Search } from "../Search";
 import { SearchIcon } from "../../../atoms";
+import { Search } from "../Search";
 
 type Props = ComponentProps<typeof Search>;
 
