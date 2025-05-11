@@ -2,12 +2,10 @@ import {
 	FloatingFocusManager,
 	FloatingPortal,
 	autoUpdate,
-	flip,
 	size,
 	useFloating,
 } from "@floating-ui/react";
 import cs from "classnames";
-import { useEffect, useState } from "react";
 import type React from "react";
 import type { FC, ReactNode } from "react";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
@@ -48,11 +46,10 @@ export const Search: FC<Props> = ({
 	onChange,
 	className,
 }) => {
-	const [open, setOpen] = useState<boolean>(false);
+	const open = !!searchResult?.length;
 	const { refs, floatingStyles, context } = useFloating<HTMLInputElement>({
 		whileElementsMounted: autoUpdate,
-		open: !!searchResult?.length,
-		onOpenChange: setOpen,
+		open,
 		middleware: [
 			// TODO: (maaahad) play with this later
 			size({
@@ -66,11 +63,6 @@ export const Search: FC<Props> = ({
 			}),
 		],
 	});
-
-	useEffect(() => {
-		setOpen(!!searchResult?.length);
-	}, [searchResult?.length]);
-
 
 	// TODO: (maaahad) searchOptions should be implemented via Select component
 	//
