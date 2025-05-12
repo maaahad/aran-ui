@@ -129,70 +129,14 @@ border-bottom-right-radius: 0;
 
 export const SearchResultsContainer = styled.div`
 ${({ theme }) => css`
+background-color: ${theme.color.background.primary}; 
 border: 1px solid ${theme.color.line}; 
 border-top: none; 
 border-bottom-right-radius: ${theme.borderRadius.sm}; 
 border-bottom-left-radius: ${theme.borderRadius.sm}; 
 padding: 8px;
-
-.searchResultItem {
-	display: flex; 
-	flex-direction: row; 
-	align-items: center; 
-	justify-content: space-between; 
-	gap: 8px; 
-
-	.left {
-		display: flex; 
-		flex-direction: row; 
-		gap: 4px; 
-	}
-
-	.right {
-		display: flex; 
-		flex-direction: row; 
-		justify-content: flex-end; 
-	}
-}
-`}
-`;
-
-export const SearchResultItem = styled.button<{ clickable: boolean }>`
-${({ theme, clickable }) => css`
-width: 100%; 
-height: 32px; 
-background-color: transparent; 
-border: none; 
 display: flex; 
-flex-direction: row; 
-align-items: center; 
-justify-content: space-between; 
-gap: 8px; 
-
-${
-	clickable &&
-	css`
-cursor: pointer; 
-&:hover {
-	background-color: ${theme.color.background.secondary}; 
-}
-`
-}
-
-
-.left {
-	display: flex; 
-	flex-direction: row; 
-	gap: 4px; 
-	margin-left: 8px; 
-}
-
-.right {
-	display: flex; 
-	flex-direction: row; 
-	justify-content: flex-end; 
-	margin-right: 8px; 
-	color: ${theme.color.text.secondary}; 
-}
+flex-direction: column; 
+gap: 4px; 
 `}
 `;

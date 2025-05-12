@@ -16,20 +16,7 @@ import type {
 	ComponentSize,
 } from "../../utils/types";
 import type { SelectOption } from "../Select/Select";
-import {
-	SearchContainer,
-	SearchResultItem,
-	SearchResultsContainer,
-	StyledInput,
-} from "./styled";
-
-type SearchResult = {
-	id: string;
-	leftSlot: ReactNode;
-	label: string;
-	rightSlot?: ReactNode;
-	onClick?: () => void;
-};
+import { SearchContainer, SearchResultsContainer, StyledInput } from "./styled";
 
 type Props = ComponentProps &
 	ComponentSize &
@@ -43,7 +30,7 @@ type Props = ComponentProps &
 			})[];
 		};
 		placeholder?: string;
-		searchResults?: SearchResult[];
+		searchResults?: ReactNode[];
 	};
 
 //TODO: (maaahad) on second iteration, try with Compound Component pattern
@@ -139,27 +126,7 @@ export const Search: FC<Props> = ({
 							ref={refs.setFloating}
 							style={floatingStyles}
 						>
-							{searchResults?.map((result) => {
-								return (
-									<SearchResultItem
-										key={result.id}
-										className="searchResultItem"
-										onClick={() => {
-											setWithSearchResult(false);
-											result.onClick?.();
-										}}
-										clickable={!!result.onClick}
-									>
-										<div className="left">
-											{result.leftSlot}
-											<div>{result.label}</div>
-										</div>
-										{result.rightSlot && (
-											<div className="right">{result.rightSlot}</div>
-										)}
-									</SearchResultItem>
-								);
-							})}
+							{searchResults?.map((resultItem) => resultItem)}
 						</SearchResultsContainer>
 					</FloatingFocusManager>
 				</FloatingPortal>

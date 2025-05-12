@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import type { ComponentProps, FC } from "react";
-import { SearchIcon } from "../../../atoms";
+import { CloseLineIcon, SearchIcon } from "../../../atoms";
 import { Search } from "../Search";
 
 type Props = ComponentProps<typeof Search>;
@@ -24,6 +24,15 @@ const Data = [
 	},
 ];
 
+// {
+// 					leftSlot: <SearchIcon />,
+// 					label: d.title,
+// 					id: d.id,
+// 					rightSlot: <div>{d.id}</div>,
+// 					onClick: () => {
+// 						console.log(`${d.id} is clicked`);
+// 					},
+// 				}
 const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 	const [searchOn, setSearchOn] = useState(searchSelect?.options[0].value);
 	const [searchQuery, setSearchQuery] = useState<string>("");
@@ -37,15 +46,27 @@ const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 			setSearchResults(
 				Data.filter((d) =>
 					d.title.toLowerCase().includes(query.toLowerCase()),
-				).map((d) => ({
-					leftSlot: <SearchIcon />,
-					label: d.title,
-					id: d.id,
-					rightSlot: <div>{d.id}</div>,
-					onClick: () => {
-						console.log(`${d.id} is clicked`);
-					},
-				})),
+				).map((d) => (
+					<button
+						key={d.id}
+						type="button"
+						onClick={() => console.log(d.id)}
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							alignItems: "center",
+							justifyContent: "space-between",
+							gap: "8px",
+							width: "100%",
+							border: "none",
+							padding: "8px 4px",
+						}}
+					>
+						<CloseLineIcon />
+						<div>{d.id}</div>
+						<div>{d.title}</div>
+					</button>
+				)),
 			);
 	}, []);
 
