@@ -24,15 +24,6 @@ const Data = [
 	},
 ];
 
-// {
-// 					leftSlot: <SearchIcon />,
-// 					label: d.title,
-// 					id: d.id,
-// 					rightSlot: <div>{d.id}</div>,
-// 					onClick: () => {
-// 						console.log(`${d.id} is clicked`);
-// 					},
-// 				}
 const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 	const [searchOn, setSearchOn] = useState(searchSelect?.options[0].value);
 	const [searchQuery, setSearchQuery] = useState<string>("");
