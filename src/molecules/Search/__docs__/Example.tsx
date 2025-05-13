@@ -51,6 +51,7 @@ const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 							width: "100%",
 							border: "none",
 							padding: "8px 4px",
+							cursor: "pointer",
 						}}
 					>
 						<CloseLineIcon />
