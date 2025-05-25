@@ -94,17 +94,16 @@ export const SearchInput: FC<Props> = ({
 }) => {
 	const { loading, data } = dropdown || {};
 	const inputRef = useRef<HTMLInputElement>(null);
-	const [withDropdown, setWithDropdown] = useState<boolean>(false);
+	const [openDropdown, setOpenDropdown] = useState<boolean>(false);
 	const loadingOrNodata = loading || !data?.length;
 
 	return (
 		<>
 			<SearchInputContainer
-				// ref={refs.setReference}
 				mt={mt}
 				width={width}
 				className={className}
-				withDropdown={withDropdown}
+				withDropdown={openDropdown}
 			>
 				{searchSelect && (
 					<button type="button" className="searchSelectContainer">
@@ -125,13 +124,13 @@ export const SearchInput: FC<Props> = ({
 							onChange(event.target.value);
 						}}
 						onFocus={(_event: React.ChangeEvent<HTMLInputElement>) => {
-							setWithDropdown(true);
+							setOpenDropdown(true);
 						}}
 						onBlur={(_event: React.ChangeEvent<HTMLInputElement>) => {
-							setWithDropdown(false);
+							setOpenDropdown(false);
 						}}
 						withSearchSelect={!!searchSelect}
-						withSearchResult={withDropdown}
+						withSearchResult={openDropdown}
 					/>
 					{!!value && <CloseLineIcon className="closeIcon" />}
 				</div>
@@ -141,7 +140,7 @@ export const SearchInput: FC<Props> = ({
 					</button>
 				)}
 			</SearchInputContainer>
-			<DropdownContainer open={withDropdown}>
+			<DropdownContainer open={openDropdown}>
 				{loadingOrNodata ? (
 					<State state={loading ? "loading" : "nodata"} />
 				) : (
