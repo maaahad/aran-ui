@@ -92,26 +92,6 @@ export const SearchInput: FC<Props> = ({
 	const [withDropdown, setWithDropdown] = useState<boolean>(false);
 	const loadingOrNodata = loading || !data?.length;
 
-	// TODO: (maaahad) should we try popover api instead
-	// const { refs, floatingStyles, context } = useFloating<HTMLInputElement>({
-	// 	whileElementsMounted: autoUpdate,
-	// 	open: withDropdown,
-	// 	onOpenChange: setWithDropdown,
-	// 	middleware: [
-	// 		// TODO: (maaahad) play with this later
-	// 		size({
-	// 			apply({ rects, elements }) {
-	// 				Object.assign(elements.floating.style, {
-	// 					width: `${rects.reference.width}px`,
-	// 					// height: `${availableHeight}px`,
-	// 					height: "fit-content",
-	// 				});
-	// 			},
-	// 			// padding: 90,
-	// 		}),
-	// 	],
-	// });
-
 	return (
 		<>
 			<SearchInputContainer
@@ -168,25 +148,3 @@ export const SearchInput: FC<Props> = ({
 		</>
 	);
 };
-
-// {withDropdown && (
-// 	<FloatingPortal>
-// 		<FloatingFocusManager
-// 			context={context}
-// 			initialFocus={-1}
-// 			visuallyHiddenDismiss
-// 		>
-// 			<SearchResultsContainer
-// 				ref={refs.setFloating}
-// 				style={floatingStyles}
-// 			>
-// 				{loadingOrNodata ? (
-// 					<State state={loading ? "loading" : "nodata"} />
-// 				) : (
-// 					<div>Has Data</div>
-// 				)}
-// 				{/* {searchResults?.map((resultItem) => resultItem)} */}
-// 			</SearchResultsContainer>
-// 		</FloatingFocusManager>
-// 	</FloatingPortal>
-// )}
