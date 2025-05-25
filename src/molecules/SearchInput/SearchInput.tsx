@@ -6,7 +6,7 @@ import {
 	useFloating,
 } from "@floating-ui/react";
 import cs from "classnames";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type React from "react";
 import type { FC, ReactNode } from "react";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
@@ -28,7 +28,7 @@ import {
  * 2. Dropdown with loading state
  * 3. Default Dropdown
  * 4. Custom dropdown
- * 5. Status (Warning, Info, Error)
+ * 5. State (Warning, Info, Error)
  * 6. Dropdown Placement
  * 7. Infinite Scrolling
  * 8. Variants (outlined, filled, borderless, underlined)
@@ -40,6 +40,15 @@ import {
  * TODO: (maaahad) Second Iteration
  * 1. Compound Component Pattern
  */
+
+type DropdownProps = {
+	loading?: boolean;
+	nodata?: boolean;
+	data: { label: string; value: string; disabled?: boolean }[]; // NOTE: (maaahad) this is used to render default dropdown item
+	onSelect?: () => void; // NOTE: (maaahad) used in default case only
+	renderDropdownItem?: () => ReactNode; // NOTE: this has less priority than customDropdown
+	customDropdown?: ReactNode; // NOTE: (maaahad) this will prioritize everyting
+};
 
 type Props = ComponentProps &
 	ComponentSize &
@@ -53,25 +62,26 @@ type Props = ComponentProps &
 			})[];
 		};
 		placeholder?: string;
-		searchResults?: ReactNode[];
+		// searchResults?: ReactNode[];
+		dropdown?: DropdownProps;
 	};
 
 export const SearchInput: FC<Props> = ({
 	placeholder = "Search",
 	searchSelect,
-	searchResults,
+	// searchResults,
 	mt = 0,
 	width = "full",
 	value = "",
 	onChange,
 	className,
+	dropdown,
 }) => {
-	const [withSearchResult, setWithSearchResult] = useState<boolean>(
-		!!searchResults?.length,
-	);
+	const [withDropdown, setWithSearchResult] = useState<boolean>(!!dropdown);
+
 	const { refs, floatingStyles, context } = useFloating<HTMLInputElement>({
 		whileElementsMounted: autoUpdate,
-		open: withSearchResult,
+		open: withDropdown,
 		onOpenChange: setWithSearchResult,
 		middleware: [
 			// TODO: (maaahad) play with this later
@@ -89,9 +99,9 @@ export const SearchInput: FC<Props> = ({
 	});
 
 	// TODO: (maaahad) is it possible to get rid of useEffect
-	useEffect(() => {
-		setWithSearchResult(!!searchResults?.length);
-	}, [searchResults?.length]);
+	// useEffect(() => {
+	// 	setWithSearchResult(!!searchResults?.length);
+	// }, [searchResults?.length]);
 
 	return (
 		<>
@@ -100,7 +110,7 @@ export const SearchInput: FC<Props> = ({
 				mt={mt}
 				width={width}
 				className={className}
-				withSearchResult={withSearchResult}
+				withDropdown={withDropdown}
 			>
 				{searchSelect && (
 					<button type="button" className="searchSelectContainer">
@@ -120,7 +130,7 @@ export const SearchInput: FC<Props> = ({
 							onChange(event.target.value);
 						}}
 						withSearchSelect={!!searchSelect}
-						withSearchResult={withSearchResult}
+						withSearchResult={withDropdown}
 					/>
 					{!!value && <CloseLineIcon className="closeIcon" />}
 				</div>
@@ -130,7 +140,7 @@ export const SearchInput: FC<Props> = ({
 					</button>
 				)}
 			</SearchInputContainer>
-			{withSearchResult && (
+			{withDropdown && (
 				<FloatingPortal>
 					<FloatingFocusManager
 						context={context}
@@ -141,7 +151,8 @@ export const SearchInput: FC<Props> = ({
 							ref={refs.setFloating}
 							style={floatingStyles}
 						>
-							{searchResults?.map((resultItem) => resultItem)}
+							<div>Testing...</div>
+							{/* {searchResults?.map((resultItem) => resultItem)} */}
 						</SearchResultsContainer>
 					</FloatingFocusManager>
 				</FloatingPortal>

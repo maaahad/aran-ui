@@ -6,11 +6,11 @@ import type { ComponentResponsiveProps } from "../../utils/types";
 // FIXME: (maaahad) add border radius in theme and used instead of hardcoded value
 // NOTE: (maaahad) height comes from config based on size prop
 export const SearchInputContainer = styled.div<
-	Omit<ComponentResponsiveProps, "pd"> & { withSearchResult: boolean }
+	Omit<ComponentResponsiveProps, "pd"> & { withDropdown: boolean }
 >`
 ${applyResponsiveCSS}; 
 
-${({ theme, withSearchResult }) => css`
+${({ theme, withDropdown }) => css`
 height: 32px;
 display: flex; 
 flex-direction: row; 
@@ -45,7 +45,7 @@ align-items: center;
 	border-right: 1px solid transparent; 
 	border-top-left-radius: ${theme.borderRadius.sm}; 
 	${
-		!withSearchResult &&
+		!withDropdown &&
 		css`
 	border-bottom-left-radius: ${theme.borderRadius.sm}; 
 	`
@@ -68,7 +68,7 @@ align-items: center;
 	border-left: 1px solid transparent; 
 	border-top-right-radius: ${theme.borderRadius.sm};
 	${
-		!withSearchResult &&
+		!withDropdown &&
 		css`
 	border-bottom-right-radius: ${theme.borderRadius.sm}; 
 	`

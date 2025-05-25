@@ -3,6 +3,7 @@ import type { Breakpoints } from "../tokens";
 /**
  * =========== Component Props ==========
  */
+
 export type ResponsiveProp<T> =
 	| T
 	| {
@@ -16,7 +17,7 @@ export type ComponentResponsiveProps = {
 };
 
 export type ComponentState = {
-	state?: "valid" | "invalid";
+	state?: "info" | "warning" | "error";
 };
 
 export type ComponentSize = {
