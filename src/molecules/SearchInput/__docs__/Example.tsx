@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from "react";
 import type { ComponentProps, FC } from "react";
 import { CloseLineIcon, SearchIcon } from "../../../atoms";
-import { Search } from "../Search";
+import { SearchInput } from "../SearchInput";
 
-type Props = ComponentProps<typeof Search>;
+type Props = ComponentProps<typeof SearchInput>;
 
 const Data = [
 	{
@@ -63,7 +63,7 @@ const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 	}, []);
 
 	return (
-		<Search
+		<SearchInput
 			{...restProps}
 			searchSelect={
 				searchSelect

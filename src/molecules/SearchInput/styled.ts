@@ -5,7 +5,7 @@ import type { ComponentResponsiveProps } from "../../utils/types";
 //FIXME: (maaahad) all abslute value should come from config. for ex. padding, width, height etc
 // FIXME: (maaahad) add border radius in theme and used instead of hardcoded value
 // NOTE: (maaahad) height comes from config based on size prop
-export const SearchContainer = styled.div<
+export const SearchInputContainer = styled.div<
 	Omit<ComponentResponsiveProps, "pd"> & { withSearchResult: boolean }
 >`
 ${applyResponsiveCSS}; 

@@ -16,7 +16,11 @@ import type {
 	ComponentSize,
 } from "../../utils/types";
 import type { SelectOption } from "../Select/Select";
-import { SearchContainer, SearchResultsContainer, StyledInput } from "./styled";
+import {
+	SearchInputContainer,
+	SearchResultsContainer,
+	StyledInput,
+} from "./styled";
 
 /**
  * TODO: : (maaahad)
@@ -52,7 +56,7 @@ type Props = ComponentProps &
 		searchResults?: ReactNode[];
 	};
 
-export const Search: FC<Props> = ({
+export const SearchInput: FC<Props> = ({
 	placeholder = "Search",
 	searchSelect,
 	searchResults,
@@ -91,7 +95,7 @@ export const Search: FC<Props> = ({
 
 	return (
 		<>
-			<SearchContainer
+			<SearchInputContainer
 				ref={refs.setReference}
 				mt={mt}
 				width={width}
@@ -125,7 +129,7 @@ export const Search: FC<Props> = ({
 						<SearchIcon />
 					</button>
 				)}
-			</SearchContainer>
+			</SearchInputContainer>
 			{withSearchResult && (
 				<FloatingPortal>
 					<FloatingFocusManager
