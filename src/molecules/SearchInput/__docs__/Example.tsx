@@ -74,10 +74,9 @@ const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 			value={searchQuery}
 			onChange={handleSearchQueryChange}
 			dropdown={{
-				data: [],
+				data: undefined,
 				loading: false,
 			}}
-			// searchResults={searchResults}
 		/>
 	);
 };

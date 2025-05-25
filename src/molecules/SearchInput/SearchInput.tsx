@@ -6,7 +6,7 @@ import {
 	useFloating,
 } from "@floating-ui/react";
 import cs from "classnames";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type React from "react";
 import type { FC, ReactNode } from "react";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
@@ -19,6 +19,7 @@ import type { SelectOption } from "../Select/Select";
 import {
 	SearchInputContainer,
 	SearchResultsContainer,
+	StateStyled,
 	StyledInput,
 } from "./styled";
 
@@ -36,6 +37,8 @@ import {
  * 10. searchOptions should be implemented via Select component
  * 11. All icon should be Replace with IconButton
  * 12. SearchItem should be implemented like a Card with icon
+ * 13. Clear input
+ * 14. Try Popover Api instead of Floating UI
  *
  * TODO: (maaahad) Second Iteration
  * 1. Compound Component Pattern
@@ -43,8 +46,7 @@ import {
 
 type DropdownProps = {
 	loading?: boolean;
-	nodata?: boolean;
-	data: { label: string; value: string; disabled?: boolean }[]; // NOTE: (maaahad) this is used to render default dropdown item
+	data?: { label: string; value: string; disabled?: boolean }[]; // NOTE: (maaahad) this is used to render default dropdown item
 	onSelect?: () => void; // NOTE: (maaahad) used in default case only
 	renderDropdownItem?: () => ReactNode; // NOTE: this has less priority than customDropdown
 	customDropdown?: ReactNode; // NOTE: (maaahad) this will prioritize everyting
@@ -62,14 +64,22 @@ type Props = ComponentProps &
 			})[];
 		};
 		placeholder?: string;
-		// searchResults?: ReactNode[];
 		dropdown?: DropdownProps;
 	};
+
+// NOTE: (maaahad) this component might be useful in some other data related component
+const State: FC<{ state: "loading" | "nodata" }> = ({ state }) => {
+	// TODO: (maaahad) replace with right data, Need lg sized Icon and only visible if input got focus
+	return (
+		<StateStyled>
+			{state === "loading" ? <CloseLineIcon /> : <SearchIcon />}
+		</StateStyled>
+	);
+};
 
 export const SearchInput: FC<Props> = ({
 	placeholder = "Search",
 	searchSelect,
-	// searchResults,
 	mt = 0,
 	width = "full",
 	value = "",
@@ -77,36 +87,35 @@ export const SearchInput: FC<Props> = ({
 	className,
 	dropdown,
 }) => {
-	const [withDropdown, setWithSearchResult] = useState<boolean>(!!dropdown);
+	const { loading, data } = dropdown || {};
+	const inputRef = useRef<HTMLInputElement>(null);
+	const [withDropdown, setWithDropdown] = useState<boolean>(false);
+	const loadingOrNodata = loading || !data?.length;
 
-	const { refs, floatingStyles, context } = useFloating<HTMLInputElement>({
-		whileElementsMounted: autoUpdate,
-		open: withDropdown,
-		onOpenChange: setWithSearchResult,
-		middleware: [
-			// TODO: (maaahad) play with this later
-			size({
-				apply({ rects, elements }) {
-					Object.assign(elements.floating.style, {
-						width: `${rects.reference.width}px`,
-						// height: `${availableHeight}px`,
-						height: "fit-content",
-					});
-				},
-				// padding: 90,
-			}),
-		],
-	});
-
-	// TODO: (maaahad) is it possible to get rid of useEffect
-	// useEffect(() => {
-	// 	setWithSearchResult(!!searchResults?.length);
-	// }, [searchResults?.length]);
+	// TODO: (maaahad) should we try popover api instead
+	// const { refs, floatingStyles, context } = useFloating<HTMLInputElement>({
+	// 	whileElementsMounted: autoUpdate,
+	// 	open: withDropdown,
+	// 	onOpenChange: setWithDropdown,
+	// 	middleware: [
+	// 		// TODO: (maaahad) play with this later
+	// 		size({
+	// 			apply({ rects, elements }) {
+	// 				Object.assign(elements.floating.style, {
+	// 					width: `${rects.reference.width}px`,
+	// 					// height: `${availableHeight}px`,
+	// 					height: "fit-content",
+	// 				});
+	// 			},
+	// 			// padding: 90,
+	// 		}),
+	// 	],
+	// });
 
 	return (
 		<>
 			<SearchInputContainer
-				ref={refs.setReference}
+				// ref={refs.setReference}
 				mt={mt}
 				width={width}
 				className={className}
@@ -121,6 +130,7 @@ export const SearchInput: FC<Props> = ({
 				<div className="inputContainer">
 					{!searchSelect && <SearchIcon className="searchIcon" />}
 					<StyledInput
+						ref={inputRef}
 						className={cs({
 							withSearchSelect: !!searchSelect,
 						})}
@@ -128,6 +138,12 @@ export const SearchInput: FC<Props> = ({
 						value={value}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
 							onChange(event.target.value);
+						}}
+						onFocus={(_event: React.ChangeEvent<HTMLInputElement>) => {
+							setWithDropdown(true);
+						}}
+						onBlur={(_event: React.ChangeEvent<HTMLInputElement>) => {
+							setWithDropdown(false);
 						}}
 						withSearchSelect={!!searchSelect}
 						withSearchResult={withDropdown}
@@ -141,22 +157,36 @@ export const SearchInput: FC<Props> = ({
 				)}
 			</SearchInputContainer>
 			{withDropdown && (
-				<FloatingPortal>
-					<FloatingFocusManager
-						context={context}
-						initialFocus={-1}
-						visuallyHiddenDismiss
-					>
-						<SearchResultsContainer
-							ref={refs.setFloating}
-							style={floatingStyles}
-						>
-							<div>Testing...</div>
-							{/* {searchResults?.map((resultItem) => resultItem)} */}
-						</SearchResultsContainer>
-					</FloatingFocusManager>
-				</FloatingPortal>
+				<SearchResultsContainer>
+					{loadingOrNodata ? (
+						<State state={loading ? "loading" : "nodata"} />
+					) : (
+						<div>to be implemented</div>
+					)}
+				</SearchResultsContainer>
 			)}
 		</>
 	);
 };
+
+// {withDropdown && (
+// 	<FloatingPortal>
+// 		<FloatingFocusManager
+// 			context={context}
+// 			initialFocus={-1}
+// 			visuallyHiddenDismiss
+// 		>
+// 			<SearchResultsContainer
+// 				ref={refs.setFloating}
+// 				style={floatingStyles}
+// 			>
+// 				{loadingOrNodata ? (
+// 					<State state={loading ? "loading" : "nodata"} />
+// 				) : (
+// 					<div>Has Data</div>
+// 				)}
+// 				{/* {searchResults?.map((resultItem) => resultItem)} */}
+// 			</SearchResultsContainer>
+// 		</FloatingFocusManager>
+// 	</FloatingPortal>
+// )}
