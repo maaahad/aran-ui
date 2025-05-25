@@ -18,6 +18,25 @@ import type {
 import type { SelectOption } from "../Select/Select";
 import { SearchContainer, SearchResultsContainer, StyledInput } from "./styled";
 
+/**
+ * TODO: : (maaahad)
+ * 1. Dropdown with  No Data
+ * 2. Dropdown with loading state
+ * 3. Default Dropdown
+ * 4. Custom dropdown
+ * 5. Status (Warning, Info, Error)
+ * 6. Dropdown Placement
+ * 7. Infinite Scrolling
+ * 8. Variants (outlined, filled, borderless, underlined)
+ * 9. set withSearchResult to true once input field got focus again
+ * 10. searchOptions should be implemented via Select component
+ * 11. All icon should be Replace with IconButton
+ * 12. SearchItem should be implemented like a Card with icon
+ *
+ * TODO: (maaahad) Second Iteration
+ * 1. Compound Component Pattern
+ */
+
 type Props = ComponentProps &
 	ComponentSize &
 	Omit<ComponentResponsiveProps, "pd"> & {
@@ -33,8 +52,6 @@ type Props = ComponentProps &
 		searchResults?: ReactNode[];
 	};
 
-//TODO: (maaahad) on second iteration, try with Compound Component pattern
-//TODO: (maaahad) add result dropdown
 export const Search: FC<Props> = ({
 	placeholder = "Search",
 	searchSelect,
@@ -45,7 +62,6 @@ export const Search: FC<Props> = ({
 	onChange,
 	className,
 }) => {
-	// TODO: (maaahad) set withSearchResult to true once input field got focus again
 	const [withSearchResult, setWithSearchResult] = useState<boolean>(
 		!!searchResults?.length,
 	);
@@ -72,11 +88,6 @@ export const Search: FC<Props> = ({
 	useEffect(() => {
 		setWithSearchResult(!!searchResults?.length);
 	}, [searchResults?.length]);
-
-	// TODO: (maaahad) searchOptions should be implemented via Select component
-	//
-	// TODO: (maaahad) All icon should be Replace with IconButton
-	// TODO: (maaahad) SearchItem should be implemented like a Card with icon
 
 	return (
 		<>
