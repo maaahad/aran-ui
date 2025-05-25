@@ -44,11 +44,12 @@ align-items: center;
 	border: 1px solid ${theme.color.line};
 	border-right: 1px solid transparent; 
 	border-top-left-radius: ${theme.borderRadius.sm}; 
-	${!withDropdown &&
+	${
+		!withDropdown &&
 		css`
 	border-bottom-left-radius: ${theme.borderRadius.sm}; 
 	`
-		}
+	}
 }
 
 .searchSelectContainer:focus{
@@ -66,11 +67,12 @@ align-items: center;
 	border: 1px solid ${theme.color.line};
 	border-left: 1px solid transparent; 
 	border-top-right-radius: ${theme.borderRadius.sm};
-	${!withDropdown &&
+	${
+		!withDropdown &&
 		css`
 	border-bottom-right-radius: ${theme.borderRadius.sm}; 
 	`
-		}
+	}
 
 }
 
@@ -100,18 +102,20 @@ flex: 1;
 outline: none; 
 border: 1px solid ${theme.color.line};
 
-${!withSearchSelect &&
-		css`
+${
+	!withSearchSelect &&
+	css`
 border-radius: ${theme.borderRadius.sm}; 
 `
-		}
+}
 
-${withSearchResult &&
-		css`
+${
+	withSearchResult &&
+	css`
 border-bottom-left-radius: 0; 
 border-bottom-right-radius: 0; 
 `
-		}
+}
 
 &:focus{
 	border-color: ${theme.color.accent.secondary}; 
@@ -123,8 +127,14 @@ border-bottom-right-radius: 0;
 `}
 `;
 
-export const SearchResultsContainer = styled.div`
-${({ theme }) => css`
+export const DropdownContainer = styled.div<{ open: boolean }>`
+${({ theme, open }) => css`
+max-height: 0; 
+overflow: hidden; 
+transition: max-height .05s ease-in; 
+${
+	open &&
+	css`
 background-color: ${theme.color.background.primary}; 
 border: 1px solid ${theme.color.line}; 
 border-top: none; 
@@ -134,10 +144,15 @@ padding: 8px;
 display: flex; 
 flex-direction: column; 
 gap: 4px; 
+max-height: 200px;  
+box-shadow: ${theme.elevation.sm}; 
+`
+}
 `}
 `;
 
 export const StateStyled = styled.div`
+height: 100%; 
 display: flex; 
 align-items: center; 
 justify-content: center;

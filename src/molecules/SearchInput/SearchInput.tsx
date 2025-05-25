@@ -17,6 +17,7 @@ import type {
 } from "../../utils/types";
 import type { SelectOption } from "../Select/Select";
 import {
+	DropdownContainer,
 	SearchInputContainer,
 	SearchResultsContainer,
 	StateStyled,
@@ -72,7 +73,11 @@ const State: FC<{ state: "loading" | "nodata" }> = ({ state }) => {
 	// TODO: (maaahad) replace with right data, Need lg sized Icon and only visible if input got focus
 	return (
 		<StateStyled>
-			{state === "loading" ? <CloseLineIcon /> : <SearchIcon />}
+			{state === "loading" ? (
+				<CloseLineIcon size="lg" />
+			) : (
+				<SearchIcon size="lg" />
+			)}
 		</StateStyled>
 	);
 };
@@ -136,15 +141,13 @@ export const SearchInput: FC<Props> = ({
 					</button>
 				)}
 			</SearchInputContainer>
-			{withDropdown && (
-				<SearchResultsContainer>
-					{loadingOrNodata ? (
-						<State state={loading ? "loading" : "nodata"} />
-					) : (
-						<div>to be implemented</div>
-					)}
-				</SearchResultsContainer>
-			)}
+			<DropdownContainer open={withDropdown}>
+				{loadingOrNodata ? (
+					<State state={loading ? "loading" : "nodata"} />
+				) : (
+					<div>to be implemented</div>
+				)}
+			</DropdownContainer>
 		</>
 	);
 };
