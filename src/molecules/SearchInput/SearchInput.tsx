@@ -1,13 +1,6 @@
-import {
-	FloatingFocusManager,
-	FloatingPortal,
-	autoUpdate,
-	size,
-	useFloating,
-} from "@floating-ui/react";
 import cs from "classnames";
-import { useRef, useState } from "react";
 import type React from "react";
+import { useRef, useState } from "react";
 import type { FC, ReactNode } from "react";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
 import type {
@@ -19,7 +12,6 @@ import type { SelectOption } from "../Select/Select";
 import {
 	DropdownContainer,
 	SearchInputContainer,
-	SearchResultsContainer,
 	StateStyled,
 	StyledInput,
 } from "./styled";
