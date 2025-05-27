@@ -1,6 +1,6 @@
 import cs from "classnames";
 import type React from "react";
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { FC, ReactNode } from "react";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
 import { useClickOutside } from "../../hooks/window/useClickOutside";
