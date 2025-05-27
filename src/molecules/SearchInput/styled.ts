@@ -131,7 +131,6 @@ export const DropdownContainer = styled.div<{ open: boolean }>`
 ${({ theme, open }) => css`
 max-height: 0; 
 overflow: hidden; 
-transition: max-height .05s ease-in; 
 ${
 	open &&
 	css`
@@ -156,4 +155,23 @@ height: 100%;
 display: flex; 
 align-items: center; 
 justify-content: center;
+`;
+
+export const DropdownItemStyled = styled.button<{ clickable: boolean }>`
+${({ theme, clickable }) => css`
+padding: 8px;
+border: none; 
+background-color: transparent; 
+display: flex; 
+justify-content: flex-start; 
+&:hover {
+	${
+		clickable &&
+		css`
+	cursor: pointer; 
+	background-color: ${theme.color.background.secondary}; 
+`
+	}
+}
+`}
 `;

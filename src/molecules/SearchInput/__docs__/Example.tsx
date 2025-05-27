@@ -38,28 +38,11 @@ const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 			setSearchResults(
 				Data.filter((d) =>
 					d.title.toLowerCase().includes(query.toLowerCase()),
-				).map((d) => (
-					<button
-						key={d.id}
-						type="button"
-						onClick={() => console.log(d.id)}
-						style={{
-							display: "flex",
-							flexDirection: "row",
-							alignItems: "center",
-							justifyContent: "space-between",
-							gap: "8px",
-							width: "100%",
-							border: "none",
-							padding: "8px 4px",
-							cursor: "pointer",
-						}}
-					>
-						<CloseLineIcon />
-						<div>{d.id}</div>
-						<div>{d.title}</div>
-					</button>
-				)),
+				).map((d, index) => ({
+					label: d.title,
+					value: d.id,
+					disabled: index % 2 === 0,
+				})),
 			);
 	}, []);
 
@@ -74,8 +57,9 @@ const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 			value={searchQuery}
 			onChange={handleSearchQueryChange}
 			dropdown={{
-				data: undefined,
+				data: searchResults,
 				loading: false,
+				onSelect: (value) => console.log("selected : ", value),
 			}}
 		/>
 	);

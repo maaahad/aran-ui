@@ -1,8 +1,9 @@
 import cs from "classnames";
 import type React from "react";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import type { FC, ReactNode } from "react";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
+import { useClickOutside } from "../../hooks/window/useClickOutside";
 import type {
 	ComponentProps,
 	ComponentResponsiveProps,
@@ -11,6 +12,7 @@ import type {
 import type { SelectOption } from "../Select/Select";
 import {
 	DropdownContainer,
+	DropdownItemStyled,
 	SearchInputContainer,
 	StateStyled,
 	StyledInput,
@@ -39,8 +41,8 @@ import {
 
 type DropdownProps = {
 	loading?: boolean;
-	data?: { label: string; value: string; disabled?: boolean }[]; // NOTE: (maaahad) this is used to render default dropdown item
-	onSelect?: () => void; // NOTE: (maaahad) used in default case only
+	data?: { label?: string; value: string; disabled?: boolean }[]; // NOTE: (maaahad) this is used to render default dropdown item
+	onSelect?: (value: string) => void; // NOTE: (maaahad) used in default case only
 	renderDropdownItem?: () => ReactNode; // NOTE: this has less priority than customDropdown
 	customDropdown?: ReactNode; // NOTE: (maaahad) this will prioritize everyting
 };
@@ -74,6 +76,23 @@ const State: FC<{ state: "loading" | "nodata" }> = ({ state }) => {
 	);
 };
 
+const DropdownItem: FC<{
+	label?: string;
+	value: string;
+	disabled?: boolean;
+	onSelect?: (value: string) => void;
+}> = ({ label, value, disabled, onSelect }) => {
+	return (
+		<DropdownItemStyled
+			clickable={Boolean(!disabled && onSelect)}
+			onClick={() => onSelect?.(value)}
+			disabled={disabled}
+		>
+			{label || value}
+		</DropdownItemStyled>
+	);
+};
+
 export const SearchInput: FC<Props> = ({
 	placeholder = "Search",
 	searchSelect,
@@ -86,11 +105,13 @@ export const SearchInput: FC<Props> = ({
 }) => {
 	const { loading, data } = dropdown || {};
 	const inputRef = useRef<HTMLInputElement>(null);
+	const rootRef = useRef<HTMLDivElement>(null);
 	const [openDropdown, setOpenDropdown] = useState<boolean>(false);
 	const loadingOrNodata = loading || !data?.length;
+	useClickOutside(rootRef, () => setOpenDropdown(false));
 
 	return (
-		<>
+		<div ref={rootRef}>
 			<SearchInputContainer
 				mt={mt}
 				width={width}
@@ -118,9 +139,6 @@ export const SearchInput: FC<Props> = ({
 						onFocus={(_event: React.ChangeEvent<HTMLInputElement>) => {
 							setOpenDropdown(true);
 						}}
-						onBlur={(_event: React.ChangeEvent<HTMLInputElement>) => {
-							setOpenDropdown(false);
-						}}
 						withSearchSelect={!!searchSelect}
 						withSearchResult={openDropdown}
 					/>
@@ -133,12 +151,19 @@ export const SearchInput: FC<Props> = ({
 				)}
 			</SearchInputContainer>
 			<DropdownContainer open={openDropdown}>
-				{loadingOrNodata ? (
-					<State state={loading ? "loading" : "nodata"} />
-				) : (
-					<div>to be implemented</div>
-				)}
+				{loadingOrNodata && <State state={loading ? "loading" : "nodata"} />}
+
+				{data?.map((item) => (
+					<DropdownItem
+						{...item}
+						key={item.value}
+						onSelect={(value: string) => {
+							setOpenDropdown(false);
+							dropdown?.onSelect?.(value);
+						}}
+					/>
+				))}
 			</DropdownContainer>
-		</>
+		</div>
 	);
 };
