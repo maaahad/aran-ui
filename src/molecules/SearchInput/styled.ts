@@ -127,10 +127,16 @@ border-bottom-right-radius: 0;
 `}
 `;
 
-export const DropdownContainer = styled.div<{ open: boolean }>`
-${({ theme, open }) => css`
-max-height: 0; 
+export const DropdownContainer = styled.div<{
+	open: boolean;
+	loadingOrNoData: boolean;
+}>`
+${({ theme, open, loadingOrNoData }) => css`
+height: 0; 
 overflow: hidden; 
+display: flex; 
+flex-direction: column; 
+gap: 4px; 
 ${
 	open &&
 	css`
@@ -140,10 +146,15 @@ border-top: none;
 border-bottom-right-radius: ${theme.borderRadius.sm}; 
 border-bottom-left-radius: ${theme.borderRadius.sm}; 
 padding: 8px;
-display: flex; 
-flex-direction: column; 
-gap: 4px; 
-max-height: 200px;  
+height: 200px; 
+${
+	loadingOrNoData &&
+	css`
+height: 50px; 
+align-items: center; 
+justify-content: center;
+`
+}
 box-shadow: ${theme.elevation.sm}; 
 `
 }

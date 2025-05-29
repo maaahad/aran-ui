@@ -150,7 +150,7 @@ export const SearchInput: FC<Props> = ({
 					</button>
 				)}
 			</SearchInputContainer>
-			<DropdownContainer open={openDropdown}>
+			<DropdownContainer open={openDropdown} loadingOrNoData={loadingOrNodata}>
 				{loadingOrNodata && <State state={loading ? "loading" : "nodata"} />}
 
 				{data?.map((item) => (
