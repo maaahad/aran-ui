@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import { applyResponsiveCSS } from "../../utils/style";
-import type { ResponsiveProps } from "../../utils/types";
+import type { ComponentResponsiveProps } from "../../utils/types";
 
-export const CardContainer = styled.div<Omit<ResponsiveProps, "pd">>`
+export const CardContainer = styled.div<Omit<ComponentResponsiveProps, "pd">>`
   ${applyResponsiveCSS}
   ${({ theme }) => css`
     overflow: hidden; 

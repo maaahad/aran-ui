@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import { applyResponsiveCSS } from "../../utils/style";
-import type { ResponsiveProps } from "../../utils/types";
+import type { ComponentResponsiveProps } from "../../utils/types";
 
-export const SelectContainer = styled.div<ResponsiveProps>`
+export const SelectContainer = styled.div<ComponentResponsiveProps>`
   ${applyResponsiveCSS}
   ${() => css`
     display: flex; 
@@ -45,7 +45,7 @@ export const Button = styled.button`
 `;
 
 export const DropdownContainer = styled.div<
-	Pick<ResponsiveProps, "width"> & {
+	Pick<ComponentResponsiveProps, "width"> & {
 		top: number;
 		left: number;
 		width: number;
