@@ -29,7 +29,7 @@ const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 	const [searchQuery, setSearchQuery] = useState<string>("");
 
 	const [searchResults, setSearchResults] =
-		useState<Required<Props>["dropdown"]["data"]>();
+		useState<Required<Props>["dropdown"]["options"]>();
 
 	const handleSearchQueryChange = useCallback((query: string) => {
 		setSearchQuery(query);
@@ -42,6 +42,7 @@ const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 					label: d.title,
 					value: d.id,
 					disabled: index % 2 === 0,
+					...d,
 				})),
 			);
 	}, []);
@@ -57,9 +58,9 @@ const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
 			value={searchQuery}
 			onChange={handleSearchQueryChange}
 			dropdown={{
-				data: searchResults,
+				options: searchResults,
 				loading: false,
-				onSelect: (value) => console.log("selected : ", value),
+				onSelect: (value, option) => console.log("selected : ", value, option),
 			}}
 		/>
 	);

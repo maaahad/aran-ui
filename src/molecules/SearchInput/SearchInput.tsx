@@ -39,12 +39,19 @@ import {
  * 1. Compound Component Pattern
  */
 
+type DropdownOption = Partial<Record<string, any>> & {
+	label?: string;
+	value: string;
+	disabled?: boolean;
+};
+
 type DropdownProps = {
 	loading?: boolean;
-	data?: { label?: string; value: string; disabled?: boolean }[]; // NOTE: (maaahad) this is used to render default dropdown item
-	onSelect?: (value: string) => void; // NOTE: (maaahad) used in default case only
-	renderDropdownItem?: () => ReactNode; // NOTE: this has less priority than customDropdown
-	customDropdown?: ReactNode; // NOTE: (maaahad) this will prioritize everyting
+	options?: DropdownOption[];
+	onSelect?: (value: string, option: DropdownOption) => void;
+	renderDropdownItem?: (option: DropdownOption) => ReactNode;
+
+	// customDropdown?: ReactNode; // NOTE: (maaahad) this will prioritize everyting, On 2nd Iteration
 };
 
 type Props = ComponentProps &
@@ -103,11 +110,11 @@ export const SearchInput: FC<Props> = ({
 	className,
 	dropdown,
 }) => {
-	const { loading, data } = dropdown || {};
+	const { loading, options, renderDropdownItem } = dropdown || {};
 	const inputRef = useRef<HTMLInputElement>(null);
 	const rootRef = useRef<HTMLDivElement>(null);
 	const [openDropdown, setOpenDropdown] = useState<boolean>(false);
-	const loadingOrNodata = loading || !data?.length;
+	const loadingOrNodata = loading || !options?.length;
 	useClickOutside(rootRef, () => setOpenDropdown(false));
 
 	return (
@@ -153,16 +160,21 @@ export const SearchInput: FC<Props> = ({
 			<DropdownContainer open={openDropdown} loadingOrNoData={loadingOrNodata}>
 				{loadingOrNodata && <State state={loading ? "loading" : "nodata"} />}
 
-				{data?.map((item) => (
-					<DropdownItem
-						{...item}
-						key={item.value}
-						onSelect={(value: string) => {
-							setOpenDropdown(false);
-							dropdown?.onSelect?.(value);
-						}}
-					/>
-				))}
+				{options?.map((option) => {
+					const { label, value, disabled, ...data } = option;
+					return renderDropdownItem ? (
+						renderDropdownItem({ data, label, value, disabled })
+					) : (
+						<DropdownItem
+							{...option}
+							key={option.value}
+							onSelect={(value: string) => {
+								setOpenDropdown(false);
+								dropdown?.onSelect?.(value, option);
+							}}
+						/>
+					);
+				})}
 			</DropdownContainer>
 		</div>
 	);
