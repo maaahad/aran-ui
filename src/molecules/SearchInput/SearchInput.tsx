@@ -2,7 +2,12 @@ import cs from "classnames";
 import type React from "react";
 import { useRef, useState } from "react";
 import type { FC, ReactNode } from "react";
-import { CloseLineIcon, SearchIcon, SpinnerIcon } from "../../atoms";
+import {
+	CloseLineIcon,
+	NoSearchResultIcon,
+	SearchIcon,
+	SpinnerIcon,
+} from "../../atoms";
 import { useClickOutside } from "../../hooks/window/useClickOutside";
 import type {
 	ComponentProps,
@@ -77,7 +82,7 @@ const State: FC<{ state: "loading" | "nodata" }> = ({ state }) => {
 			{state === "loading" ? (
 				<SpinnerIcon size="lg" />
 			) : (
-				<SpinnerIcon size="lg" />
+				<NoSearchResultIcon size="lg" />
 			)}
 		</StateStyled>
 	);
