@@ -17,7 +17,7 @@ import type {
 import type { SelectOption } from "../Select/Select";
 import {
 	DropdownContainer,
-	DropdownItemStyled,
+	DropdownOptionContainer,
 	SearchInputContainer,
 	StateStyled,
 	StyledInput,
@@ -88,20 +88,20 @@ const State: FC<{ state: "loading" | "nodata" }> = ({ state }) => {
 	);
 };
 
-const DropdownItem: FC<{
+const DropdownOption: FC<{
 	label?: string;
 	value: string;
 	disabled?: boolean;
 	onSelect?: (value: string) => void;
 }> = ({ label, value, disabled, onSelect }) => {
 	return (
-		<DropdownItemStyled
+		<DropdownOptionContainer
 			clickable={Boolean(!disabled && onSelect)}
 			onClick={() => onSelect?.(value)}
 			disabled={disabled}
 		>
 			{label || value}
-		</DropdownItemStyled>
+		</DropdownOptionContainer>
 	);
 };
 
@@ -168,11 +168,13 @@ export const SearchInput: FC<Props> = ({
 				{options?.map((option) => {
 					const { label, value, disabled, ...data } = option;
 					return renderDropdownItem ? (
-						renderDropdownItem({ data, label, value, disabled })
+						<DropdownOptionContainer key={value} clickable={!disabled}>
+							{renderDropdownItem({ data, label, value, disabled })}
+						</DropdownOptionContainer>
 					) : (
-						<DropdownItem
+						<DropdownOption
 							{...option}
-							key={option.value}
+							key={value}
 							onSelect={(value: string) => {
 								setOpenDropdown(false);
 								dropdown?.onSelect?.(value, option);

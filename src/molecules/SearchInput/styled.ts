@@ -168,7 +168,7 @@ align-items: center;
 justify-content: center;
 `;
 
-export const DropdownItemStyled = styled.button<{ clickable: boolean }>`
+export const DropdownOptionContainer = styled.button<{ clickable: boolean }>`
 ${({ theme, clickable }) => css`
 padding: 8px;
 border: none; 
