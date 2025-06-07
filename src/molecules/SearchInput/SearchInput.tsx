@@ -7,7 +7,12 @@ import {
 	useCallback,
 	useContext,
 } from "react";
-import type { ComponentProps } from "../../utils/types";
+import type {
+	ComponentProps,
+	ComponentResponsiveProps,
+} from "../../utils/types";
+import { Container } from "./SearchInput.styled";
+import cs from "classnames";
 
 /*
  * TODO:
@@ -16,10 +21,11 @@ import type { ComponentProps } from "../../utils/types";
  * 3. A separate component to render the Component in portal
  * */
 
-type Props = ComponentProps & {
-	value?: string;
-	onInputValueChange: (value: string) => void;
-};
+type Props = ComponentProps &
+	Omit<ComponentResponsiveProps, "pd"> & {
+		value?: string;
+		onInputValueChange: (value: string) => void;
+	};
 
 type InputProps = ComponentProps & {
 	placeholder?: string;
@@ -55,7 +61,7 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 	);
 
 	return (
-		<div className={className}>
+		<div className={cs(className, "inputContainer")}>
 			<div>left slot</div>
 			<input
 				value={value}
@@ -67,11 +73,13 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 	);
 };
 
+// TODO: (maaahad) Should it be renamed to combobox
 const SearchInput: FC<PropsWithChildren<Props>> = ({
 	children,
 	className,
 	value,
 	onInputValueChange,
+	...styleProps
 }) => {
 	return (
 		<SearchInputContext.Provider
@@ -80,7 +88,9 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 				onChange: onInputValueChange,
 			}}
 		>
-			<div>{children}</div>
+			<Container className={className} {...styleProps}>
+				{children}
+			</Container>
 		</SearchInputContext.Provider>
 	);
 };

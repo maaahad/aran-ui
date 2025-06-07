@@ -29,7 +29,12 @@ const Example: FC<Props> = (props) => {
 	console.log("new query", query);
 
 	return (
-		<SearchInput.Root value={query} onInputValueChange={setQuery}>
+		<SearchInput.Root
+			value={query}
+			onInputValueChange={setQuery}
+			width="full"
+			mt={32}
+		>
 			<SearchInput.Input placeholder="Search here...." />
 		</SearchInput.Root>
 	);
