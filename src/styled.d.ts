@@ -43,7 +43,7 @@ declare module "styled-components" {
 			};
 		};
 		borderRadius: {
-			[Property in "sm" | "lg"]: `${number}px`;
+			[Property in "xs" | "sm" | "md" | "lg" | "xl"]: `${number}px`;
 		};
 		//  borderRadius, transition, font, size, zIndex, ... ...
 		elevation: {

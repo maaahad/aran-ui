@@ -32,11 +32,11 @@ export const SIZE_STYLES_CONFIG: {
 export const getVariantConfig = (
 	theme: DefaultTheme,
 ): {
-		[Property in ComponentVariant]: {
-			backgroundColor: string;
-			line: string;
-		};
-	} => {
+	[Property in ComponentVariant]: {
+		backgroundColor: string;
+		line: string;
+	};
+} => {
 	return {
 		outlined: {
 			backgroundColor: "transparent",
