@@ -1,7 +1,7 @@
 import type { DefaultTheme } from "styled-components";
 import type { ComponentSize, ComponentVariant } from "../utils/types";
 
-export const STYLES_CONFIG: {
+export const SIZE_STYLES_CONFIG: {
 	[Property in Required<ComponentSize>["size"]]: {
 		height: `${number}px`;
 		padding: `${number}px ${number}px`;
@@ -32,11 +32,11 @@ export const STYLES_CONFIG: {
 export const getVariantConfig = (
 	theme: DefaultTheme,
 ): {
-	[Property in ComponentVariant]: {
-		backgroundColor: string;
-		line: string;
-	};
-} => {
+		[Property in ComponentVariant]: {
+			backgroundColor: string;
+			line: string;
+		};
+	} => {
 	return {
 		outlined: {
 			backgroundColor: "transparent",

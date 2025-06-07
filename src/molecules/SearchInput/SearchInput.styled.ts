@@ -1,5 +1,5 @@
 import styled, { css, type DefaultTheme } from "styled-components";
-import { STYLES_CONFIG, getVariantConfig } from "../../config/styles";
+import { SIZE_STYLES_CONFIG, getVariantConfig } from "../../config/styles";
 import { applyResponsiveCSS } from "../../utils/style";
 import type {
 	ComponentResponsiveProps,
@@ -16,7 +16,6 @@ type ContainerProps = Omit<ComponentResponsiveProps, "pd"> &
 const getVariantStyles = (theme: DefaultTheme, variant: ComponentVariant) => {
 	const variantConfig = getVariantConfig(theme)[variant];
 
-	console.log("variantconfig", variantConfig);
 	switch (variant) {
 		case "outlined": {
 			return css`
@@ -45,7 +44,7 @@ ${applyResponsiveCSS};
 
 ${({ theme, size, variant, isDirty }) => css`
 ${getVariantStyles(theme, variant)}; 
-height: ${STYLES_CONFIG[size].height}; 
+height: ${SIZE_STYLES_CONFIG[size].height}; 
 .inputContainer {
 	width: 100%; 
 	height: 100%; 
@@ -133,12 +132,11 @@ align-items: center;
 	border: 1px solid ${theme.color.line};
 	border-right: 1px solid transparent; 
 	border-top-left-radius: ${theme.borderRadius.sm}; 
-	${
-		!withDropdown &&
+	${!withDropdown &&
 		css`
 	border-bottom-left-radius: ${theme.borderRadius.sm}; 
 	`
-	}
+		}
 }
 
 .searchSelectContainer:focus{
@@ -156,12 +154,11 @@ align-items: center;
 	border: 1px solid ${theme.color.line};
 	border-left: 1px solid transparent; 
 	border-top-right-radius: ${theme.borderRadius.sm};
-	${
-		!withDropdown &&
+	${!withDropdown &&
 		css`
 	border-bottom-right-radius: ${theme.borderRadius.sm}; 
 	`
-	}
+		}
 
 }
 
@@ -191,20 +188,18 @@ flex: 1;
 outline: none; 
 border: 1px solid ${theme.color.line};
 
-${
-	!withSearchSelect &&
-	css`
+${!withSearchSelect &&
+		css`
 border-radius: ${theme.borderRadius.sm}; 
 `
-}
+		}
 
-${
-	withSearchResult &&
-	css`
+${withSearchResult &&
+		css`
 border-bottom-left-radius: 0; 
 border-bottom-right-radius: 0; 
 `
-}
+		}
 
 &:focus{
 	border-color: ${theme.color.accent.secondary}; 
@@ -226,9 +221,8 @@ overflow: hidden;
 display: flex; 
 flex-direction: column; 
 gap: 4px; 
-${
-	open &&
-	css`
+${open &&
+		css`
 background-color: ${theme.color.background.primary}; 
 border: 1px solid ${theme.color.line}; 
 border-top: none; 
@@ -236,17 +230,16 @@ border-bottom-right-radius: ${theme.borderRadius.sm};
 border-bottom-left-radius: ${theme.borderRadius.sm}; 
 padding: 8px;
 height: 200px; 
-${
-	loadingOrNoData &&
-	css`
+${loadingOrNoData &&
+			css`
 height: 50px; 
 align-items: center; 
 justify-content: center;
 `
-}
+			}
 box-shadow: ${theme.elevation.sm}; 
 `
-}
+		}
 `}
 `;
 
@@ -265,13 +258,12 @@ background-color: transparent;
 display: flex; 
 justify-content: flex-start; 
 &:hover {
-	${
-		clickable &&
+	${clickable &&
 		css`
 	cursor: pointer; 
 	background-color: ${theme.color.background.secondary}; 
 	`
-	}
+		}
 }
 `}
 `;
