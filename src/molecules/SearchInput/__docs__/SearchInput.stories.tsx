@@ -20,22 +20,34 @@ export default meta;
 type Story = StoryObj<typeof Example>;
 
 export const Default: Story = {
+	args: {},
+};
+
+export const Subtle: Story = {
 	args: {
-		placeholder: "Search here",
+		variant: "subtle",
+		size: "sm",
 	},
 };
 
-export const WithSearchOptions: Story = {
+export const Underlined: Story = {
 	args: {
-		searchSelect: {
-			onChangeSearchOption: (value: string) =>
-				console.log("new search optio", value),
-			options: [
-				{ icon: <div>YIcon</div>, label: "Youtube", value: "youtube" },
-				{ icon: <div>FIcon</div>, label: "Facebook", value: "facebook" },
-			],
-		},
-		width: "full",
-		mt: 32,
+		size: "xl",
+		variant: "underlined",
 	},
 };
+
+// export const WithSearchOptions: Story = {
+// 	args: {
+// 		searchSelect: {
+// 			onChangeSearchOption: (value: string) =>
+// 				console.log("new search optio", value),
+// 			options: [
+// 				{ icon: <div>YIcon</div>, label: "Youtube", value: "youtube" },
+// 				{ icon: <div>FIcon</div>, label: "Facebook", value: "facebook" },
+// 			],
+// 		},
+// 		width: "full",
+// 		mt: 32,
+// 	},
+// };

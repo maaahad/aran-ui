@@ -16,6 +16,9 @@ export type ComponentResponsiveProps = {
 	width?: ResponsiveProp<number | `${number}%` | "auto" | "full">;
 };
 
+export type ComponentVariant = "outlined" | "subtle" | "underlined";
+
+// TODO: (maaahad) restructure Component[state|size] as ComponentVariant
 export type ComponentState = {
 	state?: "info" | "warning" | "error";
 };

@@ -1,15 +1,51 @@
-import styled, { css } from "styled-components";
+import styled, { css, type DefaultTheme } from "styled-components";
+import { STYLES_CONFIG, getVariantConfig } from "../../config/styles";
 import { applyResponsiveCSS } from "../../utils/style";
-import type { ComponentResponsiveProps } from "../../utils/types";
+import type {
+	ComponentResponsiveProps,
+	ComponentSize,
+	ComponentVariant,
+} from "../../utils/types";
 
-// NOTE: (maaahad) compount pattern approach
+type ContainerProps = Omit<ComponentResponsiveProps, "pd"> &
+	Required<ComponentSize> & {
+		variant: ComponentVariant;
+		isDirty: boolean;
+	};
 
-export const Container = styled.div<Omit<ComponentResponsiveProps, "pd">>`
+const getVariantStyles = (theme: DefaultTheme, variant: ComponentVariant) => {
+	const variantConfig = getVariantConfig(theme)[variant];
+
+	console.log("variantconfig", variantConfig);
+	switch (variant) {
+		case "outlined": {
+			return css`
+				background-color: ${variantConfig.backgroundColor}; 
+				border: 1px solid ${variantConfig.line}; 
+`;
+		}
+		case "subtle": {
+			return css`
+				background-color: ${variantConfig.backgroundColor}; 
+				border: ${variantConfig.line}; 
+`;
+		}
+		case "underlined": {
+			return css`
+
+				background-color: ${variantConfig.backgroundColor}; 
+				border-bottom: 1px solid ${variantConfig.line}; 
+`;
+		}
+	}
+};
+
+export const Container = styled.div<ContainerProps>`
 ${applyResponsiveCSS}; 
 
-${({ theme }) => css`
-height: 48px; 
-// TODO: (maaahad) height should come from config on size
+${({ theme, size, variant, isDirty }) => css`
+${getVariantStyles(theme, variant)}; 
+height: ${STYLES_CONFIG[size].height}; 
 .inputContainer {
 	width: 100%; 
 	height: 100%; 
@@ -18,18 +54,37 @@ height: 48px;
 	flex-direction: row; 
 	align-items: center; 
 	justify-content: space-between; 
-	gap : 8px; 
-	padding: 8px; 
-	background-color: ${theme.color.background.secondary}; 
+	// left + icon size + gap
+        padding-left: calc(8px + 16px + 8px); 
+        padding-right: ${isDirty ? "calc(8px + 16px + 8px)" : "8px"}; 
+
+	.searchIconContainer, .closeIconContainer {
+		display: flex; 
+		align-items: center; 
+		justify-content: center;
+	}
+
+	.searchIconContainer {
+		position: absolute; 
+		left: 8px; 
+		top: 0; 
+		bottom: 0; 
+	}
+
+
+	.closeIconContainer {
+		position: absolute; 
+		right: 8px; 
+		top: 0; 
+		bottom: 0; 
+	}
 
 	& > input {
 		flex: 1; 
 		border: none; 
 		outline: none; 
 		height: 100%; 
-		// TODO: background color should be based on variant
-		background-color: ${theme.color.background.secondary}; 
-		padding: 0 4px; 
+		background-color: transparent; 
 	}
 }
 `}
@@ -78,11 +133,12 @@ align-items: center;
 	border: 1px solid ${theme.color.line};
 	border-right: 1px solid transparent; 
 	border-top-left-radius: ${theme.borderRadius.sm}; 
-	${!withDropdown &&
+	${
+		!withDropdown &&
 		css`
 	border-bottom-left-radius: ${theme.borderRadius.sm}; 
 	`
-		}
+	}
 }
 
 .searchSelectContainer:focus{
@@ -100,11 +156,12 @@ align-items: center;
 	border: 1px solid ${theme.color.line};
 	border-left: 1px solid transparent; 
 	border-top-right-radius: ${theme.borderRadius.sm};
-	${!withDropdown &&
+	${
+		!withDropdown &&
 		css`
 	border-bottom-right-radius: ${theme.borderRadius.sm}; 
 	`
-		}
+	}
 
 }
 
@@ -134,18 +191,20 @@ flex: 1;
 outline: none; 
 border: 1px solid ${theme.color.line};
 
-${!withSearchSelect &&
-		css`
+${
+	!withSearchSelect &&
+	css`
 border-radius: ${theme.borderRadius.sm}; 
 `
-		}
+}
 
-${withSearchResult &&
-		css`
+${
+	withSearchResult &&
+	css`
 border-bottom-left-radius: 0; 
 border-bottom-right-radius: 0; 
 `
-		}
+}
 
 &:focus{
 	border-color: ${theme.color.accent.secondary}; 
@@ -167,8 +226,9 @@ overflow: hidden;
 display: flex; 
 flex-direction: column; 
 gap: 4px; 
-${open &&
-		css`
+${
+	open &&
+	css`
 background-color: ${theme.color.background.primary}; 
 border: 1px solid ${theme.color.line}; 
 border-top: none; 
@@ -176,16 +236,17 @@ border-bottom-right-radius: ${theme.borderRadius.sm};
 border-bottom-left-radius: ${theme.borderRadius.sm}; 
 padding: 8px;
 height: 200px; 
-${loadingOrNoData &&
-			css`
+${
+	loadingOrNoData &&
+	css`
 height: 50px; 
 align-items: center; 
 justify-content: center;
 `
-			}
+}
 box-shadow: ${theme.elevation.sm}; 
 `
-		}
+}
 `}
 `;
 
@@ -204,12 +265,13 @@ background-color: transparent;
 display: flex; 
 justify-content: flex-start; 
 &:hover {
-	${clickable &&
+	${
+		clickable &&
 		css`
 	cursor: pointer; 
 	background-color: ${theme.color.background.secondary}; 
-`
-		}
+	`
+	}
 }
 `}
 `;

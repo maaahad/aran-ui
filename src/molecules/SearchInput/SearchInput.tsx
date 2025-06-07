@@ -1,3 +1,4 @@
+import cs from "classnames";
 import type React from "react";
 import {
 	type FC,
@@ -7,12 +8,14 @@ import {
 	useCallback,
 	useContext,
 } from "react";
+import { CloseLineIcon, SearchIcon } from "../../atoms";
 import type {
 	ComponentProps,
 	ComponentResponsiveProps,
+	ComponentSize,
+	ComponentVariant,
 } from "../../utils/types";
 import { Container } from "./SearchInput.styled";
-import cs from "classnames";
 
 /*
  * TODO:
@@ -22,9 +25,11 @@ import cs from "classnames";
  * */
 
 type Props = ComponentProps &
+	ComponentSize &
 	Omit<ComponentResponsiveProps, "pd"> & {
 		value?: string;
 		onInputValueChange: (value: string) => void;
+		variant?: ComponentVariant;
 	};
 
 type InputProps = ComponentProps & {
@@ -62,13 +67,24 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 
 	return (
 		<div className={cs(className, "inputContainer")}>
-			<div>left slot</div>
+			<div className="searchIconContainer">
+				{/* TODO: (maaahad) color should from theme */}
+				<SearchIcon size="md" />
+			</div>
 			<input
 				value={value}
 				onChange={handleInputValueChange}
 				placeholder={placeholder}
 			/>
-			<div>right slot</div>
+			{value && (
+				<div
+					onClick={() => onChange("")}
+					onKeyDown={() => {}}
+					className="closeIconContainer"
+				>
+					<CloseLineIcon size="md" />
+				</div>
+			)}
 		</div>
 	);
 };
@@ -79,8 +95,11 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 	className,
 	value,
 	onInputValueChange,
+	variant = "outlined",
+	size = "md",
 	...styleProps
 }) => {
+	console.log(variant);
 	return (
 		<SearchInputContext.Provider
 			value={{
@@ -88,7 +107,13 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 				onChange: onInputValueChange,
 			}}
 		>
-			<Container className={className} {...styleProps}>
+			<Container
+				className={className}
+				{...styleProps}
+				size={size}
+				variant={variant}
+				isDirty={!!value}
+			>
 				{children}
 			</Container>
 		</SearchInputContext.Provider>

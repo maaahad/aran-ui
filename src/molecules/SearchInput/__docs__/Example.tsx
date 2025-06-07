@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import type { ComponentProps, FC } from "react";
 import { CloseLineIcon, SearchIcon } from "../../../atoms";
+import { AranThemeProvider } from "../../../themes";
 import SearchInput from "../SearchInput";
 
 type Props = ComponentProps<typeof SearchInput.Root>;
@@ -24,7 +25,7 @@ const Data = [
 	},
 ];
 
-const Example: FC<Props> = (props) => {
+const Example: FC<Props> = ({ variant, size }) => {
 	const [query, setQuery] = useState<string>("");
 	console.log("new query", query);
 
@@ -34,6 +35,8 @@ const Example: FC<Props> = (props) => {
 			onInputValueChange={setQuery}
 			width="full"
 			mt={32}
+			variant={variant}
+			size={size}
 		>
 			<SearchInput.Input placeholder="Search here...." />
 		</SearchInput.Root>
