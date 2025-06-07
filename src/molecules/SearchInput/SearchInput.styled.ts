@@ -43,11 +43,23 @@ export const Container = styled.div<ContainerProps>`
 ${applyResponsiveCSS}; 
 
 ${({ theme, size, variant, isDirty }) => css`
-${getVariantStyles(theme, variant)}; 
-height: ${SIZE_STYLES_CONFIG[size].height}; 
+
+
+
+
 .inputContainer {
+	${getVariantStyles(theme, variant)}; 
+
+
+	${
+		variant !== "underlined" &&
+		css`
+	border-radius: ${SIZE_STYLES_CONFIG[size].borderRadius}; 
+	`
+	}
+
 	width: 100%; 
-	height: 100%; 
+	height: ${SIZE_STYLES_CONFIG[size].height}; 
 	position: relative; 
 	display: flex; 
 	flex-direction: row; 
@@ -72,6 +84,7 @@ height: ${SIZE_STYLES_CONFIG[size].height};
 
 
 	.closeIconContainer {
+		cursor: pointer; 
 		position: absolute; 
 		right: 8px; 
 		top: 0; 

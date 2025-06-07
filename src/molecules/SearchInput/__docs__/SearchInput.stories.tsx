@@ -20,19 +20,21 @@ export default meta;
 type Story = StoryObj<typeof Example>;
 
 export const Default: Story = {
-	args: {},
+	args: {
+		size: "lg",
+	},
 };
 
 export const Subtle: Story = {
 	args: {
 		variant: "subtle",
-		size: "sm",
+		size: "md",
 	},
 };
 
 export const Underlined: Story = {
 	args: {
-		size: "xl",
+		size: "lg",
 		variant: "underlined",
 	},
 };
