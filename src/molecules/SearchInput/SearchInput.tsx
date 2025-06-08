@@ -8,6 +8,7 @@ import {
 	useCallback,
 	useContext,
 } from "react";
+import { useTheme } from "styled-components";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
 import type {
 	ComponentProps,
@@ -56,6 +57,7 @@ const useSearchInputContext = () => {
 };
 
 const Input: FC<InputProps> = ({ className, placeholder }) => {
+	const theme = useTheme();
 	const { value, onChange } = useSearchInputContext();
 
 	const handleInputValueChange = useCallback(
@@ -65,11 +67,14 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 		[onChange],
 	);
 
+	if (!theme) {
+		throw new Error("component should be used within AranThemeProvider");
+	}
+
 	return (
 		<div className={cs(className, "inputContainer")}>
 			<div className="searchIconContainer">
-				{/* TODO: (maaahad) color should from theme */}
-				<SearchIcon size="md" />
+				<SearchIcon size="md" fill={theme.color.icon.secondary} />
 			</div>
 			<input
 				value={value}
@@ -82,7 +87,7 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 					onKeyDown={() => {}}
 					className="closeIconContainer"
 				>
-					<CloseLineIcon size="md" />
+					<CloseLineIcon size="md" fill={theme.color.icon.secondary} />
 				</div>
 			)}
 		</div>
