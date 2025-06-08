@@ -69,7 +69,7 @@ ${({ theme, size, variant, isDirty }) => css`
 	// left + icon size + gap
         padding-left: calc(8px + 16px + 8px); 
         padding-right: ${isDirty ? "calc(8px + 16px + 8px)" : "8px"}; 
-	transition: border-color .2s ease-in; 
+	transition: all .2s ease-in; 
 
 	.searchIconContainer, .closeIconContainer {
 		display: flex; 
@@ -109,6 +109,7 @@ ${({ theme, size, variant, isDirty }) => css`
 		`
 				: css`
 			border: 1px solid ${theme.color.accent.secondary}; 
+			box-shadow: ${theme.elevation.sm}; 
 		`
 		}
 	}
