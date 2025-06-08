@@ -26,13 +26,14 @@ const getVariantStyles = (theme: DefaultTheme, variant: ComponentVariant) => {
 		case "filled": {
 			return css`
 				background-color: ${variantConfig.backgroundColor}; 
-				border: ${variantConfig.line}; 
+				border: 1px solid ${variantConfig.line}; 
 `;
 		}
 		case "underlined": {
 			return css`
 
 				background-color: ${variantConfig.backgroundColor}; 
+				border: 1px solid transparent; 
 				border-bottom: 1px solid ${variantConfig.line}; 
 `;
 		}
@@ -68,6 +69,7 @@ ${({ theme, size, variant, isDirty }) => css`
 	// left + icon size + gap
         padding-left: calc(8px + 16px + 8px); 
         padding-right: ${isDirty ? "calc(8px + 16px + 8px)" : "8px"}; 
+	transition: border-color .2s ease-in; 
 
 	.searchIconContainer, .closeIconContainer {
 		display: flex; 
@@ -97,6 +99,18 @@ ${({ theme, size, variant, isDirty }) => css`
 		outline: none; 
 		height: 100%; 
 		background-color: transparent; 
+	}
+
+	&:hover {
+		${
+			variant === "underlined"
+				? css`
+			border-bottom: 1px solid ${theme.color.accent.secondary}; 
+		`
+				: css`
+			border: 1px solid ${theme.color.accent.secondary}; 
+		`
+		}
 	}
 }
 `}

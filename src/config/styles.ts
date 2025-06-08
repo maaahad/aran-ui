@@ -35,6 +35,7 @@ export const SIZE_STYLES_CONFIG: {
 	},
 };
 
+// TODO: (maaahad) we may not need this util and rely on theme only
 export const getVariantConfig = (
 	theme: DefaultTheme,
 ): {
