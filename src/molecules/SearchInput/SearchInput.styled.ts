@@ -23,7 +23,7 @@ const getVariantStyles = (theme: DefaultTheme, variant: ComponentVariant) => {
 				border: 1px solid ${variantConfig.line}; 
 `;
 		}
-		case "subtle": {
+		case "filled": {
 			return css`
 				background-color: ${variantConfig.backgroundColor}; 
 				border: ${variantConfig.line}; 

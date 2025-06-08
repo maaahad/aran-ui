@@ -48,7 +48,7 @@ export const getVariantConfig = (
 			backgroundColor: "transparent",
 			line: theme.color.line,
 		},
-		subtle: {
+		filled: {
 			backgroundColor: theme.color.background.secondary,
 			line: "transparent",
 		},
