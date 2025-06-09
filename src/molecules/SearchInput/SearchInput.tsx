@@ -1,6 +1,8 @@
 import {
 	autoUpdate,
 	flip,
+	FloatingFocusManager,
+	FloatingPortal,
 	size as floatingSize,
 	offset,
 	useFloating,
@@ -96,7 +98,7 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 			{value && (
 				<div
 					onClick={() => onChange("")}
-					onKeyDown={() => {}}
+					onKeyDown={() => { }}
 					className="closeIconContainer"
 				>
 					<CloseLineIcon size="md" fill={theme.color.icon.secondary} />
@@ -108,20 +110,25 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 
 const Dropdown: FC<PropsWithChildren> = ({ children }) => {
 	const {
-		floating: { refs, floatingStyles },
+		floating: { refs, floatingStyles, context },
 	} = useSearchInputContext();
 
+	// TODO: (maaahad) do we need to use FloatingPortal and FloatingFocusManager
 	return (
-		<div
-			ref={refs.setFloating}
-			style={{
-				...floatingStyles,
-				backgroundColor: "#cbcbcb",
-				padding: "8px",
-			}}
-		>
-			{children}
-		</div>
+		<FloatingPortal>
+			<FloatingFocusManager context={context} modal={false}>
+				<div
+					ref={refs.setFloating}
+					style={{
+						...floatingStyles,
+						backgroundColor: "#cbcbcb",
+						padding: "8px",
+					}}
+				>
+					{children}
+				</div>
+			</FloatingFocusManager>
+		</FloatingPortal>
 	);
 };
 
