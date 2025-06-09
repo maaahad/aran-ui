@@ -38,7 +38,11 @@ const Example: FC<Props> = ({ variant, size }) => {
 			size={size}
 		>
 			<SearchInput.Input placeholder="Search here...." />
-			<SearchInput.Dropdown />
+			<SearchInput.Dropdown>
+				<div>Item 1</div>
+				<div>Item 2</div>
+				<div>Item 3</div>
+			</SearchInput.Dropdown>
 		</SearchInput.Root>
 	);
 };

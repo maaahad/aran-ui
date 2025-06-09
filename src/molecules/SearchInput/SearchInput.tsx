@@ -1,15 +1,16 @@
+import { useFloating } from "@floating-ui/react";
 import cs from "classnames";
 import type React from "react";
 import {
 	type FC,
 	type PropsWithChildren,
-	type RefObject,
 	createContext,
 	memo,
 	useCallback,
 	useContext,
 	useRef,
 } from "react";
+import { useTheme } from "styled-components";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
 import type {
 	ComponentProps,
@@ -18,7 +19,6 @@ import type {
 	ComponentVariant,
 } from "../../utils/types";
 import { Container } from "./SearchInput.styled";
-import { useTheme } from "styled-components";
 
 /*
  * TODO:
@@ -42,7 +42,7 @@ type InputProps = ComponentProps & {
 type SearcInputContextType = {
 	value?: string;
 	onChange: (value: string) => void;
-	inputContainerRef: RefObject<HTMLDivElement>;
+	floating: ReturnType<typeof useFloating>;
 };
 
 const SearchInputContext = createContext<SearcInputContextType | null>(null);
@@ -61,7 +61,11 @@ const useSearchInputContext = () => {
 
 const Input: FC<InputProps> = ({ className, placeholder }) => {
 	const theme = useTheme();
-	const { value, onChange, inputContainerRef } = useSearchInputContext();
+	const {
+		value,
+		onChange,
+		floating: { refs },
+	} = useSearchInputContext();
 
 	const handleInputValueChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +79,7 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 	}
 
 	return (
-		<div className={cs(className, "inputContainer")} ref={inputContainerRef}>
+		<div className={cs(className, "inputContainer")} ref={refs.setReference}>
 			<div className="searchIconContainer">
 				<SearchIcon size="md" fill={theme.color.icon.secondary} />
 			</div>
@@ -98,11 +102,15 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 };
 
 const Dropdown: FC<PropsWithChildren> = ({ children }) => {
-	const { inputContainerRef } = useSearchInputContext();
+	const {
+		floating: { refs, floatingStyles },
+	} = useSearchInputContext();
 
-	console.log("inputcontainerRef", inputContainerRef);
-
-	return <div>{children}</div>;
+	return (
+		<div ref={refs.setFloating} style={floatingStyles}>
+			{children}
+		</div>
+	);
 };
 
 // TODO: (maaahad) Should it be renamed to combobox
@@ -115,13 +123,14 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 	size = "md",
 	...styleProps
 }) => {
-	const inputContainerRef = useRef<HTMLDivElement>(null);
+	const floating = useFloating();
+
 	return (
 		<SearchInputContext.Provider
 			value={{
 				value,
 				onChange: onInputValueChange,
-				inputContainerRef,
+				floating,
 			}}
 		>
 			{/* TODO: (maaahad) do we need this additional div wrapper */}
