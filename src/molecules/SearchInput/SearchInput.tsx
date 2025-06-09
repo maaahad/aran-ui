@@ -3,12 +3,13 @@ import type React from "react";
 import {
 	type FC,
 	type PropsWithChildren,
+	type RefObject,
 	createContext,
 	memo,
 	useCallback,
 	useContext,
+	useRef,
 } from "react";
-import { useTheme } from "styled-components";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
 import type {
 	ComponentProps,
@@ -17,6 +18,7 @@ import type {
 	ComponentVariant,
 } from "../../utils/types";
 import { Container } from "./SearchInput.styled";
+import { useTheme } from "styled-components";
 
 /*
  * TODO:
@@ -40,6 +42,7 @@ type InputProps = ComponentProps & {
 type SearcInputContextType = {
 	value?: string;
 	onChange: (value: string) => void;
+	inputContainerRef: RefObject<HTMLDivElement>;
 };
 
 const SearchInputContext = createContext<SearcInputContextType | null>(null);
@@ -58,7 +61,7 @@ const useSearchInputContext = () => {
 
 const Input: FC<InputProps> = ({ className, placeholder }) => {
 	const theme = useTheme();
-	const { value, onChange } = useSearchInputContext();
+	const { value, onChange, inputContainerRef } = useSearchInputContext();
 
 	const handleInputValueChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,7 +75,7 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 	}
 
 	return (
-		<div className={cs(className, "inputContainer")}>
+		<div className={cs(className, "inputContainer")} ref={inputContainerRef}>
 			<div className="searchIconContainer">
 				<SearchIcon size="md" fill={theme.color.icon.secondary} />
 			</div>
@@ -84,7 +87,7 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 			{value && (
 				<div
 					onClick={() => onChange("")}
-					onKeyDown={() => {}}
+					onKeyDown={() => { }}
 					className="closeIconContainer"
 				>
 					<CloseLineIcon size="md" fill={theme.color.icon.secondary} />
@@ -92,6 +95,14 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 			)}
 		</div>
 	);
+};
+
+const Dropdown: FC<PropsWithChildren> = ({ children }) => {
+	const { inputContainerRef } = useSearchInputContext();
+
+	console.log("inputcontainerRef", inputContainerRef);
+
+	return <div>{children}</div>;
 };
 
 // TODO: (maaahad) Should it be renamed to combobox
@@ -104,14 +115,16 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 	size = "md",
 	...styleProps
 }) => {
-	console.log(variant);
+	const inputContainerRef = useRef<HTMLDivElement>(null);
 	return (
 		<SearchInputContext.Provider
 			value={{
 				value,
 				onChange: onInputValueChange,
+				inputContainerRef,
 			}}
 		>
+			{/* TODO: (maaahad) do we need this additional div wrapper */}
 			<Container
 				className={className}
 				{...styleProps}
@@ -128,6 +141,7 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 export default {
 	Root: memo(SearchInput),
 	Input: memo(Input),
+	Dropdown: memo(Dropdown),
 };
 
 // import cs from "classnames";

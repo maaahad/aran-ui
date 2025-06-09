@@ -27,7 +27,6 @@ const Data = [
 
 const Example: FC<Props> = ({ variant, size }) => {
 	const [query, setQuery] = useState<string>("");
-	console.log("new query", query);
 
 	return (
 		<SearchInput.Root
@@ -39,6 +38,7 @@ const Example: FC<Props> = ({ variant, size }) => {
 			size={size}
 		>
 			<SearchInput.Input placeholder="Search here...." />
+			<SearchInput.Dropdown />
 		</SearchInput.Root>
 	);
 };
