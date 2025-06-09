@@ -1,12 +1,14 @@
 import {
-	autoUpdate,
-	flip,
 	FloatingFocusManager,
 	FloatingPortal,
+	autoUpdate,
+	flip,
 	size as floatingSize,
 	offset,
 	useFloating,
+	useInteractions,
 } from "@floating-ui/react";
+import { useClick } from "@floating-ui/react";
 import cs from "classnames";
 import type React from "react";
 import {
@@ -16,6 +18,7 @@ import {
 	memo,
 	useCallback,
 	useContext,
+	useState,
 } from "react";
 import { useTheme } from "styled-components";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
@@ -50,6 +53,8 @@ type SearcInputContextType = {
 	value?: string;
 	onChange: (value: string) => void;
 	floating: ReturnType<typeof useFloating>;
+	interactions: ReturnType<typeof useInteractions>;
+	isOpen: boolean;
 };
 
 const SearchInputContext = createContext<SearcInputContextType | null>(null);
@@ -72,6 +77,7 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 		value,
 		onChange,
 		floating: { refs },
+		interactions: { getReferenceProps },
 	} = useSearchInputContext();
 
 	const handleInputValueChange = useCallback(
@@ -86,7 +92,11 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 	}
 
 	return (
-		<div className={cs(className, "inputContainer")} ref={refs.setReference}>
+		<div
+			className={cs(className, "inputContainer")}
+			ref={refs.setReference}
+			{...getReferenceProps()}
+		>
 			<div className="searchIconContainer">
 				<SearchIcon size="md" fill={theme.color.icon.secondary} />
 			</div>
@@ -98,7 +108,7 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 			{value && (
 				<div
 					onClick={() => onChange("")}
-					onKeyDown={() => { }}
+					onKeyDown={() => {}}
 					className="closeIconContainer"
 				>
 					<CloseLineIcon size="md" fill={theme.color.icon.secondary} />
@@ -111,24 +121,16 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 const Dropdown: FC<PropsWithChildren> = ({ children }) => {
 	const {
 		floating: { refs, floatingStyles, context },
+		isOpen,
 	} = useSearchInputContext();
 
-	// TODO: (maaahad) do we need to use FloatingPortal and FloatingFocusManager
+	if (!isOpen) return;
 	return (
-		<FloatingPortal>
-			<FloatingFocusManager context={context} modal={false}>
-				<div
-					ref={refs.setFloating}
-					style={{
-						...floatingStyles,
-						backgroundColor: "#cbcbcb",
-						padding: "8px",
-					}}
-				>
-					{children}
-				</div>
-			</FloatingFocusManager>
-		</FloatingPortal>
+		<FloatingFocusManager context={context} modal={false}>
+			<div ref={refs.setFloating} style={floatingStyles} className="dropdown">
+				{children}
+			</div>
+		</FloatingFocusManager>
 	);
 };
 
@@ -142,7 +144,11 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 	size = "md",
 	...styleProps
 }) => {
+	// TODO: (maaahad) isOpen should also be controlled by client, for ex. when there are data to be rendered in dropdown
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const floating = useFloating({
+		open: isOpen,
+		onOpenChange: setIsOpen,
 		whileElementsMounted: autoUpdate,
 		middleware: [
 			offset(0),
@@ -158,12 +164,18 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 		],
 	});
 
+	const interactions = useInteractions([
+		useClick(floating.context, { event: "mousedown" }),
+	]);
+
 	return (
 		<SearchInputContext.Provider
 			value={{
 				value,
 				onChange: onInputValueChange,
 				floating,
+				interactions,
+				isOpen,
 			}}
 		>
 			{/* TODO: (maaahad) do we need this additional div wrapper */}

@@ -45,9 +45,6 @@ ${applyResponsiveCSS};
 
 ${({ theme, size, variant, isDirty }) => css`
 
-
-
-
 .inputContainer {
 	${getVariantStyles(theme, variant)}; 
 
@@ -113,6 +110,18 @@ ${({ theme, size, variant, isDirty }) => css`
 		`
 		}
 	}
+}
+
+.dropdown {
+	// NOTE: (maaahad) height should be adjusted later
+	height: 200px; 
+	padding: 8px; 
+	// background-color: ${theme.color.background.secondary}; 
+	border: 1px solid ${theme.color.line}; 
+	border-top: none; 
+	border-bottom-right-radius: ${SIZE_STYLES_CONFIG[size].borderRadius}; 
+	border-bottom-left-radius: ${SIZE_STYLES_CONFIG[size].borderRadius}; 
+	box-shadow: ${theme.elevation.sm}; 
 }
 `}
 
@@ -243,7 +252,7 @@ border-bottom-right-radius: 0;
 `}
 `;
 
-export const DropdownContainer = styled.div<{
+export const DropdownContainerOld = styled.div<{
 	open: boolean;
 	loadingOrNoData: boolean;
 }>`
@@ -278,10 +287,10 @@ box-shadow: ${theme.elevation.sm};
 `;
 
 export const StateStyled = styled.div`
-height: 100%; 
-display: flex; 
-align-items: center; 
-justify-content: center;
+height: 100 %;
+display: flex;
+align - items: center;
+justify - content: center;
 `;
 
 export const DropdownOptionContainer = styled.button<{ clickable: boolean }>`
