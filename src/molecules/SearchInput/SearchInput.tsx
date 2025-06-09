@@ -1,4 +1,10 @@
-import { useFloating } from "@floating-ui/react";
+import {
+	autoUpdate,
+	flip,
+	size as floatingSize,
+	offset,
+	useFloating,
+} from "@floating-ui/react";
 import cs from "classnames";
 import type React from "react";
 import {
@@ -8,7 +14,6 @@ import {
 	memo,
 	useCallback,
 	useContext,
-	useRef,
 } from "react";
 import { useTheme } from "styled-components";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
@@ -91,7 +96,7 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 			{value && (
 				<div
 					onClick={() => onChange("")}
-					onKeyDown={() => { }}
+					onKeyDown={() => {}}
 					className="closeIconContainer"
 				>
 					<CloseLineIcon size="md" fill={theme.color.icon.secondary} />
@@ -107,7 +112,14 @@ const Dropdown: FC<PropsWithChildren> = ({ children }) => {
 	} = useSearchInputContext();
 
 	return (
-		<div ref={refs.setFloating} style={floatingStyles}>
+		<div
+			ref={refs.setFloating}
+			style={{
+				...floatingStyles,
+				backgroundColor: "#cbcbcb",
+				padding: "8px",
+			}}
+		>
 			{children}
 		</div>
 	);
@@ -123,7 +135,21 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 	size = "md",
 	...styleProps
 }) => {
-	const floating = useFloating();
+	const floating = useFloating({
+		whileElementsMounted: autoUpdate,
+		middleware: [
+			offset(0),
+			flip(),
+			floatingSize({
+				apply({ rects, availableHeight, elements }) {
+					Object.assign(elements.floating.style, {
+						maxHeight: `${availableHeight}px`,
+						minWidth: `${rects.reference.width}px`,
+					});
+				},
+			}),
+		],
+	});
 
 	return (
 		<SearchInputContext.Provider
