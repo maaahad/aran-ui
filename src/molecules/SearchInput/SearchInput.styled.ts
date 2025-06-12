@@ -11,22 +11,42 @@ type ContainerProps = Omit<ComponentResponsiveProps, "pd"> &
 	Required<ComponentSize> & {
 		variant: ComponentVariant;
 		isDirty: boolean;
+		isDropdownOpen: boolean;
 	};
 
-const getVariantStyles = (theme: DefaultTheme, variant: ComponentVariant) => {
+const getVariantStyles = (
+	theme: DefaultTheme,
+	variant: ComponentVariant,
+	isDropdownOpen: boolean,
+) => {
 	const variantConfig = getVariantConfig(theme)[variant];
+	console.log("open", isDropdownOpen);
 
 	switch (variant) {
 		case "outlined": {
 			return css`
 				background-color: ${variantConfig.backgroundColor}; 
 				border: 1px solid ${variantConfig.line}; 
+				${
+					isDropdownOpen &&
+					css`
+				border-bottom-left-radius: 0; 
+				border-bottom-right-radius: 0; 
+				`
+				}
 `;
 		}
 		case "filled": {
 			return css`
 				background-color: ${variantConfig.backgroundColor}; 
 				border: 1px solid ${variantConfig.line}; 
+
+				${
+					isDropdownOpen &&
+					css`
+
+				`
+				}
 `;
 		}
 		case "underlined": {
@@ -35,6 +55,13 @@ const getVariantStyles = (theme: DefaultTheme, variant: ComponentVariant) => {
 				background-color: ${variantConfig.backgroundColor}; 
 				border: 1px solid transparent; 
 				border-bottom: 1px solid ${variantConfig.line}; 
+
+				${
+					isDropdownOpen &&
+					css`
+
+				`
+				}
 `;
 		}
 	}
@@ -43,17 +70,16 @@ const getVariantStyles = (theme: DefaultTheme, variant: ComponentVariant) => {
 export const Container = styled.div<ContainerProps>`
 ${applyResponsiveCSS}; 
 
-${({ theme, size, variant, isDirty }) => css`
+${({ theme, size, variant, isDirty, isDropdownOpen }) => css`
 
 .inputContainer {
-	${getVariantStyles(theme, variant)}; 
 
-
-	${variant !== "underlined" &&
+	${
+		variant !== "underlined" &&
 		css`
 	border-radius: ${SIZE_STYLES_CONFIG[size].borderRadius}; 
 	`
-		}
+	}
 
 	width: 100%; 
 	height: ${SIZE_STYLES_CONFIG[size].height}; 
@@ -98,16 +124,19 @@ ${({ theme, size, variant, isDirty }) => css`
 	}
 
 	&:hover {
-		${variant === "underlined"
-			? css`
+		${
+			variant === "underlined"
+				? css`
 			border-bottom: 1px solid ${theme.color.accent.secondary}; 
 		`
-			: css`
+				: css`
 			border: 1px solid ${theme.color.accent.secondary}; 
 			box-shadow: ${theme.elevation.sm}; 
 		`
 		}
 	}
+
+	${getVariantStyles(theme, variant, isDropdownOpen)}; 
 }
 
 .dropdown {
@@ -167,11 +196,12 @@ align-items: center;
 	border: 1px solid ${theme.color.line};
 	border-right: 1px solid transparent; 
 	border-top-left-radius: ${theme.borderRadius.sm}; 
-	${!withDropdown &&
+	${
+		!withDropdown &&
 		css`
 	border-bottom-left-radius: ${theme.borderRadius.sm}; 
 	`
-		}
+	}
 }
 
 .searchSelectContainer:focus{
@@ -189,11 +219,12 @@ align-items: center;
 	border: 1px solid ${theme.color.line};
 	border-left: 1px solid transparent; 
 	border-top-right-radius: ${theme.borderRadius.sm};
-	${!withDropdown &&
+	${
+		!withDropdown &&
 		css`
 	border-bottom-right-radius: ${theme.borderRadius.sm}; 
 	`
-		}
+	}
 
 }
 
@@ -223,18 +254,20 @@ flex: 1;
 outline: none; 
 border: 1px solid ${theme.color.line};
 
-${!withSearchSelect &&
-		css`
+${
+	!withSearchSelect &&
+	css`
 border-radius: ${theme.borderRadius.sm}; 
 `
-		}
+}
 
-${withSearchResult &&
-		css`
+${
+	withSearchResult &&
+	css`
 border-bottom-left-radius: 0; 
 border-bottom-right-radius: 0; 
 `
-		}
+}
 
 &:focus{
 	border-color: ${theme.color.accent.secondary}; 
@@ -256,8 +289,9 @@ overflow: hidden;
 display: flex; 
 flex-direction: column; 
 gap: 4px; 
-${open &&
-		css`
+${
+	open &&
+	css`
 background-color: ${theme.color.background.primary}; 
 border: 1px solid ${theme.color.line}; 
 border-top: none; 
@@ -265,16 +299,17 @@ border-bottom-right-radius: ${theme.borderRadius.sm};
 border-bottom-left-radius: ${theme.borderRadius.sm}; 
 padding: 8px;
 height: 200px; 
-${loadingOrNoData &&
-			css`
+${
+	loadingOrNoData &&
+	css`
 height: 50px; 
 align-items: center; 
 justify-content: center;
 `
-			}
+}
 box-shadow: ${theme.elevation.sm}; 
 `
-		}
+}
 `}
 `;
 
@@ -293,12 +328,13 @@ background-color: transparent;
 display: flex; 
 justify-content: flex-start; 
 &:hover {
-	${clickable &&
+	${
+		clickable &&
 		css`
 	cursor: pointer; 
 	background-color: ${theme.color.background.secondary}; 
 	`
-		}
+	}
 }
 `}
 `;

@@ -19,13 +19,13 @@ export default meta;
 
 type Story = StoryObj<typeof Example>;
 
-export const Default: Story = {
+export const Outlined: Story = {
 	args: {
 		size: "lg",
 	},
 };
 
-export const Subtle: Story = {
+export const Filled: Story = {
 	args: {
 		variant: "filled",
 		size: "md",

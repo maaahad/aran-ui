@@ -1,14 +1,13 @@
 import {
 	FloatingFocusManager,
-	FloatingPortal,
 	autoUpdate,
 	flip,
 	size as floatingSize,
 	offset,
 	useFloating,
+	useFocus,
 	useInteractions,
 } from "@floating-ui/react";
-import { useClick } from "@floating-ui/react";
 import cs from "classnames";
 import type React from "react";
 import {
@@ -164,9 +163,7 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 		],
 	});
 
-	const interactions = useInteractions([
-		useClick(floating.context, { event: "mousedown" }),
-	]);
+	const interactions = useInteractions([useFocus(floating.context)]);
 
 	return (
 		<SearchInputContext.Provider
@@ -185,6 +182,7 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 				size={size}
 				variant={variant}
 				isDirty={!!value}
+				isDropdownOpen={isOpen}
 			>
 				{children}
 			</Container>
