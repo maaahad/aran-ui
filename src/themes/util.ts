@@ -42,6 +42,13 @@ export const getTheme = (theme: ThemeMode): DefaultTheme => {
 	return {
 		color: getColorToken(theme),
 		breakpoints: Breakpoints,
+		borderRadius: {
+			xs: "2px",
+			sm: "4px",
+			md: "6px",
+			lg: "8px",
+			xl: "12px",
+		},
 		elevation: {
 			sm: "0px 1px 2px rgba(0, 0, 0, 0.1)",
 			md: "0px 2px 8px rgba(0, 0, 0, 0.16),0px 0px 2px rgba(0, 0, 0, 0.16)",
