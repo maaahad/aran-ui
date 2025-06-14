@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import type { ComponentProps, FC } from "react";
 import { CloseLineIcon, SearchIcon } from "../../../atoms";
 import { AranThemeProvider } from "../../../themes";
@@ -27,15 +27,37 @@ const Data = [
 
 const Example: FC<Props> = ({ variant, size }) => {
 	const [query, setQuery] = useState<string>("");
+	const [items, setItems] = useState<string[]>([]);
+	const [isOpen, setIsOpen] = useState(items.length > 1);
+
+	const handleQueryChange = useCallback((value: string) => {
+		setQuery(value);
+		// NOTE: (maaahad) testing for query 'aa'
+		if (value === "aa") {
+			setItems(["item1", "item2", "item3", "item4"]);
+		} else {
+			setItems([]);
+		}
+	}, []);
+
+	useEffect(() => {
+		// NOTE: (maaahad) testing for query 'aa'
+		if (items.length > 0) {
+			setIsOpen(true);
+		} else {
+			setIsOpen(false);
+		}
+	}, [items.length]);
 
 	return (
 		<SearchInput.Root
 			value={query}
-			onInputValueChange={setQuery}
+			onInputValueChange={handleQueryChange}
 			width="full"
 			mt={32}
 			variant={variant}
 			size={size}
+			open={isOpen}
 		>
 			<SearchInput.Input placeholder="Search here...." />
 			<SearchInput.Dropdown>

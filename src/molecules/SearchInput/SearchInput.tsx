@@ -17,7 +17,6 @@ import {
 	memo,
 	useCallback,
 	useContext,
-	useState,
 } from "react";
 import { useTheme } from "styled-components";
 import { CloseLineIcon, SearchIcon } from "../../atoms";
@@ -42,6 +41,7 @@ type Props = ComponentProps &
 		value?: string;
 		onInputValueChange: (value: string) => void;
 		variant?: ComponentVariant;
+		open?: boolean;
 	};
 
 type InputProps = ComponentProps & {
@@ -91,11 +91,7 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 	}
 
 	return (
-		<div
-			className={cs(className, "inputContainer")}
-			ref={refs.setReference}
-			{...getReferenceProps()}
-		>
+		<div className={cs(className, "inputContainer")} ref={refs.setReference}>
 			<div className="searchIconContainer">
 				<SearchIcon size="md" fill={theme.color.icon.secondary} />
 			</div>
@@ -141,13 +137,13 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 	onInputValueChange,
 	variant = "outlined",
 	size = "md",
+	open = false, // NOTE: (maaahad) this is necessary?!! to control container style
 	...styleProps
 }) => {
-	// TODO: (maaahad) isOpen should also be controlled by client, for ex. when there are data to be rendered in dropdown
-	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const floating = useFloating({
-		open: isOpen,
-		onOpenChange: setIsOpen,
+		// TODO: use it if we want to use SearchInput.Input as dropdownControl
+		// open,
+		// onOpenChange,
 		whileElementsMounted: autoUpdate,
 		middleware: [
 			offset(0),
@@ -172,7 +168,7 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 				onChange: onInputValueChange,
 				floating,
 				interactions,
-				isOpen,
+				isOpen: open,
 			}}
 		>
 			{/* TODO: (maaahad) do we need this additional div wrapper */}
@@ -182,7 +178,7 @@ const SearchInput: FC<PropsWithChildren<Props>> = ({
 				size={size}
 				variant={variant}
 				isDirty={!!value}
-				isDropdownOpen={isOpen}
+				isDropdownOpen={open}
 			>
 				{children}
 			</Container>
