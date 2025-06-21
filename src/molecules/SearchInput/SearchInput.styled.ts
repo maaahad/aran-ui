@@ -152,7 +152,6 @@ ${({ theme, size, variant, isDirty, isDropdownOpen }) => css`
 `}
 
 `;
-
 //FIXME: (maaahad) all abslute value should come from config. for ex. padding, width, height etc
 // FIXME: (maaahad) add border radius in theme and used instead of hardcoded value
 // NOTE: (maaahad) height comes from config based on size prop
