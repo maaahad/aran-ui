@@ -112,15 +112,15 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 	);
 };
 
-const DropdownItem: FC<PropsWithChildren<{ onClick?: () => void }>> = ({
-	children,
-	onClick,
-}) => {
+const DropdownItem: FC<
+	PropsWithChildren<{ onClick?: () => void; className?: string }>
+> = ({ children, onClick, className }) => {
 	return (
 		<DropdownItemContainer
 			onClick={onClick}
 			onKeyDown={() => {}}
 			clickable={!!onClick}
+			className={className}
 		>
 			{children}
 		</DropdownItemContainer>

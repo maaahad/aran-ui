@@ -84,7 +84,15 @@ const Example: FC<Props> = ({ variant, size }) => {
 						setItems([]);
 					}}
 				>
-					Item 3
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "column",
+						}}
+					>
+						<div>item 3</div>
+						<div>Description</div>
+					</div>
 				</SearchInput.DropdownItem>
 			</SearchInput.Dropdown>
 		</SearchInput.Root>
