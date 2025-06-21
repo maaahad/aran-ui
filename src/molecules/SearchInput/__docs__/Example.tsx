@@ -61,54 +61,34 @@ const Example: FC<Props> = ({ variant, size }) => {
 		>
 			<SearchInput.Input placeholder="Search here...." />
 			<SearchInput.Dropdown>
-				<div>Item 1</div>
-				<div>Item 2</div>
-				<div>Item 3</div>
+				<SearchInput.DropdownItem
+					onClick={() => {
+						setQuery("");
+						setItems([]);
+					}}
+				>
+					Item 1
+				</SearchInput.DropdownItem>
+
+				<SearchInput.DropdownItem
+					onClick={() => {
+						setQuery("");
+						setItems([]);
+					}}
+				>
+					Item 2
+				</SearchInput.DropdownItem>
+				<SearchInput.DropdownItem
+					onClick={() => {
+						setQuery("");
+						setItems([]);
+					}}
+				>
+					Item 3
+				</SearchInput.DropdownItem>
 			</SearchInput.Dropdown>
 		</SearchInput.Root>
 	);
 };
 
-// const Example: FC<Props> = ({ searchSelect, ...restProps }) => {
-// 	const [searchOn, setSearchOn] = useState(searchSelect?.options[0].value);
-// 	const [searchQuery, setSearchQuery] = useState<string>("");
-//
-// 	const [searchResults, setSearchResults] =
-// 		useState<Required<Props>["dropdown"]["options"]>();
-//
-// 	const handleSearchQueryChange = useCallback((query: string) => {
-// 		setSearchQuery(query);
-// 		if (!query) setSearchResults(undefined);
-// 		else
-// 			setSearchResults(
-// 				Data.filter((d) =>
-// 					d.title.toLowerCase().includes(query.toLowerCase()),
-// 				).map((d, index) => ({
-// 					label: d.title,
-// 					value: d.id,
-// 					disabled: index % 2 === 0,
-// 					...d,
-// 				})),
-// 			);
-// 	}, []);
-//
-// 	return (
-// 		<SearchInput
-// 			{...restProps}
-// 			searchSelect={
-// 				searchSelect
-// 					? { ...searchSelect, onChangeSearchOption: setSearchOn }
-// 					: undefined
-// 			}
-// 			value={searchQuery}
-// 			onChange={handleSearchQueryChange}
-// 			dropdown={{
-// 				options: searchResults,
-// 				loading: false,
-// 				onSelect: (value, option) => console.log("selected : ", value, option),
-// 			}}
-// 		/>
-// 	);
-// };
-//
 export default Example;

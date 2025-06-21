@@ -26,9 +26,8 @@ const getVariantStyles = (
 			return css`
 				background-color: ${variantConfig.backgroundColor}; 
 				border: 1px solid ${variantConfig.line}; 
-				${
-					isDropdownOpen &&
-					css`
+				${isDropdownOpen &&
+				css`
 				border-bottom-left-radius: 0; 
 				border-bottom-right-radius: 0; 
 				`
@@ -40,9 +39,8 @@ const getVariantStyles = (
 				background-color: ${variantConfig.backgroundColor}; 
 				border: 1px solid ${variantConfig.line}; 
 
-				${
-					isDropdownOpen &&
-					css`
+				${isDropdownOpen &&
+				css`
 				border-bottom-left-radius: 0; 
 				border-bottom-right-radius: 0; 
 				`
@@ -56,9 +54,8 @@ const getVariantStyles = (
 				border: 1px solid transparent; 
 				border-bottom: 1px solid ${variantConfig.line}; 
 
-				${
-					isDropdownOpen &&
-					css`
+				${isDropdownOpen &&
+				css`
 				`
 				}
 `;
@@ -73,12 +70,11 @@ ${({ theme, size, variant, isDirty, isDropdownOpen }) => css`
 
 .inputContainer {
 
-	${
-		variant !== "underlined" &&
+	${variant !== "underlined" &&
 		css`
 	border-radius: ${SIZE_STYLES_CONFIG[size].borderRadius}; 
 	`
-	}
+		}
 
 	width: 100%; 
 	height: ${SIZE_STYLES_CONFIG[size].height}; 
@@ -123,12 +119,11 @@ ${({ theme, size, variant, isDirty, isDropdownOpen }) => css`
 	}
 
 	&:hover {
-		${
-			variant === "underlined"
-				? css`
+		${variant === "underlined"
+			? css`
 			border-bottom: 1px solid ${theme.color.accent.secondary}; 
 		`
-				: css`
+			: css`
 			border: 1px solid ${theme.color.accent.secondary}; 
 			box-shadow: ${theme.elevation.sm}; 
 		`
@@ -141,14 +136,31 @@ ${({ theme, size, variant, isDirty, isDropdownOpen }) => css`
 .dropdown {
 	// NOTE: (maaahad) height should be adjusted later
 	height: 200px; 
-	padding: 8px; 
-	// background-color: ${theme.color.background.secondary}; 
+	padding: 4px 0 8px 0; 
 	border: 1px solid ${theme.color.line}; 
 	border-top: none; 
 	border-bottom-right-radius: ${SIZE_STYLES_CONFIG[size].borderRadius}; 
 	border-bottom-left-radius: ${SIZE_STYLES_CONFIG[size].borderRadius}; 
 	box-shadow: ${theme.elevation.sm}; 
+	display: flex; 
+	flex-direction: column; 
+	gap: 4px; 
 }
+
 `}
 
+`;
+
+export const DropdownItemContainer = styled.div<{ clickable: boolean }>`
+${({ theme, clickable }) => css`
+	padding: 8px; 
+	${clickable &&
+		css`
+	cursor: pointer; 
+	`
+		}
+	&:hover {
+		background-color: ${theme.color.background.secondary}; 
+	}
+`}
 `;

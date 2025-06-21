@@ -26,7 +26,7 @@ import type {
 	ComponentSize,
 	ComponentVariant,
 } from "../../utils/types";
-import { Container } from "./SearchInput.styled";
+import { Container, DropdownItemContainer } from "./SearchInput.styled";
 
 /*
  * TODO:
@@ -112,6 +112,21 @@ const Input: FC<InputProps> = ({ className, placeholder }) => {
 	);
 };
 
+const DropdownItem: FC<PropsWithChildren<{ onClick?: () => void }>> = ({
+	children,
+	onClick,
+}) => {
+	return (
+		<DropdownItemContainer
+			onClick={onClick}
+			onKeyDown={() => {}}
+			clickable={!!onClick}
+		>
+			{children}
+		</DropdownItemContainer>
+	);
+};
+
 const Dropdown: FC<PropsWithChildren> = ({ children }) => {
 	const {
 		floating: { refs, floatingStyles, context },
@@ -189,4 +204,5 @@ export default {
 	Root: memo(SearchInput),
 	Input: memo(Input),
 	Dropdown: memo(Dropdown),
+	DropdownItem: memo(DropdownItem),
 };
