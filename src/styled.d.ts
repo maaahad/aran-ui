@@ -42,6 +42,9 @@ declare module "styled-components" {
 				[Property in "xs" | "sm" | "md" | "lg" | "xl"]: number;
 			};
 		};
+		borderRadius: {
+			[Property in "xs" | "sm" | "md" | "lg" | "xl"]: `${number}px`;
+		};
 		//  borderRadius, transition, font, size, zIndex, ... ...
 		elevation: {
 			[Property in "sm" | "md" | "lg"]: string;

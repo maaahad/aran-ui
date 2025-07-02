@@ -1,10 +1,13 @@
 import type { PropsWithChildren, ReactNode } from "react";
 import React from "react";
-import type { ComponentProps, ResponsiveProps } from "../../utils/types";
+import type {
+	ComponentProps,
+	ComponentResponsiveProps,
+} from "../../utils/types";
 import { Body, CardContainer, Slot } from "./styled";
 
 type Props = ComponentProps &
-	ResponsiveProps & {
+	ComponentResponsiveProps & {
 		// className
 		headerClassName?: string;
 		bodyClasName?: string;

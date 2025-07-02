@@ -75,5 +75,9 @@
 	},
 	"peerDependencies": {
 		"react": "^19.0.0"
+	},
+	"dependencies": {
+		"@floating-ui/react": "^0.27.12",
+		"classnames": "^2.5.1"
 	}
 }
