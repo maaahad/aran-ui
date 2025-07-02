@@ -1,32 +1,37 @@
 import React from "react";
-import type { FC } from "react";
-import { Button, type ButtonProps } from "../Button";
+import type { FC, ComponentProps } from "react";
+import { Button, type Props } from "../Button";
 
-const Example: FC<ButtonProps> = ({
+const Example: FC<
+	Omit<ComponentProps<typeof Button>, "onClick" | "children">
+> = ({
 	disabled = false,
-	onClick = () => {},
-	primary = true,
-	size = "small",
-	text = "Button",
+	// onClick = () => { },
+	size = "md",
+	variant = "filled",
+	loading,
+	loadingText,
 }) => {
-	return (
-		<div
-			style={{
-				display: "flex",
-				justifyContent: "center",
-				alignItems: "center",
-				height: "100%",
-			}}
-		>
-			<Button
-				size={size}
-				text={text}
-				disabled={disabled}
-				onClick={onClick}
-				primary={primary}
-			/>
-		</div>
-	);
-};
+		return (
+			<div
+				style={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					height: "100%",
+				}}
+			>
+				<Button
+					disabled={disabled}
+					size={size}
+					variant={variant}
+					loading={loading}
+					loadingText={loadingText}
+				>
+					Button
+				</Button>
+			</div>
+		);
+	};
 
 export default Example;

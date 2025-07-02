@@ -18,21 +18,33 @@ const meta: Meta<typeof Example> = {
 export default meta;
 type Story = StoryObj<typeof Example>;
 
-export const Primary: Story = {
+export const Filled: Story = {
 	args: {
-		text: "Button",
-		primary: true,
 		disabled: false,
-		size: "small",
-		onClick: () => console.log("Button"),
+		size: "sm",
 	},
 };
-export const Secondary: Story = {
+export const Outlined: Story = {
 	args: {
-		text: "Button",
-		primary: false,
+		variant: "outlined",
 		disabled: false,
-		size: "small",
-		onClick: () => console.log("Button"),
+		size: "sm",
+	},
+};
+
+export const Ghost: Story = {
+	args: {
+		variant: "ghost",
+		disabled: false,
+		size: "sm",
+	},
+};
+
+export const Loading: Story = {
+	args: {
+		disabled: false,
+		size: "sm",
+		loading: true,
+		loadingText: "loading...",
 	},
 };

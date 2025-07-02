@@ -1,6 +1,16 @@
 // components/button/button.tsx
-import type { FC, MouseEventHandler } from "react";
+import type {
+	FC,
+	MouseEventHandler,
+	PropsWithChildren,
+	ReactNode,
+} from "react";
 import styled from "styled-components";
+import type {
+	ComponentProps,
+	ComponentResponsiveProps,
+	ComponentSize,
+} from "../../utils/types";
 
 export type ButtonProps = {
 	text?: string;
@@ -10,42 +20,34 @@ export type ButtonProps = {
 	onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-const StyledButton = styled.button<ButtonProps>`
-  border: 0;
-  line-height: 1;
-  font-size: 15px;
-  cursor: pointer;
-  font-weight: 700;
-  font-weight: bold;
-  border-radius: 10px;
-  display: inline-block;
-  color: ${(props) => props.theme.color.text.primary};
-  padding: ${(props) =>
-		props.size === "small"
-			? "7px 25px 8px"
-			: props.size === "medium"
-				? "9px 30px 11px"
-				: "14px 30px 16px"};
-`;
+export type Props = ComponentProps &
+	ComponentSize &
+	Omit<ComponentResponsiveProps, "pd"> & {
+		loading?: boolean;
+		loadingText?: string;
+		htmlType?: "button" | "submit" | "reset";
+		disabled?: boolean;
+		variant: "filled" | "outlined" | "ghost";
+		leftIcon?: ReactNode;
+		rightIcon?: ReactNode;
+	};
 
-export const Button: FC<ButtonProps> = ({
-	size,
-	primary,
+export const Button: FC<PropsWithChildren<Props>> = ({
+	children,
+	loading = false,
+	loadingText,
+	htmlType = "button",
 	disabled,
-	text,
-	onClick,
-	...props
+	variant = "filled",
+	leftIcon,
+	rightIcon,
 }) => {
 	return (
-		<StyledButton
-			type="button"
-			onClick={onClick}
-			primary={primary}
-			disabled={disabled}
-			size={size}
-			{...props}
-		>
-			{text}
-		</StyledButton>
+		<button type={htmlType} disabled={disabled}>
+			<div>{leftIcon}</div>
+			{loading && <div>Loading</div>}
+			<div>{loading ? loadingText : children}</div>
+			<div>{rightIcon}</div>
+		</button>
 	);
 };
