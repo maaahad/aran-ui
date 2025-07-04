@@ -4,13 +4,7 @@ import { Button, type Props } from "../Button";
 
 const Example: FC<
 	Omit<ComponentProps<typeof Button>, "onClick" | "children">
-> = ({
-	disabled = false,
-	size = "md",
-	variant = "filled",
-	loading,
-	loadingText,
-}) => {
+> = (props) => {
 	return (
 		<div
 			style={{
@@ -20,14 +14,7 @@ const Example: FC<
 				height: "100%",
 			}}
 		>
-			<Button
-				disabled={disabled}
-				size={size}
-				variant={variant}
-				loading={loading}
-				loadingText={loadingText}
-				onClick={(event) => console.log(event)}
-			>
+			<Button onClick={(event) => console.log(event)} {...props}>
 				Button
 			</Button>
 		</div>

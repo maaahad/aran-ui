@@ -48,3 +48,16 @@ export const Loading: Story = {
 		loadingText: "loading...",
 	},
 };
+
+export const Reverse: Story = {
+	args: {
+		icon: <div>IC</div>,
+		iconPosition: "right",
+	},
+};
+
+export const Disabled: Story = {
+	args: {
+		disabled: true,
+	},
+};

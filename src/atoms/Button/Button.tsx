@@ -11,6 +11,7 @@ import type {
 	ComponentProps,
 	ComponentResponsiveProps,
 	ComponentSize,
+	PropPosition,
 } from "../../utils/types";
 
 export type ButtonProps = {
@@ -29,9 +30,9 @@ export type Props = ComponentProps &
 		htmlType?: "button" | "submit" | "reset";
 		disabled?: boolean;
 		variant: "filled" | "outlined" | "ghost";
-		leftIcon?: ReactNode;
-		rightIcon?: ReactNode;
 		onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+		icon?: ReactNode;
+		iconPosition: PropPosition;
 	};
 
 export const Button: FC<PropsWithChildren<Props>> = ({
@@ -41,8 +42,8 @@ export const Button: FC<PropsWithChildren<Props>> = ({
 	htmlType = "button",
 	disabled,
 	variant = "filled",
-	leftIcon,
-	rightIcon,
+	icon,
+	iconPosition = "left",
 	onClick,
 	...styleProps
 }) => {
@@ -52,11 +53,10 @@ export const Button: FC<PropsWithChildren<Props>> = ({
 			disabled={disabled}
 			{...styleProps}
 			onClick={onClick}
+			reverse={iconPosition === "right"}
 		>
-			<div>{leftIcon}</div>
-			{loading && <div>Loading</div>}
+			{loading ? <div>LO</div> : icon}
 			<div>{loading ? loadingText : children}</div>
-			<div>{rightIcon}</div>
 		</ButtonStyled>
 	);
 };
