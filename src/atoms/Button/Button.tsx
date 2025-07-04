@@ -5,7 +5,8 @@ import type {
 	PropsWithChildren,
 	ReactNode,
 } from "react";
-import styled from "styled-components";
+import { ButtonStyled } from "./Button.styled";
+
 import type {
 	ComponentProps,
 	ComponentResponsiveProps,
@@ -30,6 +31,7 @@ export type Props = ComponentProps &
 		variant: "filled" | "outlined" | "ghost";
 		leftIcon?: ReactNode;
 		rightIcon?: ReactNode;
+		onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 	};
 
 export const Button: FC<PropsWithChildren<Props>> = ({
@@ -41,13 +43,20 @@ export const Button: FC<PropsWithChildren<Props>> = ({
 	variant = "filled",
 	leftIcon,
 	rightIcon,
+	onClick,
+	...styleProps
 }) => {
 	return (
-		<button type={htmlType} disabled={disabled}>
+		<ButtonStyled
+			type={htmlType}
+			disabled={disabled}
+			{...styleProps}
+			onClick={onClick}
+		>
 			<div>{leftIcon}</div>
 			{loading && <div>Loading</div>}
 			<div>{loading ? loadingText : children}</div>
 			<div>{rightIcon}</div>
-		</button>
+		</ButtonStyled>
 	);
 };
