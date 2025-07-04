@@ -2,14 +2,17 @@ import styled, { css } from "styled-components";
 import { applyResponsiveCSS } from "../../utils/style";
 import type { ComponentResponsiveProps } from "../../utils/types";
 
-export const ButtonStyled = styled.button<Omit<ComponentResponsiveProps, "pd">>`
+type Props = Omit<ComponentResponsiveProps, "pd"> & {
+	reverse: boolean;
+};
+export const ButtonStyled = styled.button<Props>`
 	${applyResponsiveCSS}
-	${({ theme }) => css`
-		background-color: none; 
+	${({ theme, reverse }) => css`
 		display: flex; 
-		flex-direction: row; 
+		flex-direction: ${reverse ? "row-reverse" : "row"}; 
 		align-items: center; 
 		gap: 4px; 
+		padding: 4px; 
 	`}
 
 `;
