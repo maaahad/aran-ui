@@ -21,6 +21,7 @@ export type Props = ComponentProps &
 		onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 		icon?: ReactNode;
 		iconPosition: PropPosition;
+		ripple?: boolean;
 	};
 
 export const Button: FC<PropsWithChildren<Props>> = ({
@@ -34,8 +35,10 @@ export const Button: FC<PropsWithChildren<Props>> = ({
 	iconPosition = "left",
 	onClick,
 	size = "md",
+	ripple = false,
 	...styleProps
 }) => {
+	console.log(ripple);
 	return (
 		<ButtonStyled
 			type={htmlType}
@@ -45,6 +48,7 @@ export const Button: FC<PropsWithChildren<Props>> = ({
 			onClick={onClick}
 			reverse={iconPosition === "right"}
 		>
+			{ripple && <span className="ripple" />}
 			{loading ? <SpinnerIcon /> : icon}
 			<div>{loading ? loadingText : children}</div>
 		</ButtonStyled>

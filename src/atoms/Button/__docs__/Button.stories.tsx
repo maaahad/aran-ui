@@ -61,3 +61,9 @@ export const Disabled: Story = {
 		disabled: true,
 	},
 };
+
+export const Ripple: Story = {
+	args: {
+		ripple: true,
+	},
+};
