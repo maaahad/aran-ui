@@ -4,7 +4,7 @@ import { AranThemeProvider } from "../../../themes";
 import Example from "./Example";
 
 const meta: Meta<typeof Example> = {
-	title: "Button",
+	title: "Atoms/Button",
 	component: Example,
 	decorators: [
 		(Story) => (
