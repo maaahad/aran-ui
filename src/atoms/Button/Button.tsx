@@ -6,6 +6,7 @@ import type {
 	ReactNode,
 } from "react";
 import { ButtonStyled } from "./Button.styled";
+import { SpinnerIcon } from "../Icons";
 
 import type {
 	ComponentProps,
@@ -55,7 +56,7 @@ export const Button: FC<PropsWithChildren<Props>> = ({
 			onClick={onClick}
 			reverse={iconPosition === "right"}
 		>
-			{loading ? <div>LO</div> : icon}
+			{loading ? <SpinnerIcon /> : icon}
 			<div>{loading ? loadingText : children}</div>
 		</ButtonStyled>
 	);
