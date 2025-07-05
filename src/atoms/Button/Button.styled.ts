@@ -19,8 +19,8 @@ export const ButtonStyled = styled.button<Props>`
 		display: flex; 
 		flex-direction: ${reverse ? "row-reverse" : "row"}; 
 		align-items: center; 
-		gap: 4px; 
 
+		gap: ${SIZE_STYLES_CONFIG[size].gap}; 
 		height: ${SIZE_STYLES_CONFIG[size].height}; 
 		padding: ${SIZE_STYLES_CONFIG[size].padding}; 
 		border-radius: ${SIZE_STYLES_CONFIG[size].borderRadius}; 
