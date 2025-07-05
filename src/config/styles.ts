@@ -9,29 +9,29 @@ export const SIZE_STYLES_CONFIG: {
 	};
 } = {
 	xs: {
-		height: "16px",
-		padding: "4px 8px",
-		borderRadius: "2px",
-	},
-	sm: {
-		height: "24px",
+		height: "28px",
 		padding: "4px 8px",
 		borderRadius: "4px",
 	},
-	md: {
+	sm: {
 		height: "32px",
-		padding: "4px 8px",
+		padding: "6px 12px",
 		borderRadius: "6px",
 	},
-	lg: {
+	md: {
 		height: "40px",
 		padding: "8px 16px",
 		borderRadius: "8px",
 	},
-	xl: {
+	lg: {
 		height: "48px",
-		padding: "12px 16px",
+		padding: "10px 20px",
 		borderRadius: "12px",
+	},
+	xl: {
+		height: "52px",
+		padding: "12px 24px",
+		borderRadius: "16px",
 	},
 };
 

@@ -1,12 +1,7 @@
 // components/button/button.tsx
-import type {
-	FC,
-	MouseEventHandler,
-	PropsWithChildren,
-	ReactNode,
-} from "react";
-import { ButtonStyled } from "./Button.styled";
+import type { FC, PropsWithChildren, ReactNode } from "react";
 import { SpinnerIcon } from "../Icons";
+import { ButtonStyled } from "./Button.styled";
 
 import type {
 	ComponentProps,
@@ -14,14 +9,6 @@ import type {
 	ComponentSize,
 	PropPosition,
 } from "../../utils/types";
-
-export type ButtonProps = {
-	text?: string;
-	primary?: boolean;
-	disabled?: boolean;
-	size?: "small" | "medium" | "large";
-	onClick?: MouseEventHandler<HTMLButtonElement>;
-};
 
 export type Props = ComponentProps &
 	ComponentSize &
@@ -46,12 +33,14 @@ export const Button: FC<PropsWithChildren<Props>> = ({
 	icon,
 	iconPosition = "left",
 	onClick,
+	size = "md",
 	...styleProps
 }) => {
 	return (
 		<ButtonStyled
 			type={htmlType}
 			disabled={disabled}
+			size={size}
 			{...styleProps}
 			onClick={onClick}
 			reverse={iconPosition === "right"}
