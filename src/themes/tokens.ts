@@ -119,7 +119,7 @@ type ThemeSemanticColors = {
 	};
 };
 
-const themeColors: ThemeColors = {
+const lightBaseColors: ThemeColors = {
 	white: "#FFFFFF",
 	black: "#000000",
 
@@ -156,25 +156,49 @@ const themeColors: ThemeColors = {
 	transparent: "transparent",
 };
 
+// LIGHT theme
 const lightSemanticColors: ThemeSemanticColors = {
 	text: {
-		primary: themeColors.gray[900],
-		secondary: themeColors.gray[700],
-		muted: themeColors.gray[500],
-		inverted: themeColors.white,
-		link: themeColors.accent.green,
-		danger: themeColors.error,
-		success: themeColors.success,
+		primary: lightBaseColors.gray[900],
+		secondary: lightBaseColors.gray[700],
+		muted: lightBaseColors.gray[500],
+		inverted: lightBaseColors.white,
+		link: lightBaseColors.accent.green,
+		danger: lightBaseColors.error,
+		success: lightBaseColors.success,
 	},
 	background: {
-		default: themeColors.white,
-		elevated: themeColors.gray[50],
-		subtle: themeColors.gray[100],
-		inverted: themeColors.gray[900],
+		default: lightBaseColors.white,
+		elevated: lightBaseColors.gray[50],
+		subtle: lightBaseColors.gray[100],
+		inverted: lightBaseColors.gray[900],
 	},
 	border: {
-		default: themeColors.gray[200],
-		muted: themeColors.gray[100],
-		strong: themeColors.gray[400],
+		default: lightBaseColors.gray[200],
+		muted: lightBaseColors.gray[100],
+		strong: lightBaseColors.gray[400],
 	},
+};
+
+const darkBaseColors: ThemeColors = {
+	...lightBaseColors,
+	white: "#000000",
+	black: "#FFFFFF",
+	gray: {
+		50: "#121212",
+		100: "#1E1E1E",
+		200: "#2C2C2C",
+		300: "#3A3A3A",
+		400: "#505050",
+		500: "#6B6B6B",
+		600: "#8C8C8C",
+		700: "#B3B3B3",
+		800: "#D6D6D6",
+		900: "#F0F0F0",
+	},
+	accent: {
+		...lightBaseColors.accent,
+		green: "#00FFA3",
+	},
+	overlay: "rgba(255,255,255,0.3)",
 };
