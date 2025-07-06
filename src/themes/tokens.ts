@@ -15,7 +15,7 @@ type ThemeColors = {
 	gray: ColorShades; // Neutral grays, used for text, background, borders
 
 	primary: {
-		DEFAULT: string; // Brand primary. e.g., black
+		default: string; // Brand primary. e.g., black
 		contrast: string; // Contrast text color on primary, usually white
 	};
 	accent: {
