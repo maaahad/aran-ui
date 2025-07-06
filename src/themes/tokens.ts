@@ -155,3 +155,26 @@ const themeColors: ThemeColors = {
 	overlay: "rgba(0, 0, 0, 0.5)",
 	transparent: "transparent",
 };
+
+const lightSemanticColors: ThemeSemanticColors = {
+	text: {
+		primary: themeColors.gray[900],
+		secondary: themeColors.gray[700],
+		muted: themeColors.gray[500],
+		inverted: themeColors.white,
+		link: themeColors.accent.green,
+		danger: themeColors.error,
+		success: themeColors.success,
+	},
+	background: {
+		default: themeColors.white,
+		elevated: themeColors.gray[50],
+		subtle: themeColors.gray[100],
+		inverted: themeColors.gray[900],
+	},
+	border: {
+		default: themeColors.gray[200],
+		muted: themeColors.gray[100],
+		strong: themeColors.gray[400],
+	},
+};
