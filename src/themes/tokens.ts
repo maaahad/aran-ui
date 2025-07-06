@@ -119,6 +119,7 @@ type ThemeSemanticColors = {
 	};
 };
 
+// LIGHT theme
 const lightBaseColors: ThemeColors = {
 	white: "#FFFFFF",
 	black: "#000000",
@@ -156,7 +157,6 @@ const lightBaseColors: ThemeColors = {
 	transparent: "transparent",
 };
 
-// LIGHT theme
 const lightSemanticColors: ThemeSemanticColors = {
 	text: {
 		primary: lightBaseColors.gray[900],
@@ -180,6 +180,7 @@ const lightSemanticColors: ThemeSemanticColors = {
 	},
 };
 
+// DARK theme
 const darkBaseColors: ThemeColors = {
 	...lightBaseColors,
 	white: "#000000",
@@ -201,4 +202,27 @@ const darkBaseColors: ThemeColors = {
 		green: "#00FFA3",
 	},
 	overlay: "rgba(255,255,255,0.3)",
+};
+
+const darkSemanticColors: ThemeSemanticColors = {
+	text: {
+		primary: darkBaseColors.gray[50],
+		secondary: darkBaseColors.gray[300],
+		muted: darkBaseColors.gray[500],
+		inverted: darkBaseColors.black,
+		link: darkBaseColors.accent.green,
+		danger: darkBaseColors.error,
+		success: darkBaseColors.success,
+	},
+	background: {
+		default: darkBaseColors.gray[900],
+		elevated: darkBaseColors.gray[800],
+		subtle: darkBaseColors.gray[700],
+		inverted: darkBaseColors.white,
+	},
+	border: {
+		default: darkBaseColors.gray[600],
+		muted: darkBaseColors.gray[700],
+		strong: darkBaseColors.gray[400],
+	},
 };
