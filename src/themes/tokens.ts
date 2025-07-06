@@ -118,3 +118,40 @@ type ThemeSemanticColors = {
 		strong: string;
 	};
 };
+
+const themeColors: ThemeColors = {
+	white: "#FFFFFF",
+	black: "#000000",
+
+	gray: {
+		50: "#F9FAFB",
+		100: "#F0F0F0",
+		200: "#D9D9D9",
+		300: "#BFBFBF",
+		400: "#A6A6A6",
+		500: "#8C8C8C",
+		600: "#737373",
+		700: "#595959",
+		800: "#404040",
+		900: "#262626",
+	},
+
+	primary: {
+		default: "#000000",
+		contrast: "#FFFFFF",
+	},
+
+	accent: {
+		green: "#00FF84",
+		red: "#FF4D6D",
+		yellow: "#FFE066",
+	},
+
+	success: "#28C76F",
+	warning: "#FF9F43",
+	error: "#EA5455",
+	info: "#00CFE8",
+
+	overlay: "rgba(0, 0, 0, 0.5)",
+	transparent: "transparent",
+};
