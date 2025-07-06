@@ -115,6 +115,6 @@ type ThemeSemanticColors = {
 		/**
 		 * Strong borders for emphasis. For ex. Focused states, alerts
 		 */
-		string: string;
+		strong: string;
 	};
 };
