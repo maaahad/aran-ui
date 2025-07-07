@@ -286,3 +286,54 @@ const typography: Typography = {
 		wider: "0.1em",
 	},
 };
+
+// ---------------------------------------------------------------------------------------
+// Spacing, Radii, Breakpoints
+// Spacing is based on 8px spacing
+// ---------------------------------------------------------------------------------------
+
+type Space = {
+	// TODO: (maaahad) Define a generic type. Ref: https://catchts.com/range-number:wa
+	[key in 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12 | 16 | 20 | 24]: string;
+};
+
+type Radii = {
+	[key in "none" | "sm" | "md" | "lg" | "xl" | "full"]: string;
+};
+
+type Breakpoints = {
+	[key in "sm" | "md" | "lg" | "xl" | "2xl"]: string;
+};
+
+const space: Space = {
+	0: "0px",
+	1: "4px",
+	2: "8px",
+	3: "12px",
+	4: "16px",
+	5: "20px",
+	6: "24px",
+	8: "32px",
+	10: "40px",
+	12: "48px",
+	16: "64px",
+	20: "80px",
+	24: "96px",
+};
+
+const radii: Radii = {
+	none: "0",
+	sm: "4px",
+	md: "8px",
+	lg: "12px",
+	xl: "16px",
+	full: "9999px",
+};
+
+const breakpoints = {
+	sm: "480px",
+	md: "768px",
+	lg: "1024px",
+	xl: "1280px",
+	"2xl": "1536px",
+};
