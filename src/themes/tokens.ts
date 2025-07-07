@@ -234,3 +234,55 @@ const darkSemanticColors: ThemeSemanticColors = {
 // ---------------------------------------------------------------------------------------
 // Typography
 // ---------------------------------------------------------------------------------------
+
+type Typography = {
+	fonts: {
+		[key in "body" | "heading" | "mono"]: string;
+	};
+	fontSizes: {
+		[key in "xs" | "sm" | "base" | "md" | "lg" | "xl" | "2xl" | "3xl"]: string;
+	};
+	fontWeights: {
+		[key in "light" | "normal" | "medium" | "bold"]: number;
+	};
+	lineHeights: {
+		[key in "normal" | "relaxed" | "loose"]: number;
+	};
+	letterSpacing: {
+		[key in "normal" | "wide" | "wider"]: string;
+	};
+};
+
+const typography: Typography = {
+	fonts: {
+		body: '"Helvetica Neue", sans-serif',
+		heading: '"Helvetica Neue", sans-serif',
+		mono: '"Courier New", monospace',
+	},
+	fontSizes: {
+		xs: "0.75rem", // 12px
+		sm: "0.875rem", // 14px
+		base: "1rem", // 16px
+		md: "1.125rem", // 18px
+		lg: "1.25rem", // 20px
+		xl: "1.5rem", // 24px
+		"2xl": "2rem", // 32px
+		"3xl": "3rem", // 48px
+	},
+	fontWeights: {
+		light: 300,
+		normal: 400,
+		medium: 500,
+		bold: 700,
+	},
+	lineHeights: {
+		normal: 1.5,
+		relaxed: 1.625,
+		loose: 2,
+	},
+	letterSpacing: {
+		normal: "0",
+		wide: "0.05em",
+		wider: "0.1em",
+	},
+};
