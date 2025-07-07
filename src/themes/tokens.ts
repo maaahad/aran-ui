@@ -337,3 +337,50 @@ const breakpoints = {
 	xl: "1280px",
 	"2xl": "1536px",
 };
+
+// ---------------------------------------------------------------------------------------
+// Shadows, transitions, Z-index
+// ---------------------------------------------------------------------------------------
+
+type Shadows = {
+	[key in "xs" | "sm" | "md" | "lg" | "xl"]: string;
+};
+
+type Transitions = {
+	[key in "fast" | "normal" | "slow"]: string;
+};
+
+type ZIndices = {
+	[key in
+	| "base"
+	| "dropdown"
+	| "sticky"
+	| "overlay"
+	| "modal"
+	| "toast"
+	| "tooltip"]: number;
+};
+
+const shadows: Shadows = {
+	xs: "0 1px 2px rgba(0,0,0,0.05)",
+	sm: "0 2px 4px rgba(0,0,0,0.1)",
+	md: "0 4px 8px rgba(0,0,0,0.15)",
+	lg: "0 8px 16px rgba(0,0,0,0.2)",
+	xl: "0 16px 24px rgba(0,0,0,0.25)",
+};
+
+const transitions: Transitions = {
+	fast: "150ms ease-in-out",
+	normal: "300ms ease-in-out",
+	slow: "500ms ease-in-out",
+};
+
+const zIndices: ZIndices = {
+	base: 0,
+	dropdown: 10,
+	sticky: 20,
+	overlay: 30,
+	modal: 40,
+	toast: 50,
+	tooltip: 60,
+};
