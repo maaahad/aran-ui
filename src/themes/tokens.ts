@@ -1,9 +1,10 @@
 import type {
 	Breakpoints,
-	ColorShades,
+	DefaultTheme,
 	Radii,
 	Shadows,
 	Space,
+	ThemeColors,
 	ThemeSemanticColors,
 	Transitions,
 	Typography,
@@ -13,37 +14,6 @@ import type {
 // ---------------------------------------------------------------------------------------
 // Colors
 // ---------------------------------------------------------------------------------------
-
-/**
- * Brand level color tokens in Raw format
- * Component should not use this tokec direcly in stead should use ThemeSemanticColors
- * It will increase maintainability
- */
-
-type ThemeColors = {
-	white: string; // Base white, used for light background
-	black: string; // Base black, often used for text and dark background
-
-	gray: ColorShades; // Neutral grays, used for text, background, borders
-
-	primary: {
-		default: string; // Brand primary. e.g., black
-		contrast: string; // Contrast text color on primary, usually white
-	};
-	accent: {
-		green: string; // CTA, highlight or link color
-		yellow: string; // Warning or attention markers
-		red: string; // Error or delete
-	};
-
-	success: string; // Success state or alerts
-	warning: string; // Warning or caution states
-	error: string; // Error or validation failures
-	info: string; // Informational message
-
-	overlay: string; // Overlay for modals/backdrop. (e.g. rgba)
-	transparent: string; // fully transparent, used for reset
-};
 
 // LIGHT theme
 const lightBaseColors: ThemeColors = {
@@ -255,4 +225,26 @@ const zIndices: ZIndices = {
 	modal: 40,
 	toast: 50,
 	tooltip: 60,
+};
+
+export const lightTheme: DefaultTheme = {
+	colors: {
+		raw: lightBaseColors,
+		semantic: lightSemanticColors,
+	},
+	typography,
+	space,
+	breakpoints,
+	radii,
+	shadows,
+	transitions,
+	zIndices,
+};
+
+export const darkTheme: DefaultTheme = {
+	...lightTheme,
+	colors: {
+		raw: darkBaseColors,
+		semantic: darkSemanticColors,
+	},
 };

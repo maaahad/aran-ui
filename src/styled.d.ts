@@ -9,6 +9,37 @@ declare module "styled-components" {
 	};
 
 	/**
+	 * Brand level color tokens in Raw format
+	 * Component should not use this tokec direcly in stead should use ThemeSemanticColors
+	 * It will increase maintainability
+	 */
+
+	export type ThemeColors = {
+		white: string; // Base white, used for light background
+		black: string; // Base black, often used for text and dark background
+
+		gray: ColorShades; // Neutral grays, used for text, background, borders
+
+		primary: {
+			default: string; // Brand primary. e.g., black
+			contrast: string; // Contrast text color on primary, usually white
+		};
+		accent: {
+			green: string; // CTA, highlight or link color
+			yellow: string; // Warning or attention markers
+			red: string; // Error or delete
+		};
+
+		success: string; // Success state or alerts
+		warning: string; // Warning or caution states
+		error: string; // Error or validation failures
+		info: string; // Informational message
+
+		overlay: string; // Overlay for modals/backdrop. (e.g. rgba)
+		transparent: string; // fully transparent, used for reset
+	};
+
+	/**
 	 * ThemeSemanticColors is *context-based* or *purpose-based*
 	 * UI Component should always used ThemeSemanticColors
 	 * Instead of what they like, it means *what they are used for*
@@ -153,49 +184,63 @@ declare module "styled-components" {
 	};
 
 	export interface DefaultTheme {
-		color: {
-			mode: ThemeMode;
-			text: {
-				primary: string;
-				secondary: string;
-				disabled: string;
-			};
-			accent: {
-				primary: string;
-				secondary: string;
-			};
-			line: string;
-			background: {
-				primary: string;
-				secondary: string;
-			};
-			icon: {
-				primary: string;
-				secondary: string;
-				disabled: string;
-			};
-			overlay: {
-				primary: string;
-				secondary: string;
-				tertiary: string;
-			};
-			themeless: {
-				primary: string;
-				secondary: string;
-			};
+		colors: {
+			raw: ThemeColors;
+			semantic: ThemeSemanticColors;
 		};
-		breakpoints: {
-			keys: string[]; // TODO: (maaahad) replace with TupleType
-			values: {
-				[Property in "xs" | "sm" | "md" | "lg" | "xl"]: number;
-			};
-		};
-		borderRadius: {
-			[Property in "xs" | "sm" | "md" | "lg" | "xl"]: `${number}px`;
-		};
-		//  borderRadius, transition, font, size, zIndex, ... ...
-		elevation: {
-			[Property in "sm" | "md" | "lg"]: string;
-		};
+		typography: Typography;
+		space: Space;
+		breakpoints: Breakpoints;
+		radii: Radii;
+		shadows: Shadows;
+		transitions: Transitions;
+		zIndices: ZIndices;
 	}
+
+	// export interface DefaultTheme {
+	// 	color: {
+	// 		mode: ThemeMode;
+	// 		text: {
+	// 			primary: string;
+	// 			secondary: string;
+	// 			disabled: string;
+	// 		};
+	// 		accent: {
+	// 			primary: string;
+	// 			secondary: string;
+	// 		};
+	// 		line: string;
+	// 		background: {
+	// 			primary: string;
+	// 			secondary: string;
+	// 		};
+	// 		icon: {
+	// 			primary: string;
+	// 			secondary: string;
+	// 			disabled: string;
+	// 		};
+	// 		overlay: {
+	// 			primary: string;
+	// 			secondary: string;
+	// 			tertiary: string;
+	// 		};
+	// 		themeless: {
+	// 			primary: string;
+	// 			secondary: string;
+	// 		};
+	// 	};
+	// 	breakpoints: {
+	// 		keys: string[]; // TODO: (maaahad) replace with TupleType
+	// 		values: {
+	// 			[Property in "xs" | "sm" | "md" | "lg" | "xl"]: number;
+	// 		};
+	// 	};
+	// 	borderRadius: {
+	// 		[Property in "xs" | "sm" | "md" | "lg" | "xl"]: `${number}px`;
+	// 	};
+	// 	//  borderRadius, transition, font, size, zIndex, ... ...
+	// 	elevation: {
+	// 		[Property in "sm" | "md" | "lg"]: string;
+	// 	};
+	// }
 }
