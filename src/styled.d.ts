@@ -190,6 +190,10 @@ declare module "styled-components" {
 		};
 		typography: Typography;
 		space: Space;
+		breakpoints: {
+			keys: string[];
+			values: Breakpoints;
+		};
 		breakpoints: Breakpoints;
 		radii: Radii;
 		shadows: Shadows;

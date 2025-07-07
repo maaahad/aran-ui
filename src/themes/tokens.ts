@@ -234,7 +234,10 @@ export const lightTheme: DefaultTheme = {
 	},
 	typography,
 	space,
-	breakpoints,
+	breakpoints: {
+		keys: ["sm", "md", "lg", "xl", "2xl"],
+		values: breakpoints,
+	},
 	radii,
 	shadows,
 	transitions,
