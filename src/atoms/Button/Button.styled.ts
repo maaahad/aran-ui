@@ -25,6 +25,12 @@ export const ButtonStyled = styled.button<Props>`
 		padding: ${SIZE_STYLES_CONFIG[size].padding}; 
 		border-radius: ${SIZE_STYLES_CONFIG[size].borderRadius}; 
 
+		// NOTE: (maaahad) Testing Primary button based on new theme
+
+		border: none; 
+		background-color: ${theme.colors.semantic.background.inverted}; 
+		color: ${theme.colors.semantic.text.inverted}; 
+
 		// TODO: (maaahad) need ripple based on cursor position
 		.ripple {
 		    position: absolute;
@@ -32,7 +38,7 @@ export const ButtonStyled = styled.button<Props>`
 		    left: 50%;
 		    width: 200%;
 		    height: 200%;
-		    background: ${theme.color.background.secondary}; 
+		    background: green; 
 		    transform: translate(-50%, -50%) scale(0);
 		    border-radius: 50%;
 		    opacity: 1;
