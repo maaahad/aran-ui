@@ -15,7 +15,7 @@ export const CardContainer = styled.div<Omit<ComponentResponsiveProps, "pd">>`
 
 export const Body = styled.div`
   ${({ theme }) => css`
-    background-color: ${theme.color.background.default}; 
+    background-color: ${theme.colors.semantic.background.default}; 
     /* TODO: (maaahad) padding should be responsive */
     padding: 12px 16px; 
   `}
