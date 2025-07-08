@@ -131,14 +131,14 @@ declare module "styled-components" {
 		};
 		fontSizes: {
 			[key in
-			| "xs"
-			| "sm"
-			| "base"
-			| "md"
-			| "lg"
-			| "xl"
-			| "2xl"
-			| "3xl"]: string;
+				| "xs"
+				| "sm"
+				| "base"
+				| "md"
+				| "lg"
+				| "xl"
+				| "2xl"
+				| "3xl"]: string;
 		};
 		fontWeights: {
 			[key in "light" | "normal" | "medium" | "bold"]: number;
@@ -174,13 +174,13 @@ declare module "styled-components" {
 
 	export type ZIndices = {
 		[key in
-		| "base"
-		| "dropdown"
-		| "sticky"
-		| "overlay"
-		| "modal"
-		| "toast"
-		| "tooltip"]: number;
+			| "base"
+			| "dropdown"
+			| "sticky"
+			| "overlay"
+			| "modal"
+			| "toast"
+			| "tooltip"]: number;
 	};
 
 	export interface DefaultTheme {
