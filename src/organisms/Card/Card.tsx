@@ -4,7 +4,7 @@ import type {
 	ComponentProps,
 	ComponentResponsiveProps,
 } from "../../utils/types";
-import { Body, CardContainer, Slot } from "./styled";
+import { Body, CardContainer, Slot } from "./Card.styled";
 
 type Props = ComponentProps &
 	ComponentResponsiveProps & {
