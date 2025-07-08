@@ -1,7 +1,7 @@
 import type React from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import type { ThemeMode } from "../../tokens/color";
-import { lightTheme, darkTheme } from "../tokens";
+import { darkTheme, lightTheme } from "../tokens";
 
 const GlobalStyle = createGlobalStyle`
     body {
