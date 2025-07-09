@@ -22,8 +22,10 @@ export const Filled: Story = {
 	args: {
 		disabled: false,
 		size: "sm",
+		variant: "filled",
 	},
 };
+
 export const Outlined: Story = {
 	args: {
 		variant: "outlined",

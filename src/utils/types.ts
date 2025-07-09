@@ -28,6 +28,7 @@ export type ComponentSize = {
 };
 
 export type Size = "xs" | "sm" | "md" | "lg" | "xl";
+export type Variant = "filled" | "outlined" | "ghost";
 
 export type ComponentProps = {
 	className?: string;

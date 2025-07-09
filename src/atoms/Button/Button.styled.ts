@@ -1,10 +1,16 @@
 import styled, { css, type DefaultTheme } from "styled-components";
 import { applyResponsiveCSS } from "../../utils/style";
-import type { ComponentResponsiveProps, Size } from "../../utils/types";
+import type {
+	ComponentResponsiveProps,
+	Size,
+	Variant,
+} from "../../utils/types";
 
 type Props = Omit<ComponentResponsiveProps, "pd"> & {
 	reverse: boolean;
 	size: Size;
+	variant: Variant;
+	disabled: boolean;
 };
 
 const applySizeStyles = (theme: DefaultTheme, size: Size) => {
@@ -52,9 +58,45 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 	}
 };
 
+const applyVariantStyles = (
+	theme: DefaultTheme,
+	variant: Variant,
+	disabled: boolean,
+) => {
+	switch (variant) {
+		case "filled": {
+			return css`
+				border: none; 
+				color: ${theme.colors.semantic.text.inverted}; 
+				background-color: ${theme.colors.semantic.background.inverted}; 
+
+				&:hover {
+					${
+						!disabled &&
+						css`
+						background-color: ${theme.colors.raw.gray[700]};
+					`
+					}
+				}
+
+				${
+					disabled &&
+					css`
+					cursor: not-allowed; 
+					opacity: .5; 
+				`
+				}
+			`;
+		}
+
+		default:
+			css``;
+	}
+};
+
 export const ButtonStyled = styled.button<Props>`
 	${applyResponsiveCSS}
-	${({ theme, reverse, size }) => css`
+	${({ theme, reverse, size, variant, disabled }) => css`
 		position: relative; 
 		overflow: hidden; 
 		cursor: pointer; 
@@ -62,11 +104,10 @@ export const ButtonStyled = styled.button<Props>`
 		flex-direction: ${reverse ? "row-reverse" : "row"}; 
 		align-items: center; 
 
-		${applySizeStyles(theme, size)}; 
+		transition: ${theme.transitions.normal}; 
 
-		border: none; 
-		background-color: ${theme.colors.semantic.background.inverted}; 
-		color: ${theme.colors.semantic.text.inverted}; 
+		${applySizeStyles(theme, size)}; 
+		${applyVariantStyles(theme, variant, disabled)}; 
 	`}
 
 `;

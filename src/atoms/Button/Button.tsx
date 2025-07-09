@@ -8,6 +8,7 @@ import type {
 	ComponentResponsiveProps,
 	PropPosition,
 	Size,
+	Variant,
 } from "../../utils/types";
 
 export type Props = ComponentProps &
@@ -16,7 +17,7 @@ export type Props = ComponentProps &
 		loadingText?: string;
 		htmlType?: "button" | "submit" | "reset";
 		disabled?: boolean;
-		variant: "filled" | "outlined" | "ghost";
+		variant: Variant;
 		onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 		icon?: ReactNode;
 		iconPosition: PropPosition;
@@ -29,7 +30,7 @@ export const Button: FC<PropsWithChildren<Props>> = ({
 	loading = false,
 	loadingText,
 	htmlType = "button",
-	disabled,
+	disabled = false,
 	variant = "filled",
 	icon,
 	iconPosition = "left",
@@ -38,12 +39,12 @@ export const Button: FC<PropsWithChildren<Props>> = ({
 	ripple = false,
 	...styleProps
 }) => {
-	console.log(ripple);
 	return (
 		<ButtonStyled
 			type={htmlType}
 			disabled={disabled}
 			size={size}
+			variant={variant}
 			{...styleProps}
 			onClick={onClick}
 			reverse={iconPosition === "right"}
