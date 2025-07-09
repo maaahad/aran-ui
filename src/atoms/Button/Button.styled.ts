@@ -74,7 +74,7 @@ const applyVariantStyles = (
 					${
 						!disabled &&
 						css`
-						background-color: ${theme.colors.raw.gray[700]};
+					opacity: .6;
 					`
 					}
 				}
