@@ -6,12 +6,11 @@ import { ButtonStyled } from "./Button.styled";
 import type {
 	ComponentProps,
 	ComponentResponsiveProps,
-	ComponentSize,
 	PropPosition,
+	Size,
 } from "../../utils/types";
 
 export type Props = ComponentProps &
-	ComponentSize &
 	Omit<ComponentResponsiveProps, "pd"> & {
 		loading?: boolean;
 		loadingText?: string;
@@ -22,6 +21,7 @@ export type Props = ComponentProps &
 		icon?: ReactNode;
 		iconPosition: PropPosition;
 		ripple?: boolean;
+		size: Size;
 	};
 
 export const Button: FC<PropsWithChildren<Props>> = ({

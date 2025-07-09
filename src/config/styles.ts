@@ -1,3 +1,4 @@
+// TODO: this files should be gone for now
 import type { DefaultTheme } from "styled-components";
 import type { ComponentSize, ComponentVariant } from "../utils/types";
 

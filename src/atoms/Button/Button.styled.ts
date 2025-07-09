@@ -1,15 +1,57 @@
-import styled, { css } from "styled-components";
-import { SIZE_STYLES_CONFIG } from "../../config/styles";
+import styled, { css, type DefaultTheme } from "styled-components";
 import { applyResponsiveCSS } from "../../utils/style";
-import type {
-	ComponentResponsiveProps,
-	ComponentSize,
-} from "../../utils/types";
+import type { ComponentResponsiveProps, Size } from "../../utils/types";
 
-type Props = Omit<ComponentResponsiveProps, "pd"> &
-	Required<ComponentSize> & {
-		reverse: boolean;
-	};
+type Props = Omit<ComponentResponsiveProps, "pd"> & {
+	reverse: boolean;
+	size: Size;
+};
+
+const applySizeStyles = (theme: DefaultTheme, size: Size) => {
+	switch (size) {
+		case "xs": {
+			return css`
+				height: ${theme.space[7]}; 
+				padding: ${theme.space[1]} ${theme.space[2]}; 
+				border-radius: ${theme.radii.sm}; 
+				gap: ${theme.space[1]};
+			`;
+		}
+		case "sm": {
+			return css`
+				height: ${theme.space[8]}; 
+				padding: ${theme.space[1]} ${theme.space[3]}; 
+				border-radius: ${theme.radii.sm}; 
+				gap: ${theme.space[1]};
+			`;
+		}
+		case "md": {
+			return css`
+				height: ${theme.space[10]}; 
+				padding: ${theme.space[2]} ${theme.space[4]}; 
+				border-radius: ${theme.radii.md}; 
+				gap: ${theme.space[2]};
+			`;
+		}
+		case "lg": {
+			return css`
+				height: ${theme.space[12]}; 
+				padding: ${theme.space[2]} ${theme.space[5]}; 
+				border-radius: ${theme.radii.md}; 
+				gap: ${theme.space[2]};
+			`;
+		}
+		case "xl": {
+			return css`
+				height: ${theme.space[13]}; 
+				padding: ${theme.space[3]} ${theme.space[6]}; 
+				border-radius: ${theme.radii.lg}; 
+				gap: ${theme.space[3]};
+			`;
+		}
+	}
+};
+
 export const ButtonStyled = styled.button<Props>`
 	${applyResponsiveCSS}
 	${({ theme, reverse, size }) => css`
@@ -20,37 +62,11 @@ export const ButtonStyled = styled.button<Props>`
 		flex-direction: ${reverse ? "row-reverse" : "row"}; 
 		align-items: center; 
 
-		gap: ${SIZE_STYLES_CONFIG[size].gap}; 
-		height: ${SIZE_STYLES_CONFIG[size].height}; 
-		padding: ${SIZE_STYLES_CONFIG[size].padding}; 
-		border-radius: ${SIZE_STYLES_CONFIG[size].borderRadius}; 
-
-		// NOTE: (maaahad) Testing Primary button based on new theme
+		${applySizeStyles(theme, size)}; 
 
 		border: none; 
 		background-color: ${theme.colors.semantic.background.inverted}; 
 		color: ${theme.colors.semantic.text.inverted}; 
-
-		// TODO: (maaahad) need ripple based on cursor position
-		.ripple {
-		    position: absolute;
-		    top: 50%;
-		    left: 50%;
-		    width: 200%;
-		    height: 200%;
-		    background: green; 
-		    transform: translate(-50%, -50%) scale(0);
-		    border-radius: 50%;
-		    opacity: 1;
-		    pointer-events: none;
-		    transition: transform 0.4s ease, opacity 0.6s ease;
-		    z-index: 0;
-		}
-
-		&:hover .ripple {
-		   transform: scale(2.5);
-		   opacity: 0;
-		}
 	`}
 
 `;

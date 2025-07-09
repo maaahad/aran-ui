@@ -153,7 +153,22 @@ declare module "styled-components" {
 
 	export type Space = {
 		// TODO: (maaahad) Define a generic type. Ref: https://catchts.com/range-number:wa
-		[key in 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12 | 16 | 20 | 24]: string;
+		[key in
+			| 0
+			| 1
+			| 2
+			| 3
+			| 4
+			| 5
+			| 6
+			| 8
+			| 7
+			| 10
+			| 12
+			| 13
+			| 16
+			| 20
+			| 24]: string;
 	};
 
 	export type Radii = {
