@@ -15,28 +15,30 @@ declare module "styled-components" {
 	 */
 
 	export type ThemeColors = {
-		white: string; // Base white, used for light background
-		black: string; // Base black, often used for text and dark background
-
-		gray: ColorShades; // Neutral grays, used for text, background, borders
-
 		primary: {
-			default: string; // Brand primary. e.g., black
-			contrast: string; // Contrast text color on primary, usually white
+			white: string;
+			black: string;
+			charcoal: string;
 		};
+		gray: ColorShades; // Neutral grays, used for text, background, borders
 		accent: {
-			green: string; // CTA, highlight or link color
-			yellow: string; // Warning or attention markers
-			red: string; // Error or delete
+			moonbeam: string;
+			lightGrey: string;
+			darkBlue: string;
+			metallicSilver: string;
 		};
 
-		success: string; // Success state or alerts
-		warning: string; // Warning or caution states
-		error: string; // Error or validation failures
-		info: string; // Informational message
-
-		overlay: string; // Overlay for modals/backdrop. (e.g. rgba)
-		transparent: string; // fully transparent, used for reset
+		status: {
+			success: string;
+			warning: string;
+			error: string;
+			info: string;
+		};
+		overlay: {
+			light: string;
+			dark: string;
+			neutral: string;
+		};
 	};
 
 	/**
