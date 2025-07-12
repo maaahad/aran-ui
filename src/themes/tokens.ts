@@ -16,72 +16,7 @@ import type {
 // ---------------------------------------------------------------------------------------
 
 // LIGHT theme
-export const lightBaseColors: ThemeColors = {
-	/**
-	 * Primary Brand Colors
-	 * Core foundational colors that represent the J.Lindeberg brand identity
-	 */
-	primary: {
-		black: "#000000", // ⬛ Pure black - primary brand color
-		white: "#FFFFFF", // ⬜ Pure white - primary brand color
-		charcoal: "#2C2C2C", // ⬛ Dark charcoal - softer black alternative
-	},
-
-	/**
-	 * Neutral Gray Scale
-	 * Comprehensive gray scale from lightest to darkest
-	 * Provides full range of neutral tones for semantic color assignment
-	 */
-	gray: {
-		50: "#F8F9FA", // ⬜ Lightest gray
-		100: "#F1F3F4", // ⬜ Very light gray
-		200: "#E8EAED", // ⬜ Light gray
-		300: "#DADCE0", // ⬜ Medium-light gray
-		400: "#BDC1C6", // ⬜ Medium gray
-		500: "#9AA0A6", // ⬜ Mid gray
-		600: "#80868B", // ⬜ Medium-dark gray
-		700: "#5F6368", // ⬜ Dark gray
-		800: "#3C4043", // ⬛ Very dark gray
-		900: "#202124", // ⬛ Darkest gray
-	},
-
-	/**
-	 * Accent Colors
-	 * Signature colors that reflect J.Lindeberg's premium aesthetic
-	 * Brand-specific colors derived from their visual identity
-	 */
-	accent: {
-		moonbeam: "#F5F5F0", // ⬜ Light cream/beige - signature warm neutral
-		lightGrey: "#E5E5E5", // ⬜ Cool light gray - modern, clean accent
-		darkBlue: "#1A365D", // 🔵 Deep navy - sophisticated, premium accent
-		metallicSilver: "#C0C0C0", // ⬜ Metallic silver - modern, tech-forward accent
-	},
-
-	/**
-	 * Status Colors
-	 * Semantic colors for user feedback and system states
-	 * Standard colors for positive, negative, warning, and informational states
-	 */
-	status: {
-		success: "#16A34A", // 🟢 Green - positive states
-		warning: "#F59E0B", // 🟡 Amber - warning states
-		error: "#DC2626", // 🔴 Red - error states
-		info: "#2563EB", // 🔵 Blue - informational states
-	},
-
-	/**
-	 * Overlay Colors
-	 * Base colors for overlays, backdrops, and layered elements
-	 * Used with opacity to create modal backdrops, disabled states, and hover effects
-	 */
-	overlay: {
-		light: "#FFFFFF", // ⬜ Light overlay - for dark backgrounds
-		dark: "#000000", // ⬛ Dark overlay - for light backgrounds
-		neutral: "#5F6368", // ⬜ Neutral overlay - balanced option
-	},
-} as const;
-
-const lightBaseColorsOLD: ThemeColors = {
+const lightBaseColors: ThemeColors = {
 	white: "#FFFFFF",
 	black: "#000000",
 
