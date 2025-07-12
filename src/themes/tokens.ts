@@ -1,11 +1,11 @@
 import type {
 	Breakpoints,
-	Colors,
 	DefaultTheme,
 	Radii,
-	SemanticColors,
 	Shadows,
 	Space,
+	ThemeColors,
+	ThemeSemanticColors,
 	Transitions,
 	Typography,
 	ZIndices,
@@ -16,7 +16,7 @@ import type {
 // ---------------------------------------------------------------------------------------
 
 // LIGHT theme
-export const colors: Colors = {
+export const lightBaseColors: ThemeColors = {
 	/**
 	 * Primary Brand Colors
 	 * Core foundational colors that represent the J.Lindeberg brand identity
@@ -28,9 +28,9 @@ export const colors: Colors = {
 	},
 
 	/**
-	 * gray Gray Scale
+	 * Neutral Gray Scale
 	 * Comprehensive gray scale from lightest to darkest
-	 * Provides full range of gray tones for semantic color assignment
+	 * Provides full range of neutral tones for semantic color assignment
 	 */
 	gray: {
 		50: "#F8F9FA", // ⬜ Lightest gray
@@ -51,7 +51,7 @@ export const colors: Colors = {
 	 * Brand-specific colors derived from their visual identity
 	 */
 	accent: {
-		moonbeam: "#F5F5F0", // ⬜ Light cream/beige - signature warm gray
+		moonbeam: "#F5F5F0", // ⬜ Light cream/beige - signature warm neutral
 		lightGrey: "#E5E5E5", // ⬜ Cool light gray - modern, clean accent
 		darkBlue: "#1A365D", // 🔵 Deep navy - sophisticated, premium accent
 		metallicSilver: "#C0C0C0", // ⬜ Metallic silver - modern, tech-forward accent
@@ -77,164 +77,114 @@ export const colors: Colors = {
 	overlay: {
 		light: "#FFFFFF", // ⬜ Light overlay - for dark backgrounds
 		dark: "#000000", // ⬛ Dark overlay - for light backgrounds
-		neutral: "#5F6368", // ⬜ gray overlay - balanced option
+		neutral: "#5F6368", // ⬜ Neutral overlay - balanced option
 	},
 } as const;
 
-const semanticColors: SemanticColors = {
-	/**
-	 * Text Colors
-	 * Hierarchical text colors for different content types and emphasis levels
-	 */
+const lightBaseColorsOLD: ThemeColors = {
+	white: "#FFFFFF",
+	black: "#000000",
+
+	gray: {
+		50: "#F9FAFB",
+		100: "#F0F0F0",
+		200: "#D9D9D9",
+		300: "#BFBFBF",
+		400: "#A6A6A6",
+		500: "#8C8C8C",
+		600: "#737373",
+		700: "#595959",
+		800: "#404040",
+		900: "#262626",
+	},
+
+	primary: {
+		default: "#000000",
+		contrast: "#FFFFFF",
+	},
+
+	accent: {
+		green: "#00FF84",
+		red: "#FF4D6D",
+		yellow: "#FFE066",
+	},
+
+	success: "#28C76F",
+	warning: "#FF9F43",
+	error: "#EA5455",
+	info: "#00CFE8",
+
+	overlay: "rgba(0, 0, 0, 0.5)",
+	transparent: "transparent",
+};
+
+const lightSemanticColors: ThemeSemanticColors = {
 	text: {
-		// Primary text for main content, headings, and high emphasis
-		primary: colors.primary.black, // ⬛ High contrast black text
-
-		// Secondary text for supporting content and medium emphasis
-		secondary: colors.gray[700], // ⬜ Dark gray for secondary content
-
-		// Tertiary text for subtle labels, metadata, and low emphasis
-		tertiary: colors.gray[500], // ⬜ Medium gray for subtle text
-
-		// Placeholder text for form inputs and empty states
-		placeholder: colors.gray[400], // ⬜ Light gray for placeholders
-
-		// Inverse text for dark backgrounds
-		inverse: colors.primary.white, // ⬜ White text on dark backgrounds
-
-		// Disabled text for inactive elements
-		disabled: colors.gray[300], // ⬜ Very light gray for disabled state
-
-		// Link text for interactive elements
-		link: colors.primary.black, // ⬛ Black links (minimal approach)
-		linkHover: colors.accent.darkBlue, // 🔵 Navy blue on hover
-
-		// Status text colors
-		success: colors.status.success, // 🟢 Green for positive messages
-		warning: colors.status.warning, // 🟡 Amber for warning messages
-		error: colors.status.error, // 🔴 Red for error messages
-		info: colors.status.info, // 🔵 Blue for informational messages
+		primary: lightBaseColors.gray[900],
+		secondary: lightBaseColors.gray[700],
+		muted: lightBaseColors.gray[500],
+		inverted: lightBaseColors.white,
+		link: lightBaseColors.accent.green,
+		danger: lightBaseColors.error,
+		success: lightBaseColors.success,
 	},
-
-	/**
-	 * Background Colors
-	 * Layered background system for different surfaces and contexts
-	 */
 	background: {
-		// Primary background for main content areas
-		primary: colors.primary.white, // ⬜ Pure white main background
-
-		// Secondary background for sections and cards
-		secondary: colors.gray[50], // ⬜ Very light gray for sections
-
-		// Tertiary background for elevated elements
-		tertiary: colors.gray[100], // ⬜ Light gray for cards
-
-		// Accent backgrounds for special sections
-		accent: colors.accent.moonbeam, // ⬜ Warm cream for featured content
-
-		// Dark background for contrast sections
-		dark: colors.primary.black, // ⬛ Black for dark sections
-
-		// Overlay backgrounds for modals and popups
-		overlay: colors.overlay.dark, // ⬛ Dark overlay (used with opacity)
-		overlayLight: colors.overlay.light, // ⬜ Light overlay (used with opacity)
-
-		// Interactive backgrounds
-		hover: colors.gray[100], // ⬜ Light gray on hover
-		active: colors.gray[200], // ⬜ Medium-light gray when active
-
-		// Status backgrounds
-		success: colors.status.success, // 🟢  background (used with low opacity)
-		warning: colors.status.warning, // 🟡 Warning background (used with low opacity)
-		error: colors.status.error, // 🔴 Error background (used with low opacity)
-		info: colors.status.info, // 🔵 Info background (used with low opacity)
+		default: lightBaseColors.white,
+		elevated: lightBaseColors.gray[50],
+		subtle: lightBaseColors.gray[100],
+		inverted: lightBaseColors.gray[900],
 	},
-
-	/**
-	 * Border Colors
-	 * Subtle borders for component definition and content separation
-	 */
 	border: {
-		// Default border for general use
-		default: colors.gray[200], // ⬜ Light gray for standard borders
-
-		// Subtle border for minimal separation
-		subtle: colors.gray[100], // ⬜ Very light gray for subtle borders
-
-		// Strong border for emphasis and focus states
-		strong: colors.gray[300], // ⬜ Medium-light gray for strong borders
-
-		// Interactive border states
-		hover: colors.gray[400], // ⬜ Medium gray on hover
-		focus: colors.primary.black, // ⬛ Black for focus states
-
-		// Status borders
-		success: colors.status.success, // 🟢 Green for success states
-		warning: colors.status.warning, // 🟡 Amber for warning states
-		error: colors.status.error, // 🔴 Red for error states
-		info: colors.status.info, // 🔵 Blue for informational states
+		default: lightBaseColors.gray[200],
+		muted: lightBaseColors.gray[100],
+		strong: lightBaseColors.gray[400],
 	},
+};
 
-	/**
-	 * Interactive Colors
-	 * Colors for buttons, links, and interactive elements
-	 */
-	interactive: {
-		// Primary action colors
-		primary: colors.primary.black, // ⬛ Black for primary actions
-		primaryHover: colors.primary.charcoal, // ⬛ Dark charcoal on hover
-		primaryActive: colors.gray[800], // ⬛ Very dark gray when active
-
-		// Secondary action colors
-		secondary: colors.primary.white, // ⬜ White for secondary actions
-		secondaryHover: colors.gray[50], // ⬜ Very light gray on hover
-		secondaryActive: colors.gray[100], // ⬜ Light gray when active
-
-		// Tertiary action colors
-		tertiary: colors.gray[500], // ⬜ Medium gray for tertiary actions
-		tertiaryHover: colors.gray[600], // ⬜ Medium-dark gray on hover
-		tertiaryActive: colors.gray[700], // ⬜ Dark gray when active
-
-		// Disabled state
-		disabled: colors.gray[200], // ⬜ Light gray for disabled elements
-		disabledText: colors.gray[400], // ⬜ Medium-light gray for disabled text
+// DARK theme
+const darkBaseColors: ThemeColors = {
+	...lightBaseColors,
+	white: "#000000",
+	black: "#FFFFFF",
+	gray: {
+		50: "#121212",
+		100: "#1E1E1E",
+		200: "#2C2C2C",
+		300: "#3A3A3A",
+		400: "#505050",
+		500: "#6B6B6B",
+		600: "#8C8C8C",
+		700: "#B3B3B3",
+		800: "#D6D6D6",
+		900: "#F0F0F0",
 	},
-
-	/**
-	 * Surface Colors
-	 * Colors for different surface levels and elevations
-	 */
-	surface: {
-		// Base surface (same as primary background)
-		base: colors.primary.white, // ⬜ Base white surface
-
-		// Raised surface for cards and containers
-		raised: colors.gray[50], // ⬜ Very light gray for raised elements
-
-		// Elevated surface for modals and overlays
-		elevated: colors.primary.white, // ⬜ White for elevated elements
-
-		// Sunken surface for input fields
-		sunken: colors.gray[100], // ⬜ Light gray for input backgrounds
-
-		// Accent surface for highlighted content
-		accent: colors.accent.moonbeam, // ⬜ Warm cream for accent surfaces
+	accent: {
+		...lightBaseColors.accent,
+		green: "#00FFA3",
 	},
+	overlay: "rgba(255,255,255,0.3)",
+};
 
-	/**
-	 * Shadow Colors
-	 * Colors for shadows and depth effects
-	 */
-	shadow: {
-		// Light shadow for subtle depth
-		light: colors.overlay.dark, // ⬛ Dark overlay for light shadows
-
-		// Medium shadow for standard elevation
-		medium: colors.overlay.dark, // ⬛ Dark overlay for medium shadows
-
-		// Heavy shadow for high elevation
-		heavy: colors.overlay.dark, // ⬛ Dark overlay for heavy shadows
+const darkSemanticColors: ThemeSemanticColors = {
+	text: {
+		primary: darkBaseColors.gray[50],
+		secondary: darkBaseColors.gray[300],
+		muted: darkBaseColors.gray[500],
+		inverted: darkBaseColors.black,
+		link: darkBaseColors.accent.green,
+		danger: darkBaseColors.error,
+		success: darkBaseColors.success,
+	},
+	background: {
+		default: darkBaseColors.gray[900],
+		elevated: darkBaseColors.gray[800],
+		subtle: darkBaseColors.gray[700],
+		inverted: darkBaseColors.white,
+	},
+	border: {
+		default: darkBaseColors.gray[600],
+		muted: darkBaseColors.gray[700],
+		strong: darkBaseColors.gray[400],
 	},
 };
 
@@ -344,10 +294,10 @@ const zIndices: ZIndices = {
 	tooltip: 60,
 };
 
-export const theme: DefaultTheme = {
+export const lightTheme: DefaultTheme = {
 	colors: {
-		raw: colors,
-		semantic: semanticColors,
+		raw: lightBaseColors,
+		semantic: lightSemanticColors,
 	},
 	typography,
 	space,
@@ -359,4 +309,12 @@ export const theme: DefaultTheme = {
 	shadows,
 	transitions,
 	zIndices,
+};
+
+export const darkTheme: DefaultTheme = {
+	...lightTheme,
+	colors: {
+		raw: darkBaseColors,
+		semantic: darkSemanticColors,
+	},
 };
