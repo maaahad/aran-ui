@@ -72,6 +72,8 @@ declare module "styled-components" {
 			secondary: string;
 			tertiary: string;
 
+			inverse: string;
+
 			accent: string;
 
 			dark: string;

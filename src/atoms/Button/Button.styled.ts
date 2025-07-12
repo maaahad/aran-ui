@@ -67,8 +67,8 @@ const applyVariantStyles = (
 		case "filled": {
 			return css`
 				border: none; 
-				color: ${theme.colors.semantic.text.inverted}; 
-				background-color: ${theme.colors.semantic.background.inverted}; 
+				color: ${theme.colors.semantic.text.inverse}; 
+				background-color: ${theme.colors.semantic.background.inverse}; 
 
 				&:hover {
 					${
