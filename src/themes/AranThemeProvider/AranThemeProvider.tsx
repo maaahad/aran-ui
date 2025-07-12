@@ -1,7 +1,7 @@
 import type React from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import type { ThemeMode } from "../../tokens/color";
-import { darkTheme, lightTheme } from "../tokens";
+import { theme as defaultTheme } from "../tokens";
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -16,9 +16,9 @@ const GlobalStyle = createGlobalStyle`
 
 export const AranThemeProvider: React.FC<
 	React.PropsWithChildren<{ theme?: ThemeMode }>
-> = ({ children, theme = "light" }) => {
+> = ({ children }) => {
 	return (
-		<ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+		<ThemeProvider theme={defaultTheme}>
 			<GlobalStyle />
 			{children}
 		</ThemeProvider>
