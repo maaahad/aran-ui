@@ -4,7 +4,7 @@ import { AranThemeProvider } from "../../../themes";
 import Example from "./Example";
 
 const meta: Meta<typeof Example> = {
-	title: "Button",
+	title: "Atoms/Button",
 	component: Example,
 	decorators: [
 		(Story) => (
@@ -18,21 +18,54 @@ const meta: Meta<typeof Example> = {
 export default meta;
 type Story = StoryObj<typeof Example>;
 
-export const Primary: Story = {
+export const Filled: Story = {
 	args: {
-		text: "Button",
-		primary: true,
 		disabled: false,
-		size: "small",
-		onClick: () => console.log("Button"),
+		size: "sm",
+		variant: "filled",
 	},
 };
-export const Secondary: Story = {
+
+export const Outlined: Story = {
 	args: {
-		text: "Button",
-		primary: false,
+		variant: "outlined",
 		disabled: false,
-		size: "small",
-		onClick: () => console.log("Button"),
+		size: "sm",
+	},
+};
+
+export const Ghost: Story = {
+	args: {
+		variant: "ghost",
+		disabled: false,
+		size: "sm",
+	},
+};
+
+export const Loading: Story = {
+	args: {
+		disabled: false,
+		size: "sm",
+		loading: true,
+		loadingText: "loading...",
+	},
+};
+
+export const Reverse: Story = {
+	args: {
+		icon: <div>IC</div>,
+		iconPosition: "right",
+	},
+};
+
+export const Disabled: Story = {
+	args: {
+		disabled: true,
+	},
+};
+
+export const Ripple: Story = {
+	args: {
+		ripple: true,
 	},
 };

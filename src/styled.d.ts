@@ -14,29 +14,31 @@ declare module "styled-components" {
 	 * It will increase maintainability
 	 */
 
-	export type ThemeColors = {
-		white: string; // Base white, used for light background
-		black: string; // Base black, often used for text and dark background
-
-		gray: ColorShades; // Neutral grays, used for text, background, borders
-
+	export type Colors = {
 		primary: {
-			default: string; // Brand primary. e.g., black
-			contrast: string; // Contrast text color on primary, usually white
+			white: string;
+			black: string;
+			charcoal: string;
 		};
+		gray: ColorShades; // Neutral grays, used for text, background, borders
 		accent: {
-			green: string; // CTA, highlight or link color
-			yellow: string; // Warning or attention markers
-			red: string; // Error or delete
+			moonbeam: string;
+			lightGrey: string;
+			darkBlue: string;
+			metallicSilver: string;
 		};
 
-		success: string; // Success state or alerts
-		warning: string; // Warning or caution states
-		error: string; // Error or validation failures
-		info: string; // Informational message
-
-		overlay: string; // Overlay for modals/backdrop. (e.g. rgba)
-		transparent: string; // fully transparent, used for reset
+		status: {
+			success: string;
+			warning: string;
+			error: string;
+			info: string;
+		};
+		overlay: {
+			light: string;
+			dark: string;
+			neutral: string;
+		};
 	};
 
 	/**
@@ -45,85 +47,173 @@ declare module "styled-components" {
 	 * Instead of what they like, it means *what they are used for*
 	 */
 
-	export type ThemeSemanticColors = {
+	export type SemanticColors = {
 		text: {
-			/**
-			 * Default color for test (e.g. body text)
-			 * Should have high contrast with default background color
-			 */
 			primary: string;
-
-			/**
-			 * Used for secondary text. e.g., subtitles, meta text, labels
-			 * Slightly lower contrast than primary color
-			 */
 			secondary: string;
+			tertiary: string;
 
-			/**
-			 * For inactive, placeholder or hint text
-			 * Typically lighter or dimmed gray
-			 */
-			muted: string;
+			placeholder: string;
 
-			/**
-			 * Text used for dark/inverted background
-			 */
-			inverted: string;
+			inverse: string;
 
-			/**
-			 * For link, interactive text for ex. buttons, CTAs
-			 * Should have hight visual prominnence
-			 */
+			disabled: string;
+
 			link: string;
+			linkHover: string;
 
-			/**
-			 * Text used for error messages or destructive states
-			 */
-			danger: string;
-
-			/**
-			 * Text used for communicates successfule actions or states
-			 */
 			success: string;
+			warning: string;
+			error: string;
+			info: string;
 		};
 		background: {
-			/**
-			 * Main background colors. Used for full-page, default containers
-			 */
-			default: string;
+			primary: string;
+			secondary: string;
+			tertiary: string;
 
-			/**
-			 * used for raised surfaces. for ex. cards, modals, or app bars
-			 */
-			elevated: string;
+			inverse: string;
 
-			/**
-			 * For inputs, muted container, toggles etc
-			 */
-			subtle: string;
+			accent: string;
 
-			/**
-			 * Background color for darkmode/inverted theme
-			 */
-			inverted: string;
+			dark: string;
+
+			overlay: string;
+			overlayLight: string;
+
+			hover: string;
+			active: string;
+
+			success: string;
+			warning: string;
+			error: string;
+			info: string;
 		};
 		border: {
-			/**
-			 * standard border color. ex. contaienrs, input
-			 */
 			default: string;
+			subtle: string;
 
-			/**
-			 * lighter borders for less emphasis. For ex. card edges, dividers
-			 */
-			muted: string;
-
-			/**
-			 * Strong borders for emphasis. For ex. Focused states, alerts
-			 */
 			strong: string;
+
+			hover: string;
+			focus: string;
+
+			success: string;
+			warning: string;
+			error: string;
+			info: string;
+		};
+
+		interactive: {
+			primary: string;
+			primaryHover: string;
+			primaryActive: string;
+
+			secondary: string;
+			secondaryHover: string;
+			secondaryActive: string;
+
+			tertiary: string;
+			tertiaryHover: string;
+			tertiaryActive: string;
+
+			disabled: string;
+			disabledText: string;
+		};
+
+		surface: {
+			base: string;
+			raised: string;
+			elevated: string;
+			sunken: string;
+			accent: string;
+		};
+		shadow: {
+			light: string;
+			medium: string;
+			heavy: string;
 		};
 	};
+
+	// export type ThemeSemanticColors = {
+	//   text: {
+	//     /**
+	//      * Default color for test (e.g. body text)
+	//      * Should have high contrast with default background color
+	//      */
+	//     primary: string;
+	//
+	//     /**
+	//      * Used for secondary text. e.g., subtitles, meta text, labels
+	//      * Slightly lower contrast than primary color
+	//      */
+	//     secondary: string;
+	//
+	//     /**
+	//      * For inactive, placeholder or hint text
+	//      * Typically lighter or dimmed gray
+	//      */
+	//     muted: string;
+	//
+	//     /**
+	//      * Text used for dark/inverted background
+	//      */
+	//     inverted: string;
+	//
+	//     /**
+	//      * For link, interactive text for ex. buttons, CTAs
+	//      * Should have hight visual prominnence
+	//      */
+	//     link: string;
+	//
+	//     /**
+	//      * Text used for error messages or destructive states
+	//      */
+	//     danger: string;
+	//
+	//     /**
+	//      * Text used for communicates successfule actions or states
+	//      */
+	//     success: string;
+	//   };
+	//   background: {
+	//     /**
+	//      * Main background colors. Used for full-page, default containers
+	//      */
+	//     default: string;
+	//
+	//     /**
+	//      * used for raised surfaces. for ex. cards, modals, or app bars
+	//      */
+	//     elevated: string;
+	//
+	//     /**
+	//      * For inputs, muted container, toggles etc
+	//      */
+	//     subtle: string;
+	//
+	//     /**
+	//      * Background color for darkmode/inverted theme
+	//      */
+	//     inverted: string;
+	//   };
+	//   border: {
+	//     /**
+	//      * standard border color. ex. contaienrs, input
+	//      */
+	//     default: string;
+	//
+	//     /**
+	//      * lighter borders for less emphasis. For ex. card edges, dividers
+	//      */
+	//     muted: string;
+	//
+	//     /**
+	//      * Strong borders for emphasis. For ex. Focused states, alerts
+	//      */
+	//     strong: string;
+	//   };
+	// };
 
 	export type Typography = {
 		fonts: {
@@ -153,7 +243,22 @@ declare module "styled-components" {
 
 	export type Space = {
 		// TODO: (maaahad) Define a generic type. Ref: https://catchts.com/range-number:wa
-		[key in 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12 | 16 | 20 | 24]: string;
+		[key in
+			| 0
+			| 1
+			| 2
+			| 3
+			| 4
+			| 5
+			| 6
+			| 8
+			| 7
+			| 10
+			| 12
+			| 13
+			| 16
+			| 20
+			| 24]: string;
 	};
 
 	export type Radii = {
@@ -186,7 +291,7 @@ declare module "styled-components" {
 	export interface DefaultTheme {
 		colors: {
 			raw: ThemeColors;
-			semantic: ThemeSemanticColors;
+			semantic: SemanticColors;
 		};
 		typography: Typography;
 		space: Space;
