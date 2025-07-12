@@ -176,7 +176,7 @@ declare module "styled-components" {
 	};
 
 	export type Breakpoints = {
-		[key in "sm" | "md" | "lg" | "xl" | "2xl"]: string;
+		[key in "mobile" | "tablet" | "desktop" | "wide" | "wider"]: string;
 	};
 
 	export type Shadows = {

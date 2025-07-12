@@ -194,11 +194,11 @@ const radii: Radii = {
 };
 
 const breakpoints: Breakpoints = {
-	sm: "480px",
-	md: "768px",
-	lg: "1024px",
-	xl: "1280px",
-	"2xl": "1536px",
+	mobile: "480px",
+	tablet: "768px",
+	desktop: "1024px",
+	wide: "1280px",
+	sider: "1536px",
 };
 
 // ---------------------------------------------------------------------------------------
