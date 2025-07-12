@@ -58,6 +58,8 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 	}
 };
 
+// TODO: (maaahad) padding, border-radius, and typography should be handled in size related styling
+
 const applyVariantStyles = (
 	theme: DefaultTheme,
 	variant: Variant,
@@ -89,6 +91,32 @@ const applyVariantStyles = (
 				`
 				}
 			`;
+		}
+
+		case "outlined": {
+			return css`
+        background-color: ${theme.colors.raw.transparent}; 
+        color: ${theme.colors.semantic.text.primary}; 
+        border: 1px solid ${theme.colors.semantic.border.default}; 
+
+        &:hover {
+          ${
+						!disabled &&
+						css`
+          background-color: ${theme.colors.semantic.background.subtle}; 
+          `
+					}
+        }
+
+        ${
+					disabled &&
+					css`
+          border-color: ${theme.colors.semantic.border.muted}; 
+          color: ${theme.colors.semantic.text.muted}; 
+          cursor: not-allowed; 
+        `
+				}
+      `;
 		}
 
 		default:
