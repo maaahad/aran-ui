@@ -47,6 +47,92 @@ declare module "styled-components" {
 	 * Instead of what they like, it means *what they are used for*
 	 */
 
+	export type SemanticColors = {
+		text: {
+			primary: string;
+			secondary: string;
+			tertiary: string;
+
+			placeholder: string;
+
+			inverse: string;
+
+			disabled: string;
+
+			link: string;
+			linkHover: string;
+
+			success: string;
+			warning: string;
+			error: string;
+			info: string;
+		};
+		background: {
+			primary: string;
+			secondary: string;
+			tertiary: string;
+
+			accent: string;
+
+			dark: string;
+
+			overlay: string;
+			overlayLight: string;
+
+			hover: string;
+			active: string;
+
+			success: string;
+			warning: string;
+			error: string;
+			info: string;
+		};
+		border: {
+			default: string;
+			subtle: string;
+
+			strong: string;
+
+			hover: string;
+			focus: string;
+
+			success: string;
+			warning: string;
+			error: string;
+			info: string;
+		};
+
+		interactive: {
+			primary: string;
+			primaryHover: string;
+			primaryActive: string;
+
+			secondary: string;
+			secondaryHover: string;
+			secondaryActive: string;
+
+			tertiary: string;
+			tertiaryHover: string;
+			tertiaryActive: string;
+
+			disabled: string;
+			disabledText: string;
+		};
+
+		surface: {
+			base: string;
+			raised: string;
+			elevated: string;
+			sunken: string;
+			accent: string;
+		};
+		shadow: {
+			light: string;
+			medium: string;
+			heavy: string;
+		};
+	};
+
 	export type ThemeSemanticColors = {
 		text: {
 			/**
