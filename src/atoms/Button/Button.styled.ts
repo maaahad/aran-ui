@@ -74,7 +74,7 @@ const applyVariantStyles = (
 					${
 						!disabled &&
 						css`
-					opacity: .6;
+          background-color: ${theme.colors.raw.gray[800]}; 
 					`
 					}
 				}
@@ -82,8 +82,10 @@ const applyVariantStyles = (
 				${
 					disabled &&
 					css`
+          background-color: ${theme.colors.raw.gray[300]}; 
+          color: ${theme.colors.semantic.text.muted}; 
 					cursor: not-allowed; 
-					opacity: .5; 
+					opacity: .6; 
 				`
 				}
 			`;
