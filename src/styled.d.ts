@@ -215,31 +215,104 @@ declare module "styled-components" {
 	//   };
 	// };
 
-	export type Typography = {
-		fonts: {
-			[key in "body" | "heading" | "mono"]: string;
+	export type FontFamilies = {
+		[key in "primary" | "secondary" | "mono"]: string;
+	};
+
+	export type FontWeights = {
+		[key in
+			| "light"
+			| "regular"
+			| "medium"
+			| "semibold"
+			| "bold"
+			| "extrabold"]: number;
+	};
+
+	export type FontSizes = {
+		[key in
+			| "xs"
+			| "sm"
+			| "base"
+			| "lg"
+			| "xl"
+			| "2xl"
+			| "3xl"
+			| "4xl"
+			| "5xl"
+			| "6xl"
+			| "7xl"]: string;
+	};
+
+	export type LineHeights = {
+		[key in "tight" | "snug" | "normal" | "relaxed" | "loose"]: number;
+	};
+
+	export type LetterSpacing = {
+		[key in "tight" | "normal" | "wide" | "wider" | "widest"]: string;
+	};
+
+	export type FontStyles = {
+		fontFamily: keyof FontFamilies;
+		fontWeight: number;
+		fontSize: string;
+		lineHeight: number;
+		letterSpacing: string;
+	};
+
+	export type TextStyles = {
+		display: {
+			[key in "large" | "medium" | "small"]: FontStyles;
 		};
-		fontSizes: {
-			[key in
-				| "xs"
-				| "sm"
-				| "base"
-				| "md"
-				| "lg"
-				| "xl"
-				| "2xl"
-				| "3xl"]: string;
+		heading: {
+			[key in "h1" | "h2" | "h3" | "h4" | "h5" | "h6"]: FontStyles;
 		};
-		fontWeights: {
-			[key in "light" | "normal" | "medium" | "bold"]: number;
+		body: {
+			[key in "large" | "medium" | "small"]: FontStyles;
 		};
-		lineHeights: {
-			[key in "normal" | "relaxed" | "loose"]: number;
+		caption: {
+			[key in "large" | "medium" | "small"]: FontStyles;
 		};
-		letterSpacing: {
-			[key in "normal" | "wide" | "wider"]: string;
+		link: {
+			default: FontStyles;
+			underline: FontStyles;
 		};
 	};
+
+	export type Typography = {
+		fontFamilies: FontFamilies;
+		fontWeights: FontWeights;
+		fontSizes: FontSizes;
+		lineHeights: LineHeights;
+		letterSpacing: LetterSpacing;
+		textStyles: TextStyles;
+	};
+
+	// export type TypographyLegacy = {
+	//   fonts: {
+	//     [key in "body" | "heading" | "mono"]: string;
+	//   };
+	//   fontSizes: {
+	//     [key in
+	//     | "xs"
+	//     | "sm"
+	//     | "base"
+	//     | "md"
+	//     | "lg"
+	//     | "xl"
+	//     | "2xl"
+	//     | "3xl"]: string;
+	//   };
+	//   fontWeights: {
+	//     [key in "light" | "normal" | "medium" | "bold"]: number;
+	//   };
+	//   lineHeights: {
+	//     [key in "normal" | "relaxed" | "loose"]: number;
+	//   };
+	//   letterSpacing: {
+	//     [key in "normal" | "wide" | "wider"]: string;
+	//   };
+	// };
 
 	export type Space = {
 		// TODO: (maaahad) Define a generic type. Ref: https://catchts.com/range-number:wa
