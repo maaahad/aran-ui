@@ -119,6 +119,32 @@ const applyVariantStyles = (
       `;
 		}
 
+		case "ghost": {
+			return css`
+        background-color: ${theme.colors.raw.transparent}; 
+        color: ${theme.colors.semantic.text.primary}; 
+        border: none; 
+
+        &:hover {
+          ${
+						!disabled &&
+						css`
+          background-color: ${theme.colors.semantic.background.subtle};
+          `
+					}
+        }
+
+        ${
+					disabled &&
+					css`
+        background-color: ${theme.colors.semantic.background.subtle};
+        color: ${theme.colors.semantic.text.muted};
+        cursor: not-allowed; 
+        `
+				}
+      `;
+		}
+
 		default:
 			css``;
 	}
