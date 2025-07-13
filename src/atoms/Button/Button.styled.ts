@@ -21,6 +21,7 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 				padding: ${theme.space[1]} ${theme.space[2]}; 
 				border-radius: ${theme.radii.sm}; 
 				gap: ${theme.space[1]};
+        font-size: ${theme.typography.fontSizes.xs}; 
 			`;
 		}
 		case "sm": {
@@ -29,6 +30,7 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 				padding: ${theme.space[1]} ${theme.space[3]}; 
 				border-radius: ${theme.radii.sm}; 
 				gap: ${theme.space[1]};
+        font-size: ${theme.typography.fontSizes.sm}; 
 			`;
 		}
 		case "md": {
@@ -37,6 +39,7 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 				padding: ${theme.space[2]} ${theme.space[4]}; 
 				border-radius: ${theme.radii.md}; 
 				gap: ${theme.space[2]};
+        font-size: ${theme.typography.fontSizes.base}; 
 			`;
 		}
 		case "lg": {
@@ -45,6 +48,7 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 				padding: ${theme.space[2]} ${theme.space[5]}; 
 				border-radius: ${theme.radii.md}; 
 				gap: ${theme.space[2]};
+        font-size: ${theme.typography.fontSizes.md}; 
 			`;
 		}
 		case "xl": {
@@ -53,6 +57,7 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 				padding: ${theme.space[3]} ${theme.space[6]}; 
 				border-radius: ${theme.radii.lg}; 
 				gap: ${theme.space[3]};
+        font-size: ${theme.typography.fontSizes.lg}; 
 			`;
 		}
 	}
