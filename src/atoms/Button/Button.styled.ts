@@ -167,6 +167,7 @@ export const ButtonStyled = styled.button<Props>`
 		display: flex; 
 		flex-direction: ${reverse ? "row-reverse" : "row"}; 
 		align-items: center; 
+    justify-content: center; 
 
 		transition: ${theme.transitions.normal}; 
 
