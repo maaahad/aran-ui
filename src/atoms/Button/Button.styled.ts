@@ -29,6 +29,7 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 			return css`
 				height: ${theme.space[8]}; 
         min-width: ${theme.space[20]}; 
+        /* TODO: (maaahad) 1.5 */
 				padding: ${theme.space[1]} ${theme.space[3]}; 
 				border-radius: ${theme.radii.sm}; 
 				gap: ${theme.space[1]};
@@ -49,7 +50,7 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 			return css`
 				height: ${theme.space[12]}; 
         min-width: ${theme.space[28]}; 
-				padding: ${theme.space[2]} ${theme.space[5]}; 
+				padding: ${theme.space[3]} ${theme.space[5]}; 
 				border-radius: ${theme.radii.md}; 
 				gap: ${theme.space[2]};
         font-size: ${theme.typography.fontSizes.md}; 
@@ -59,7 +60,7 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 			return css`
 				height: ${theme.space[13]}; 
         min-width: ${theme.space[28]}; 
-				padding: ${theme.space[3]} ${theme.space[6]}; 
+				padding: ${theme.space[4]} ${theme.space[6]}; 
 				border-radius: ${theme.radii.lg}; 
 				gap: ${theme.space[3]};
         font-size: ${theme.typography.fontSizes.lg}; 
