@@ -58,8 +58,6 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 	}
 };
 
-// TODO: (maaahad) padding, border-radius, and typography should be handled in size related styling
-
 const applyVariantStyles = (
 	theme: DefaultTheme,
 	variant: Variant,
