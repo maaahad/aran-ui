@@ -179,9 +179,12 @@ const space: Space = {
 	10: "40px",
 	12: "48px",
 	13: "48px",
+	14: "48px",
 	16: "64px",
 	20: "80px",
 	24: "96px",
+	28: "112px",
+	32: "128px",
 };
 
 const radii: Radii = {

@@ -166,9 +166,12 @@ declare module "styled-components" {
 			| 10
 			| 12
 			| 13
+			| 14
 			| 16
 			| 20
-			| 24]: string;
+			| 24
+			| 28
+			| 32]: string;
 	};
 
 	export type Radii = {

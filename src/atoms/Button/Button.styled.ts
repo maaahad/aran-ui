@@ -17,7 +17,8 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 	switch (size) {
 		case "xs": {
 			return css`
-				height: ${theme.space[7]}; 
+				height: ${theme.space[6]}; 
+        min-width: ${theme.space[16]}; 
 				padding: ${theme.space[1]} ${theme.space[2]}; 
 				border-radius: ${theme.radii.sm}; 
 				gap: ${theme.space[1]};
@@ -27,6 +28,7 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 		case "sm": {
 			return css`
 				height: ${theme.space[8]}; 
+        min-width: ${theme.space[20]}; 
 				padding: ${theme.space[1]} ${theme.space[3]}; 
 				border-radius: ${theme.radii.sm}; 
 				gap: ${theme.space[1]};
@@ -36,6 +38,7 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 		case "md": {
 			return css`
 				height: ${theme.space[10]}; 
+        min-width: ${theme.space[24]}; 
 				padding: ${theme.space[2]} ${theme.space[4]}; 
 				border-radius: ${theme.radii.md}; 
 				gap: ${theme.space[2]};
@@ -45,6 +48,7 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 		case "lg": {
 			return css`
 				height: ${theme.space[12]}; 
+        min-width: ${theme.space[28]}; 
 				padding: ${theme.space[2]} ${theme.space[5]}; 
 				border-radius: ${theme.radii.md}; 
 				gap: ${theme.space[2]};
@@ -54,6 +58,7 @@ const applySizeStyles = (theme: DefaultTheme, size: Size) => {
 		case "xl": {
 			return css`
 				height: ${theme.space[13]}; 
+        min-width: ${theme.space[28]}; 
 				padding: ${theme.space[3]} ${theme.space[6]}; 
 				border-radius: ${theme.radii.lg}; 
 				gap: ${theme.space[3]};
