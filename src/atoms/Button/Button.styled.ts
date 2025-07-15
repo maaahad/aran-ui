@@ -14,8 +14,17 @@ import type {
 | `Filled`   | Secondary/neutral action             | Soft background, normal text color                 |
 | `Outlined` | Tertiary or neutral emphasis         | Transparent bg, defined border                     |
 | `Ghost`    | Inline button, minimal visual weight | Transparent all, subtle hover only                 |
-| `Plain`     | Navigate or inline text action       | Styled like a link, often underlined               |
-*
+| `Plain`    | Navigate or inline text action       | Styled like a link, often underlined               |
+
+
+| **Variant**  | **Background**                              | **Border**                 | **Text Color**          | **Hover Styles**                                     | **Spinner Color** | **Disabled Style**                      |
+| ------------ | ------------------------------------------- | -------------------------- | ----------------------- | ---------------------------------------------------- | ----------------- | --------------------------------------- |
+| **Solid**    | `background.inverted` (e.g. black or brand) | none                       | `text.inverted` (white) | darken bg slightly (e.g. `hover:bg-neutral-900`)     | `text.inverted`   | opacity `0.6`, `cursor: not-allowed`    |
+| **Filled**   | `background.subtle` (e.g. light gray)       | none                       | `text.primary`          | darken bg slightly (`hover:bg-neutral-300`)          | `text.primary`    | reduce contrast, `opacity: 0.6`         |
+| **Outlined** | transparent                                 | `1px solid border.default` | `text.primary`          | bg: `background.hover` (e.g. `hover:bg-neutral-100`) | `text.primary`    | fade border and text                    |
+| **Ghost**    | transparent                                 | none                       | `text.primary`          | subtle bg on hover (e.g. `hover:bg-neutral-100`)     | `text.primary`    | text muted, no pointer                  |
+| **Plain**    | transparent                                 | none                       | `accent.default`        | underline or opacity change (e.g. `hover:underline`) | `accent.default`  | text gray, no underline, `opacity: 0.5` |
+
 */
 
 type Props = Omit<ComponentResponsiveProps, "pd"> & {
@@ -194,6 +203,33 @@ const applyVariantStyles = (
         background-color: ${theme.colors.semantic.background.subtle};
         color: ${theme.colors.semantic.text.muted};
         cursor: not-allowed; 
+        `
+				}
+      `;
+		}
+
+		case "plain": {
+			return css`
+        background-color: ${theme.colors.raw.transparent}; 
+        color: ${theme.colors.semantic.text.link}; 
+        border: none; 
+
+        &:hover {
+          ${
+						!loading &&
+						!disabled &&
+						css`
+          text-decoration: underline; 
+          `
+					}
+        }
+
+        ${
+					disabled &&
+					css`
+        color: ${theme.colors.semantic.text.muted};
+        cursor: not-allowed; 
+        opacity: .5; 
         `
 				}
       `;

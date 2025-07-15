@@ -25,7 +25,8 @@ declare module "styled-components" {
 			contrast: string; // Contrast text color on primary, usually white
 		};
 		accent: {
-			green: string; // CTA, highlight or link color
+			default: string; // Link color
+			green: string; // CTA, highlight
 			yellow: string; // Warning or attention markers
 			red: string; // Error or delete
 		};

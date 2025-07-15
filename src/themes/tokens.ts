@@ -39,6 +39,7 @@ const lightBaseColors: ThemeColors = {
 	},
 
 	accent: {
+		default: "#0000FF",
 		green: "#00FF84",
 		red: "#FF4D6D",
 		yellow: "#FFE066",
@@ -59,7 +60,7 @@ const lightSemanticColors: ThemeSemanticColors = {
 		secondary: lightBaseColors.gray[700],
 		muted: lightBaseColors.gray[500],
 		inverted: lightBaseColors.white,
-		link: lightBaseColors.accent.green,
+		link: lightBaseColors.accent.default,
 		danger: lightBaseColors.error,
 		success: lightBaseColors.success,
 	},
