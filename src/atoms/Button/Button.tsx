@@ -23,10 +23,10 @@ export type Props = ComponentProps &
 		loadingText?: string;
 		htmlType?: "button" | "submit" | "reset";
 		disabled?: boolean;
-		variant: Variant;
+		variant?: Variant;
 		onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 		icon?: ReactNode;
-		iconPosition: PropPosition;
+		iconPosition?: PropPosition;
 		ripple?: boolean;
 		size?: Size;
 	};
