@@ -36,7 +36,11 @@ declare module "styled-components" {
 		error: string; // Error or validation failures
 		info: string; // Informational message
 
-		overlay: string; // Overlay for modals/backdrop. (e.g. rgba)
+		// Overlay for modals/backdrop. (e.g. rgba)
+		overlay: {
+			primary: string;
+			secondary: string;
+		};
 		transparent: string; // fully transparent, used for reset
 	};
 
@@ -88,6 +92,7 @@ declare module "styled-components" {
 			success: string;
 		};
 		background: {
+			transparent: string;
 			/**
 			 * Main background colors. Used for full-page, default containers
 			 */
@@ -107,6 +112,13 @@ declare module "styled-components" {
 			 * Background color for darkmode/inverted theme
 			 */
 			inverted: string;
+
+			/**
+			 * On hover
+			 */
+			hover: string;
+			invertedHover: string;
+			subtleHover: string;
 		};
 		border: {
 			/**

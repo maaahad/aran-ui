@@ -49,8 +49,10 @@ const lightBaseColors: ThemeColors = {
 	warning: "#FF9F43",
 	error: "#EA5455",
 	info: "#00CFE8",
-
-	overlay: "rgba(0, 0, 0, 0.5)",
+	overlay: {
+		primary: "rgba(0, 0, 0, 0.05)",
+		secondary: "rgba(0, 0, 0, 0.5)",
+	},
 	transparent: "transparent",
 };
 
@@ -65,11 +67,17 @@ const lightSemanticColors: ThemeSemanticColors = {
 		success: lightBaseColors.success,
 	},
 	background: {
+		transparent: lightBaseColors.transparent,
 		default: lightBaseColors.white,
 		elevated: lightBaseColors.gray[50],
 		subtle: lightBaseColors.gray[100],
 		inverted: lightBaseColors.gray[900],
+
+		hover: lightBaseColors.overlay.primary,
+		subtleHover: lightBaseColors.gray[300],
+		invertedHover: lightBaseColors.gray[800],
 	},
+	// TODO: (maaaahad) add accent field
 	border: {
 		default: lightBaseColors.gray[200],
 		muted: lightBaseColors.gray[100],
@@ -101,6 +109,7 @@ const darkBaseColors: ThemeColors = {
 	overlay: "rgba(255,255,255,0.3)",
 };
 
+// TODO: (maaahad) adjust colors for Dark theme
 const darkSemanticColors: ThemeSemanticColors = {
 	text: {
 		primary: darkBaseColors.gray[50],
@@ -116,6 +125,11 @@ const darkSemanticColors: ThemeSemanticColors = {
 		elevated: darkBaseColors.gray[800],
 		subtle: darkBaseColors.gray[700],
 		inverted: darkBaseColors.white,
+
+		// TODO: (maaahad) this is just copy from light theme
+		hover: lightBaseColors.overlay, // hover on default BG (white) . For ex. outlined and ghost variant of Button
+		subtleHover: lightBaseColors.gray[300],
+		invertedHover: lightBaseColors.gray[800],
 	},
 	border: {
 		default: darkBaseColors.gray[600],

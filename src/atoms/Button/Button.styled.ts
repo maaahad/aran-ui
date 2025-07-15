@@ -109,7 +109,7 @@ const applyVariantStyles = (
 						!loading &&
 						!disabled &&
 						css`
-          background-color: ${theme.colors.raw.gray[800]}; 
+          background-color: ${theme.colors.semantic.background.invertedHover}; 
 					`
 					}
 				}
@@ -117,7 +117,6 @@ const applyVariantStyles = (
 				${
 					disabled &&
 					css`
-          background-color: ${theme.colors.raw.gray[300]}; 
           color: ${theme.colors.semantic.text.muted}; 
 					cursor: not-allowed; 
 					opacity: .6; 
@@ -137,7 +136,7 @@ const applyVariantStyles = (
 						!loading &&
 						!disabled &&
 						css`
-          background-color: ${theme.colors.raw.gray[300]}; 
+          background-color: ${theme.colors.semantic.background.subtleHover}; 
 					`
 					}
 				}
@@ -145,7 +144,6 @@ const applyVariantStyles = (
 				${
 					disabled &&
 					css`
-          background-color: ${theme.colors.semantic.background.subtle}; 
           color: ${theme.colors.semantic.text.muted}; 
 					cursor: not-allowed; 
 					opacity: .6; 
@@ -156,7 +154,7 @@ const applyVariantStyles = (
 
 		case "outlined": {
 			return css`
-        background-color: ${theme.colors.raw.transparent}; 
+        background-color: ${theme.colors.semantic.background.transparent}; 
         color: ${theme.colors.semantic.text.primary}; 
         border: 1px solid ${theme.colors.semantic.border.default}; 
 
@@ -165,7 +163,7 @@ const applyVariantStyles = (
 						!loading &&
 						!disabled &&
 						css`
-          background-color: ${theme.colors.semantic.background.subtle}; 
+          background-color: ${theme.colors.semantic.background.hover}; 
           `
 					}
         }
@@ -183,7 +181,7 @@ const applyVariantStyles = (
 
 		case "ghost": {
 			return css`
-        background-color: ${theme.colors.raw.transparent}; 
+        background-color: ${theme.colors.semantic.background.transparent}; 
         color: ${theme.colors.semantic.text.primary}; 
         border: none; 
 
@@ -192,7 +190,7 @@ const applyVariantStyles = (
 						!loading &&
 						!disabled &&
 						css`
-          background-color: ${theme.colors.semantic.background.subtle};
+          background-color: ${theme.colors.semantic.background.hover};
           `
 					}
         }
@@ -210,7 +208,7 @@ const applyVariantStyles = (
 
 		case "plain": {
 			return css`
-        background-color: ${theme.colors.raw.transparent}; 
+        background-color: ${theme.colors.semantic.background.transparent}; 
         color: ${theme.colors.semantic.text.link}; 
         border: none; 
 
