@@ -1,8 +1,14 @@
 // components/button/button.tsx
-import type { FC, PropsWithChildren, ReactNode } from "react";
+import {
+	type FC,
+	type PropsWithChildren,
+	type ReactNode,
+	useMemo,
+} from "react";
 import { SpinnerIcon } from "../Icons";
 import { ButtonStyled } from "./Button.styled";
 
+import { useTheme } from "styled-components";
 import type {
 	ComponentProps,
 	ComponentResponsiveProps,
@@ -39,6 +45,13 @@ export const Button: FC<PropsWithChildren<Props>> = ({
 	ripple = false,
 	...styleProps
 }) => {
+	const theme = useTheme();
+
+	const iconColor = useMemo(() => {
+		if (variant === "filled") return theme.colors.semantic.text.inverted;
+		return theme.colors.semantic.text.primary;
+	}, [theme, variant]);
+
 	return (
 		<ButtonStyled
 			type={htmlType}
@@ -50,7 +63,7 @@ export const Button: FC<PropsWithChildren<Props>> = ({
 			reverse={iconPosition === "right"}
 		>
 			{ripple && <span className="ripple" />}
-			{loading ? <SpinnerIcon /> : icon}
+			{loading ? <SpinnerIcon fill={iconColor} /> : icon}
 			<div>{loading ? loadingText : children}</div>
 		</ButtonStyled>
 	);
