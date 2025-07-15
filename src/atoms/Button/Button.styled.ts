@@ -6,6 +6,18 @@ import type {
 	Variant,
 } from "../../utils/types";
 
+/**
+ *
+| Variant    | Typical Use                          | Appearance                                         |
+| ---------- | ------------------------------------ | -------------------------------------------------- |
+| `Solid`    | Primary action                       | High contrast bg, inverted text (e.g. black/white) |
+| `Filled`   | Secondary/neutral action             | Soft background, normal text color                 |
+| `Outlined` | Tertiary or neutral emphasis         | Transparent bg, defined border                     |
+| `Ghost`    | Inline button, minimal visual weight | Transparent all, subtle hover only                 |
+| `Plain`     | Navigate or inline text action       | Styled like a link, often underlined               |
+*
+*/
+
 type Props = Omit<ComponentResponsiveProps, "pd"> & {
 	reverse: boolean;
 	size: Size;
@@ -77,7 +89,7 @@ const applyVariantStyles = (
 	loading: boolean,
 ) => {
 	switch (variant) {
-		case "filled": {
+		case "solid": {
 			return css`
 				border: none; 
 				color: ${theme.colors.semantic.text.inverted}; 
@@ -97,6 +109,34 @@ const applyVariantStyles = (
 					disabled &&
 					css`
           background-color: ${theme.colors.raw.gray[300]}; 
+          color: ${theme.colors.semantic.text.muted}; 
+					cursor: not-allowed; 
+					opacity: .6; 
+				`
+				}
+			`;
+		}
+
+		case "filled": {
+			return css`
+				border: none; 
+				color: ${theme.colors.semantic.text.primary}; 
+				background-color: ${theme.colors.semantic.background.subtle}; 
+
+				&:hover {
+					${
+						!loading &&
+						!disabled &&
+						css`
+          background-color: ${theme.colors.raw.gray[300]}; 
+					`
+					}
+				}
+
+				${
+					disabled &&
+					css`
+          background-color: ${theme.colors.semantic.background.subtle}; 
           color: ${theme.colors.semantic.text.muted}; 
 					cursor: not-allowed; 
 					opacity: .6; 

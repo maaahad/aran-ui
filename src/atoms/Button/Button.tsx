@@ -48,7 +48,8 @@ export const Button: FC<PropsWithChildren<Props>> = ({
 	const theme = useTheme();
 
 	const iconColor = useMemo(() => {
-		if (variant === "filled") return theme.colors.semantic.text.inverted;
+		if (variant === "solid") return theme.colors.semantic.text.inverted;
+		if (variant === "plain") return theme.colors.semantic.text.link;
 		return theme.colors.semantic.text.primary;
 	}, [theme, variant]);
 
