@@ -11,6 +11,7 @@ type Props = Omit<ComponentResponsiveProps, "pd"> & {
 	size: Size;
 	variant: Variant;
 	disabled: boolean;
+	loading: boolean;
 };
 
 const applySizeStyles = (theme: DefaultTheme, size: Size) => {
@@ -73,6 +74,7 @@ const applyVariantStyles = (
 	theme: DefaultTheme,
 	variant: Variant,
 	disabled: boolean,
+	loading: boolean,
 ) => {
 	switch (variant) {
 		case "filled": {
@@ -83,6 +85,7 @@ const applyVariantStyles = (
 
 				&:hover {
 					${
+						!loading &&
 						!disabled &&
 						css`
           background-color: ${theme.colors.raw.gray[800]}; 
@@ -110,6 +113,7 @@ const applyVariantStyles = (
 
         &:hover {
           ${
+						!loading &&
 						!disabled &&
 						css`
           background-color: ${theme.colors.semantic.background.subtle}; 
@@ -136,6 +140,7 @@ const applyVariantStyles = (
 
         &:hover {
           ${
+						!loading &&
 						!disabled &&
 						css`
           background-color: ${theme.colors.semantic.background.subtle};
@@ -161,7 +166,7 @@ const applyVariantStyles = (
 
 export const ButtonStyled = styled.button<Props>`
 	${applyResponsiveCSS}
-	${({ theme, reverse, size, variant, disabled }) => css`
+	${({ theme, reverse, size, variant, disabled, loading }) => css`
 		position: relative; 
 		overflow: hidden; 
 		cursor: pointer; 
@@ -172,8 +177,15 @@ export const ButtonStyled = styled.button<Props>`
 
 		transition: ${theme.transitions.normal}; 
 
+    ${
+			loading &&
+			css`
+    cursor: not-allowed; 
+    `
+		}
+
 		${applySizeStyles(theme, size)}; 
-		${applyVariantStyles(theme, variant, disabled)}; 
+		${applyVariantStyles(theme, variant, disabled, loading)}; 
 	`}
 
 `;

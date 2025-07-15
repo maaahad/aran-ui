@@ -28,7 +28,7 @@ export type Props = ComponentProps &
 		icon?: ReactNode;
 		iconPosition: PropPosition;
 		ripple?: boolean;
-		size: Size;
+		size?: Size;
 	};
 
 export const Button: FC<PropsWithChildren<Props>> = ({
@@ -56,6 +56,7 @@ export const Button: FC<PropsWithChildren<Props>> = ({
 		<ButtonStyled
 			type={htmlType}
 			disabled={disabled}
+			loading={loading}
 			size={size}
 			variant={variant}
 			{...styleProps}
