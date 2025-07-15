@@ -106,7 +106,10 @@ const darkBaseColors: ThemeColors = {
 		...lightBaseColors.accent,
 		green: "#00FFA3",
 	},
-	overlay: "rgba(255,255,255,0.3)",
+	overlay: {
+		primary: "rgba(255,255,255,0.03)",
+		secondary: "rgba(255,255,255,0.3)",
+	},
 };
 
 // TODO: (maaahad) adjust colors for Dark theme
@@ -121,13 +124,14 @@ const darkSemanticColors: ThemeSemanticColors = {
 		success: darkBaseColors.success,
 	},
 	background: {
+		transparent: darkBaseColors.transparent,
 		default: darkBaseColors.gray[900],
 		elevated: darkBaseColors.gray[800],
 		subtle: darkBaseColors.gray[700],
 		inverted: darkBaseColors.white,
 
 		// TODO: (maaahad) this is just copy from light theme
-		hover: lightBaseColors.overlay, // hover on default BG (white) . For ex. outlined and ghost variant of Button
+		hover: lightBaseColors.overlay.primary, // hover on default BG (white) . For ex. outlined and ghost variant of Button
 		subtleHover: lightBaseColors.gray[300],
 		invertedHover: lightBaseColors.gray[800],
 	},
