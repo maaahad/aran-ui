@@ -14,6 +14,22 @@ declare module "styled-components" {
 	 * It will increase maintainability
 	 */
 
+	export type RawColors = {
+		primary: {
+			[key in "black" | "white" | "charcoal"]: string;
+		};
+		neutral: ColorShades;
+		accent: {
+			[key in "moonbeam" | "lightGrey" | "darkBlue" | "metallicSilver"]: string;
+		};
+		status: {
+			[key in "success" | "warning" | "error" | "info"]: string;
+		};
+		overlay: {
+			[key in "light" | "dark" | "neutral"]: string;
+		};
+	};
+
 	export type ThemeColors = {
 		white: string; // Base white, used for light background
 		black: string; // Base black, often used for text and dark background
@@ -216,7 +232,7 @@ declare module "styled-components" {
 
 	export interface DefaultTheme {
 		colors: {
-			raw: ThemeColors;
+			raw: RawColors;
 			semantic: ThemeSemanticColors;
 		};
 		typography: Typography;
