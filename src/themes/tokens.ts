@@ -2,6 +2,7 @@ import type {
 	Breakpoints,
 	DefaultTheme,
 	Radii,
+	RawColors,
 	Shadows,
 	Space,
 	ThemeColors,
@@ -14,6 +15,85 @@ import type {
 // ---------------------------------------------------------------------------------------
 // Colors
 // ---------------------------------------------------------------------------------------
+
+/**
+ * J.Lindeberg Design System - Raw Color Palette
+ *
+ * This raw color palette contains the foundational colors inspired by J.Lindeberg's
+ * luxury golf and lifestyle brand aesthetic. These are the base colors that will be
+ * used to define semantic color tokens later.
+ *
+ * Design Philosophy:
+ * - Minimalist approach with emphasis on black, white, and sophisticated grays
+ * - Luxury brand positioning through refined color choices
+ * - Golf and lifestyle brand heritage reflected in clean, athletic aesthetics
+ * - High contrast for readability and visual impact
+ */
+
+export const rawColors: RawColors = {
+	/**
+	 * Primary Brand Colors
+	 * Core foundational colors that represent the J.Lindeberg brand identity
+	 */
+	primary: {
+		black: "#000000", // ⬛ Pure black - primary brand color
+		white: "#FFFFFF", // ⬜ Pure white - primary brand color
+		charcoal: "#2C2C2C", // ⬛ Dark charcoal - softer black alternative
+	},
+
+	/**
+	 * Neutral Gray Scale
+	 * Comprehensive gray scale from lightest to darkest
+	 * Provides full range of neutral tones for semantic color assignment
+	 */
+	neutral: {
+		50: "#F8F9FA", // ⬜ Lightest gray
+		100: "#F1F3F4", // ⬜ Very light gray
+		200: "#E8EAED", // ⬜ Light gray
+		300: "#DADCE0", // ⬜ Medium-light gray
+		400: "#BDC1C6", // ⬜ Medium gray
+		500: "#9AA0A6", // ⬜ Mid gray
+		600: "#80868B", // ⬜ Medium-dark gray
+		700: "#5F6368", // ⬜ Dark gray
+		800: "#3C4043", // ⬛ Very dark gray
+		900: "#202124", // ⬛ Darkest gray
+	},
+
+	/**
+	 * Accent Colors
+	 * Signature colors that reflect J.Lindeberg's premium aesthetic
+	 * Brand-specific colors derived from their visual identity
+	 */
+	accent: {
+		moonbeam: "#F5F5F0", // ⬜ Light cream/beige - signature warm neutral
+		lightGrey: "#E5E5E5", // ⬜ Cool light gray - modern, clean accent
+		darkBlue: "#1A365D", // 🔵 Deep navy - sophisticated, premium accent
+		metallicSilver: "#C0C0C0", // ⬜ Metallic silver - modern, tech-forward accent
+	},
+
+	/**
+	 * Status Colors
+	 * Semantic colors for user feedback and system states
+	 * Standard colors for positive, negative, warning, and informational states
+	 */
+	status: {
+		success: "#16A34A", // 🟢 Green - positive states
+		warning: "#F59E0B", // 🟡 Amber - warning states
+		error: "#DC2626", // 🔴 Red - error states
+		info: "#2563EB", // 🔵 Blue - informational states
+	},
+
+	/**
+	 * Overlay Colors
+	 * Base colors for overlays, backdrops, and layered elements
+	 * Used with opacity to create modal backdrops, disabled states, and hover effects
+	 */
+	overlay: {
+		light: "#FFFFFF", // ⬜ Light overlay - for dark backgrounds
+		dark: "#000000", // ⬛ Dark overlay - for light backgrounds
+		neutral: "#5F6368", // ⬜ Neutral overlay - balanced option
+	},
+} as const;
 
 // LIGHT theme
 const lightBaseColors: ThemeColors = {
@@ -86,61 +166,61 @@ const lightSemanticColors: ThemeSemanticColors = {
 };
 
 // DARK theme
-const darkBaseColors: ThemeColors = {
-	...lightBaseColors,
-	white: "#000000",
-	black: "#FFFFFF",
-	gray: {
-		50: "#121212",
-		100: "#1E1E1E",
-		200: "#2C2C2C",
-		300: "#3A3A3A",
-		400: "#505050",
-		500: "#6B6B6B",
-		600: "#8C8C8C",
-		700: "#B3B3B3",
-		800: "#D6D6D6",
-		900: "#F0F0F0",
-	},
-	accent: {
-		...lightBaseColors.accent,
-		green: "#00FFA3",
-	},
-	overlay: {
-		primary: "rgba(255,255,255,0.03)",
-		secondary: "rgba(255,255,255,0.3)",
-	},
-};
+// const darkBaseColors: ThemeColors = {
+// 	...lightBaseColors,
+// 	white: "#000000",
+// 	black: "#FFFFFF",
+// 	gray: {
+// 		50: "#121212",
+// 		100: "#1E1E1E",
+// 		200: "#2C2C2C",
+// 		300: "#3A3A3A",
+// 		400: "#505050",
+// 		500: "#6B6B6B",
+// 		600: "#8C8C8C",
+// 		700: "#B3B3B3",
+// 		800: "#D6D6D6",
+// 		900: "#F0F0F0",
+// 	},
+// 	accent: {
+// 		...lightBaseColors.accent,
+// 		green: "#00FFA3",
+// 	},
+// 	overlay: {
+// 		primary: "rgba(255,255,255,0.03)",
+// 		secondary: "rgba(255,255,255,0.3)",
+// 	},
+// };
 
 // TODO: (maaahad) adjust colors for Dark theme
-const darkSemanticColors: ThemeSemanticColors = {
-	text: {
-		primary: darkBaseColors.gray[50],
-		secondary: darkBaseColors.gray[300],
-		muted: darkBaseColors.gray[500],
-		inverted: darkBaseColors.black,
-		link: darkBaseColors.accent.green,
-		danger: darkBaseColors.error,
-		success: darkBaseColors.success,
-	},
-	background: {
-		transparent: darkBaseColors.transparent,
-		default: darkBaseColors.gray[900],
-		elevated: darkBaseColors.gray[800],
-		subtle: darkBaseColors.gray[700],
-		inverted: darkBaseColors.white,
-
-		// TODO: (maaahad) this is just copy from light theme
-		hover: lightBaseColors.overlay.primary, // hover on default BG (white) . For ex. outlined and ghost variant of Button
-		subtleHover: lightBaseColors.gray[300],
-		invertedHover: lightBaseColors.gray[800],
-	},
-	border: {
-		default: darkBaseColors.gray[600],
-		muted: darkBaseColors.gray[700],
-		strong: darkBaseColors.gray[400],
-	},
-};
+// const darkSemanticColors: ThemeSemanticColors = {
+// 	text: {
+// 		primary: darkBaseColors.gray[50],
+// 		secondary: darkBaseColors.gray[300],
+// 		muted: darkBaseColors.gray[500],
+// 		inverted: darkBaseColors.black,
+// 		link: darkBaseColors.accent.green,
+// 		danger: darkBaseColors.error,
+// 		success: darkBaseColors.success,
+// 	},
+// 	background: {
+// 		transparent: darkBaseColors.transparent,
+// 		default: darkBaseColors.gray[900],
+// 		elevated: darkBaseColors.gray[800],
+// 		subtle: darkBaseColors.gray[700],
+// 		inverted: darkBaseColors.white,
+//
+// 		// TODO: (maaahad) this is just copy from light theme
+// 		hover: lightBaseColors.overlay.primary, // hover on default BG (white) . For ex. outlined and ghost variant of Button
+// 		subtleHover: lightBaseColors.gray[300],
+// 		invertedHover: lightBaseColors.gray[800],
+// 	},
+// 	border: {
+// 		default: darkBaseColors.gray[600],
+// 		muted: darkBaseColors.gray[700],
+// 		strong: darkBaseColors.gray[400],
+// 	},
+// };
 
 // ---------------------------------------------------------------------------------------
 // Typography
@@ -253,7 +333,7 @@ const zIndices: ZIndices = {
 
 export const lightTheme: DefaultTheme = {
 	colors: {
-		raw: lightBaseColors,
+		raw: rawColors,
 		semantic: lightSemanticColors,
 	},
 	typography,
@@ -268,10 +348,10 @@ export const lightTheme: DefaultTheme = {
 	zIndices,
 };
 
-export const darkTheme: DefaultTheme = {
-	...lightTheme,
-	colors: {
-		raw: darkBaseColors,
-		semantic: darkSemanticColors,
-	},
-};
+// export const darkTheme: DefaultTheme = {
+// 	...lightTheme,
+// 	colors: {
+// 		raw: darkBaseColors,
+// 		semantic: darkSemanticColors,
+// 	},
+// };
