@@ -39,6 +39,7 @@ const lightBaseColors: ThemeColors = {
 	},
 
 	accent: {
+		default: "#0000FF",
 		green: "#00FF84",
 		red: "#FF4D6D",
 		yellow: "#FFE066",
@@ -48,8 +49,10 @@ const lightBaseColors: ThemeColors = {
 	warning: "#FF9F43",
 	error: "#EA5455",
 	info: "#00CFE8",
-
-	overlay: "rgba(0, 0, 0, 0.5)",
+	overlay: {
+		primary: "rgba(0, 0, 0, 0.05)",
+		secondary: "rgba(0, 0, 0, 0.5)",
+	},
 	transparent: "transparent",
 };
 
@@ -59,16 +62,22 @@ const lightSemanticColors: ThemeSemanticColors = {
 		secondary: lightBaseColors.gray[700],
 		muted: lightBaseColors.gray[500],
 		inverted: lightBaseColors.white,
-		link: lightBaseColors.accent.green,
+		link: lightBaseColors.accent.default,
 		danger: lightBaseColors.error,
 		success: lightBaseColors.success,
 	},
 	background: {
+		transparent: lightBaseColors.transparent,
 		default: lightBaseColors.white,
 		elevated: lightBaseColors.gray[50],
 		subtle: lightBaseColors.gray[100],
 		inverted: lightBaseColors.gray[900],
+
+		hover: lightBaseColors.overlay.primary,
+		subtleHover: lightBaseColors.gray[300],
+		invertedHover: lightBaseColors.gray[800],
 	},
+	// TODO: (maaaahad) add accent field
 	border: {
 		default: lightBaseColors.gray[200],
 		muted: lightBaseColors.gray[100],
@@ -97,9 +106,13 @@ const darkBaseColors: ThemeColors = {
 		...lightBaseColors.accent,
 		green: "#00FFA3",
 	},
-	overlay: "rgba(255,255,255,0.3)",
+	overlay: {
+		primary: "rgba(255,255,255,0.03)",
+		secondary: "rgba(255,255,255,0.3)",
+	},
 };
 
+// TODO: (maaahad) adjust colors for Dark theme
 const darkSemanticColors: ThemeSemanticColors = {
 	text: {
 		primary: darkBaseColors.gray[50],
@@ -111,10 +124,16 @@ const darkSemanticColors: ThemeSemanticColors = {
 		success: darkBaseColors.success,
 	},
 	background: {
+		transparent: darkBaseColors.transparent,
 		default: darkBaseColors.gray[900],
 		elevated: darkBaseColors.gray[800],
 		subtle: darkBaseColors.gray[700],
 		inverted: darkBaseColors.white,
+
+		// TODO: (maaahad) this is just copy from light theme
+		hover: lightBaseColors.overlay.primary, // hover on default BG (white) . For ex. outlined and ghost variant of Button
+		subtleHover: lightBaseColors.gray[300],
+		invertedHover: lightBaseColors.gray[800],
 	},
 	border: {
 		default: darkBaseColors.gray[600],
@@ -174,12 +193,17 @@ const space: Space = {
 	4: "16px",
 	5: "20px",
 	6: "24px",
+	7: "28px",
 	8: "32px",
 	10: "40px",
 	12: "48px",
+	13: "48px",
+	14: "48px",
 	16: "64px",
 	20: "80px",
 	24: "96px",
+	28: "112px",
+	32: "128px",
 };
 
 const radii: Radii = {
@@ -192,11 +216,11 @@ const radii: Radii = {
 };
 
 const breakpoints: Breakpoints = {
-	sm: "480px",
-	md: "768px",
-	lg: "1024px",
-	xl: "1280px",
-	"2xl": "1536px",
+	mobile: "480px",
+	tablet: "768px",
+	desktop: "1024px",
+	wide: "1280px",
+	wider: "1536px",
 };
 
 // ---------------------------------------------------------------------------------------

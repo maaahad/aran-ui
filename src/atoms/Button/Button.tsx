@@ -1,51 +1,72 @@
 // components/button/button.tsx
-import type { FC, MouseEventHandler } from "react";
-import styled from "styled-components";
+import {
+	type FC,
+	type PropsWithChildren,
+	type ReactNode,
+	useMemo,
+} from "react";
+import { SpinnerIcon } from "../Icons";
+import { ButtonStyled } from "./Button.styled";
 
-export type ButtonProps = {
-	text?: string;
-	primary?: boolean;
-	disabled?: boolean;
-	size?: "small" | "medium" | "large";
-	onClick?: MouseEventHandler<HTMLButtonElement>;
-};
+import { useTheme } from "styled-components";
+import type {
+	ComponentProps,
+	ComponentResponsiveProps,
+	PropPosition,
+	Size,
+	Variant,
+} from "../../utils/types";
 
-const StyledButton = styled.button<ButtonProps>`
-  border: 0;
-  line-height: 1;
-  font-size: 15px;
-  cursor: pointer;
-  font-weight: 700;
-  font-weight: bold;
-  border-radius: 10px;
-  display: inline-block;
-  color: ${(props) => props.theme.color.text.primary};
-  padding: ${(props) =>
-		props.size === "small"
-			? "7px 25px 8px"
-			: props.size === "medium"
-				? "9px 30px 11px"
-				: "14px 30px 16px"};
-`;
+export type Props = ComponentProps &
+	Omit<ComponentResponsiveProps, "pd"> & {
+		loading?: boolean;
+		loadingText?: string;
+		htmlType?: "button" | "submit" | "reset";
+		disabled?: boolean;
+		variant?: Variant;
+		onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+		icon?: ReactNode;
+		iconPosition?: PropPosition;
+		ripple?: boolean;
+		size?: Size;
+	};
 
-export const Button: FC<ButtonProps> = ({
-	size,
-	primary,
-	disabled,
-	text,
+export const Button: FC<PropsWithChildren<Props>> = ({
+	children,
+	loading = false,
+	loadingText,
+	htmlType = "button",
+	disabled = false,
+	variant = "filled",
+	icon,
+	iconPosition = "left",
 	onClick,
-	...props
+	size = "md",
+	ripple = false,
+	...styleProps
 }) => {
+	const theme = useTheme();
+
+	const iconColor = useMemo(() => {
+		if (variant === "solid") return theme.colors.semantic.text.inverted;
+		if (variant === "plain") return theme.colors.semantic.text.link;
+		return theme.colors.semantic.text.primary;
+	}, [theme, variant]);
+
 	return (
-		<StyledButton
-			type="button"
-			onClick={onClick}
-			primary={primary}
+		<ButtonStyled
+			type={htmlType}
 			disabled={disabled}
+			loading={loading}
 			size={size}
-			{...props}
+			variant={variant}
+			{...styleProps}
+			onClick={onClick}
+			reverse={iconPosition === "right"}
 		>
-			{text}
-		</StyledButton>
+			{ripple && <span className="ripple" />}
+			{loading ? <SpinnerIcon fill={iconColor} /> : icon}
+			<div>{loading ? loadingText : children}</div>
+		</ButtonStyled>
 	);
 };

@@ -27,9 +27,14 @@ export type ComponentSize = {
 	size?: "xs" | "sm" | "md" | "lg" | "xl";
 };
 
+export type Size = "xs" | "sm" | "md" | "lg" | "xl";
+export type Variant = "solid" | "filled" | "outlined" | "ghost" | "plain";
+
 export type ComponentProps = {
 	className?: string;
 };
+
+export type PropPosition = "left" | "right";
 
 // TODO: (maaahad) try to understand these two generic type decleration
 type _TupleOf<T, N extends number, R extends unknown[]> = R["length"] extends N

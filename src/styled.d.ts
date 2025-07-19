@@ -25,7 +25,8 @@ declare module "styled-components" {
 			contrast: string; // Contrast text color on primary, usually white
 		};
 		accent: {
-			green: string; // CTA, highlight or link color
+			default: string; // Link color
+			green: string; // CTA, highlight
 			yellow: string; // Warning or attention markers
 			red: string; // Error or delete
 		};
@@ -35,7 +36,11 @@ declare module "styled-components" {
 		error: string; // Error or validation failures
 		info: string; // Informational message
 
-		overlay: string; // Overlay for modals/backdrop. (e.g. rgba)
+		// Overlay for modals/backdrop. (e.g. rgba)
+		overlay: {
+			primary: string;
+			secondary: string;
+		};
 		transparent: string; // fully transparent, used for reset
 	};
 
@@ -87,6 +92,7 @@ declare module "styled-components" {
 			success: string;
 		};
 		background: {
+			transparent: string;
 			/**
 			 * Main background colors. Used for full-page, default containers
 			 */
@@ -106,6 +112,13 @@ declare module "styled-components" {
 			 * Background color for darkmode/inverted theme
 			 */
 			inverted: string;
+
+			/**
+			 * On hover
+			 */
+			hover: string;
+			invertedHover: string;
+			subtleHover: string;
 		};
 		border: {
 			/**
@@ -153,7 +166,25 @@ declare module "styled-components" {
 
 	export type Space = {
 		// TODO: (maaahad) Define a generic type. Ref: https://catchts.com/range-number:wa
-		[key in 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12 | 16 | 20 | 24]: string;
+		[key in
+			| 0
+			| 1
+			| 2
+			| 3
+			| 4
+			| 5
+			| 6
+			| 8
+			| 7
+			| 10
+			| 12
+			| 13
+			| 14
+			| 16
+			| 20
+			| 24
+			| 28
+			| 32]: string;
 	};
 
 	export type Radii = {
@@ -161,7 +192,7 @@ declare module "styled-components" {
 	};
 
 	export type Breakpoints = {
-		[key in "sm" | "md" | "lg" | "xl" | "2xl"]: string;
+		[key in "mobile" | "tablet" | "desktop" | "wide" | "wider"]: string;
 	};
 
 	export type Shadows = {
