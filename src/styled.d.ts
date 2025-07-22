@@ -30,18 +30,17 @@ declare module "styled-components" {
 			yellow: string; // Warning or attention markers
 			red: string; // Error or delete
 		};
-
-		success: string; // Success state or alerts
-		warning: string; // Warning or caution states
-		error: string; // Error or validation failures
-		info: string; // Informational message
-
-		// Overlay for modals/backdrop. (e.g. rgba)
-		overlay: {
-			primary: string;
-			secondary: string;
+		state: {
+			// success state or alerts
+			// Warning or caution states
+			// Error or validation failures
+			// Informational message
+			[key in "success" | "warning" | "error" | "info"]: string;
 		};
-		transparent: string; // fully transparent, used for reset
+		// alpha for modals/backdrop. (e.g. rgba)
+		alpha: {
+			[key in `black${number}` | "transparent"]: string;
+		};
 	};
 
 	/**
