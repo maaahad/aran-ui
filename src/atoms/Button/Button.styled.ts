@@ -234,7 +234,7 @@ const applyVariantStyles = (
 		}
 
 		default:
-			css``;
+			return css``;
 	}
 };
 
