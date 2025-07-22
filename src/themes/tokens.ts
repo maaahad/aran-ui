@@ -49,11 +49,16 @@ const lightBaseColors: ThemeColors = {
 	warning: "#FF9F43",
 	error: "#EA5455",
 	info: "#00CFE8",
-	overlay: {
-		primary: "rgba(0, 0, 0, 0.05)",
-		secondary: "rgba(0, 0, 0, 0.5)",
+	alpha: {
+		black2: "rgba(0, 0, 0, 0.02)",
+		black4: "rgba(0, 0, 0, 0.04)",
+		black8: "rgba(0, 0, 0, 0.08)",
+		black12: "rgba(0, 0, 0, 0.12)",
+		black16: "rgba(0, 0, 0, 0.16)",
+		black24: "rgba(0, 0, 0, 0.24)",
+		black50: "rgba(0, 0, 0, 0.50)",
+		transparent: "transparent",
 	},
-	transparent: "transparent",
 };
 
 const lightSemanticColors: ThemeSemanticColors = {
@@ -67,13 +72,13 @@ const lightSemanticColors: ThemeSemanticColors = {
 		success: lightBaseColors.success,
 	},
 	background: {
-		transparent: lightBaseColors.transparent,
+		transparent: lightBaseColors.alpha.transparent,
 		default: lightBaseColors.white,
 		elevated: lightBaseColors.gray[50],
 		subtle: lightBaseColors.gray[100],
 		inverted: lightBaseColors.gray[900],
 
-		hover: lightBaseColors.overlay.primary,
+		hover: lightBaseColors.alpha.black5,
 		subtleHover: lightBaseColors.gray[300],
 		invertedHover: lightBaseColors.gray[800],
 	},
@@ -106,9 +111,15 @@ const darkBaseColors: ThemeColors = {
 		...lightBaseColors.accent,
 		green: "#00FFA3",
 	},
-	overlay: {
-		primary: "rgba(255,255,255,0.03)",
-		secondary: "rgba(255,255,255,0.3)",
+	alpha: {
+		black2: "rgba(0, 0, 0, 0.02)",
+		black4: "rgba(0, 0, 0, 0.04)",
+		black8: "rgba(0, 0, 0, 0.08)",
+		black12: "rgba(0, 0, 0, 0.12)",
+		black16: "rgba(0, 0, 0, 0.16)",
+		black24: "rgba(0, 0, 0, 0.24)",
+		black50: "rgba(0, 0, 0, 0.50)",
+		transparent: "transparent",
 	},
 };
 
@@ -124,14 +135,14 @@ const darkSemanticColors: ThemeSemanticColors = {
 		success: darkBaseColors.success,
 	},
 	background: {
-		transparent: darkBaseColors.transparent,
+		transparent: darkBaseColors.alpha.transparent,
 		default: darkBaseColors.gray[900],
 		elevated: darkBaseColors.gray[800],
 		subtle: darkBaseColors.gray[700],
 		inverted: darkBaseColors.white,
 
 		// TODO: (maaahad) this is just copy from light theme
-		hover: lightBaseColors.overlay.primary, // hover on default BG (white) . For ex. outlined and ghost variant of Button
+		hover: lightBaseColors.alpha.black5, // hover on default BG (white) . For ex. outlined and ghost variant of Button
 		subtleHover: lightBaseColors.gray[300],
 		invertedHover: lightBaseColors.gray[800],
 	},

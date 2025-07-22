@@ -36,12 +36,10 @@ declare module "styled-components" {
 		error: string; // Error or validation failures
 		info: string; // Informational message
 
-		// Overlay for modals/backdrop. (e.g. rgba)
-		overlay: {
-			primary: string;
-			secondary: string;
+		// alpha for modals/backdrop. (e.g. rgba)
+		alpha: {
+			[key in `black${number}` | "transparent"]: string;
 		};
-		transparent: string; // fully transparent, used for reset
 	};
 
 	/**
