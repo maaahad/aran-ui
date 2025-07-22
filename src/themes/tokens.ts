@@ -44,11 +44,12 @@ const lightBaseColors: ThemeColors = {
 		red: "#FF4D6D",
 		yellow: "#FFE066",
 	},
-
-	success: "#28C76F",
-	warning: "#FF9F43",
-	error: "#EA5455",
-	info: "#00CFE8",
+	state: {
+		success: "#28C76F",
+		warning: "#FF9F43",
+		error: "#EA5455",
+		info: "#00CFE8",
+	},
 	alpha: {
 		black2: "rgba(0, 0, 0, 0.02)",
 		black4: "rgba(0, 0, 0, 0.04)",
@@ -68,8 +69,8 @@ const lightSemanticColors: ThemeSemanticColors = {
 		muted: lightBaseColors.gray[500],
 		inverted: lightBaseColors.white,
 		link: lightBaseColors.accent.default,
-		danger: lightBaseColors.error,
-		success: lightBaseColors.success,
+		danger: lightBaseColors.state.error,
+		success: lightBaseColors.state.success,
 	},
 	background: {
 		transparent: lightBaseColors.alpha.transparent,
@@ -131,8 +132,8 @@ const darkSemanticColors: ThemeSemanticColors = {
 		muted: darkBaseColors.gray[500],
 		inverted: darkBaseColors.black,
 		link: darkBaseColors.accent.green,
-		danger: darkBaseColors.error,
-		success: darkBaseColors.success,
+		danger: darkBaseColors.state.error,
+		success: darkBaseColors.state.success,
 	},
 	background: {
 		transparent: darkBaseColors.alpha.transparent,
