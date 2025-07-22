@@ -79,7 +79,7 @@ const lightSemanticColors: ThemeSemanticColors = {
 		subtle: lightBaseColors.gray[100],
 		inverted: lightBaseColors.gray[900],
 
-		hover: lightBaseColors.alpha.black5,
+		hover: lightBaseColors.alpha.black4,
 		subtleHover: lightBaseColors.gray[300],
 		invertedHover: lightBaseColors.gray[800],
 	},
@@ -143,7 +143,7 @@ const darkSemanticColors: ThemeSemanticColors = {
 		inverted: darkBaseColors.white,
 
 		// TODO: (maaahad) this is just copy from light theme
-		hover: lightBaseColors.alpha.black5, // hover on default BG (white) . For ex. outlined and ghost variant of Button
+		hover: lightBaseColors.alpha.black4, // hover on default BG (white) . For ex. outlined and ghost variant of Button
 		subtleHover: lightBaseColors.gray[300],
 		invertedHover: lightBaseColors.gray[800],
 	},
